@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta http-equiv="Last-Modified" content="Sun, 05 Nov 2017 01:50:13 GMT">
+	<meta charset="UTF-8">
+	<title>カスタムメニューの登録と表示”register_nav_menus”｜WordPressテーマの作り方</title>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+       <link rel='dns-prefetch' href="/static/pochi-web.github.io//maxcdn.bootstrapcdn.com" />
+<link rel='dns-prefetch' href="/static/pochi-web.github.io//fonts.googleapis.com" />
+<link rel='dns-prefetch' href="/static/pochi-web.github.io//s.w.org" />
+		<script type="text/javascript">
+			window._wpemojiSettings = {"baseUrl":"https:\/\/s.w.org\/images\/core\/emoji\/2.3\/72x72\/","ext":".png","svgUrl":"https:\/\/s.w.org\/images\/core\/emoji\/2.3\/svg\/","svgExt":".svg","source":{"concatemoji":"http:\/\/mywp\/static\/pochi-web.github.io\/wp-includes\/js\/wp-emoji-release.min.js?ver=4.8.3"}};
+			!function(a,b,c){function d(a){var b,c,d,e,f=String.fromCharCode;if(!k||!k.fillText)return!1;switch(k.clearRect(0,0,j.width,j.height),k.textBaseline="top",k.font="600 32px Arial",a){case"flag":return k.fillText(f(55356,56826,55356,56819),0,0),b=j.toDataURL(),k.clearRect(0,0,j.width,j.height),k.fillText(f(55356,56826,8203,55356,56819),0,0),c=j.toDataURL(),b!==c&&(k.clearRect(0,0,j.width,j.height),k.fillText(f(55356,57332,56128,56423,56128,56418,56128,56421,56128,56430,56128,56423,56128,56447),0,0),b=j.toDataURL(),k.clearRect(0,0,j.width,j.height),k.fillText(f(55356,57332,8203,56128,56423,8203,56128,56418,8203,56128,56421,8203,56128,56430,8203,56128,56423,8203,56128,56447),0,0),c=j.toDataURL(),b!==c);case"emoji4":return k.fillText(f(55358,56794,8205,9794,65039),0,0),d=j.toDataURL(),k.clearRect(0,0,j.width,j.height),k.fillText(f(55358,56794,8203,9794,65039),0,0),e=j.toDataURL(),d!==e}return!1}function e(a){var c=b.createElement("script");c.src=a,c.defer=c.type="text/javascript",b.getElementsByTagName("head")[0].appendChild(c)}var f,g,h,i,j=b.createElement("canvas"),k=j.getContext&&j.getContext("2d");for(i=Array("flag","emoji4"),c.supports={everything:!0,everythingExceptFlag:!0},h=0;h<i.length;h++)c.supports[i[h]]=d(i[h]),c.supports.everything=c.supports.everything&&c.supports[i[h]],"flag"!==i[h]&&(c.supports.everythingExceptFlag=c.supports.everythingExceptFlag&&c.supports[i[h]]);c.supports.everythingExceptFlag=c.supports.everythingExceptFlag&&!c.supports.flag,c.DOMReady=!1,c.readyCallback=function(){c.DOMReady=!0},c.supports.everything||(g=function(){c.readyCallback()},b.addEventListener?(b.addEventListener("DOMContentLoaded",g,!1),a.addEventListener("load",g,!1)):(a.attachEvent("onload",g),b.attachEvent("onreadystatechange",function(){"complete"===b.readyState&&c.readyCallback()})),f=c.source||{},f.concatemoji?e(f.concatemoji):f.wpemoji&&f.twemoji&&(e(f.twemoji),e(f.wpemoji)))}(window,document,window._wpemojiSettings);
+		</script>
+		<style type="text/css">
+img.wp-smiley,
+img.emoji {
+	display: inline !important;
+	border: none !important;
+	box-shadow: none !important;
+	height: 1em !important;
+	width: 1em !important;
+	margin: 0 .07em !important;
+	vertical-align: -0.1em !important;
+	background: none !important;
+	padding: 0 !important;
+}
+</style>
+<link rel='stylesheet' id='font-aweasome-css'  href='https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css?ver=4.8.3' type='text/css' media='all' />
+<link rel='stylesheet' id='google-font-css'  href='https://fonts.googleapis.com/earlyaccess/notosansjapanese.css?ver=4.8.3' type='text/css' media='all' />
+<link rel='stylesheet' id='base-css'  href="/static/pochi-web.github.io/wp-content/themes/wire-frame-theme/css/base.css?ver=4.8.3" type='text/css' media='all' />
+<link rel='stylesheet' id='element-css'  href="/static/pochi-web.github.io/wp-content/themes/wire-frame-theme/css/element.css?ver=4.8.3" type='text/css' media='all' />
+<link rel='stylesheet' id='modifier-css'  href="/static/pochi-web.github.io/wp-content/themes/wire-frame-theme/css/modifier.css?ver=4.8.3" type='text/css' media='all' />
+<link rel='stylesheet' id='style-css'  href="/static/pochi-web.github.io/wp-content/themes/wire-frame-theme/style.css?ver=4.8.3" type='text/css' media='all' />
+<script type='text/javascript' src="/static/pochi-web.github.io/wp-includes/js/jquery/jquery.js?ver=1.12.4"></script>
+<script type='text/javascript' src="/static/pochi-web.github.io/wp-includes/js/jquery/jquery-migrate.min.js?ver=1.4.1"></script>
+<link rel='https://api.w.org/' href="/static/pochi-web.github.io/wp-json/" />
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="/static/pochi-web.github.io/wp-includes/wlwmanifest.xml" /> 
+<meta name="generator" content="WordPress 4.8.3 with StaticPress ver.0.4.5" />
+    <script>
+	var j = jQuery.noConflict();
+	</script>
+</head><body>
+	<header id="header">
+	<div id="header_layer">
+		<h1>
+			カスタムメニューの登録と表示”register_nav_menus”｜WordPressテーマの作り方		</h1>
+		<p>カスタムメニューの使い方 とりあえず、全開で至極簡単な表示はできたので、今度はWordPress純正のメニューを表示させてみる。 WordPressCodexをみると、流れ的には以下。 カスタムメニューを表示させるまでの</p>
+				<nav id="header_nav">
+			<ul id="category_nav">
+				
+				<li class="category_name">
+					<a href="/static/pochi-web.github.io/entry/category/cms/wordpress%e3%83%86%e3%83%bc%e3%83%9e%e3%81%ae%e4%bd%9c%e3%82%8a%e6%96%b9">
+						WordPressテーマの作り方					</a>
+				</li>
+															</ul>
+			2017年9月22日		</nav>
+				</div><!--END-header_layer-->
+			</header>
+	<main class="post-2114 post type-post status-publish format-standard hentry category-wordpress">
+	<article id="main_article">
+		<h2>カスタムメニューの使い方</h2>
+<p>とりあえず、全開で至極簡単な表示はできたので、今度は<a class="keyword" href="http://d.hatena.ne.jp/keyword/WordPress">WordPress</a>純正のメニューを表示させてみる。</p>
+<p>WordPressCodexをみると、流れ的には以下。</p>
+<h3>カスタムメニューを表示させるまでの流れ</h3>
+<ol>
+<li>functions.<a class="keyword" href="http://d.hatena.ne.jp/keyword/php">php</a>でフック？アンカーになる文字列と、管理画面上での名前を決めてメニューを登録。
+<p><script src="https://gist.github.com/4aee5a5a296ed3d1dc359006e8309997.js"> </script></p>
+<p><a href="https://gist.github.com/4aee5a5a296ed3d1dc359006e8309997">カスタムメニュー有効化</a></p>
+</li>
+<li>その文字列をパラメータに持つwp_nav_menuをテーマに書き込む。
+<p><script src="https://gist.github.com/32fe91edae0f30b4f91c7a5c33b24524.js"> </script></p>
+<p><a href="https://gist.github.com/32fe91edae0f30b4f91c7a5c33b24524">カスタムメニューを読み込む</a></p>
+<p><script src="https://gist.github.com/1169d7927ca1263eeb94ed59eae7c162.js"> </script></p>
+<p><a href="https://gist.github.com/1169d7927ca1263eeb94ed59eae7c162">wp_nav_menuを使って、カスタムメニューを表示＆任意クラス付与</a></p>
+</li>
+<li>
+<p>メニューを作って、表示させたいところにチェックを入れる。</p>
+</li>
+</ol>
+<p><img class="hatena-fotolife" title="f:id:pochiweb:20170922004016p:plain" src="https://cdn-ak.f.st-hatena.com/images/fotolife/p/pochiweb/20170922/20170922004016.png" alt="f:id:pochiweb:20170922004016p:plain" /></p>
+<h3>注意点</h3>
+<p><a class="keyword" href="http://d.hatena.ne.jp/keyword/widget">widget</a>ばっかり使ってきて、この方法は初めて。簡単に注意点を書いておく。</p>
+<ul>
+<li>wp_nav_menu一つに対して一つしかメニューは表示できない。（当然すぎるな）</li>
+<li>メニュー管理画面では、表示させたい部分に対して<a class="keyword" href="http://d.hatena.ne.jp/keyword/%A5%C1%A5%A7%A5%C3%A5%AF%A5%DC%A5%C3%A5%AF%A5%B9">チェックボックス</a>のチェックを入れるのだけど、違うメニューを同じところに表示させようとしても特に警告なしで上書きされる。</li>
+</ul>
+<p>次はwp_nav_menuの細かいパラメータをCodex見ながら試してみたい。（<a class="keyword" href="http://d.hatena.ne.jp/keyword/CSS">CSS</a>とかの読み込みはメニューのスタイル当てるときにでも。。）</p>
+<p> </p>
+	</article>
+	</main>
+		<header id="header">
+	<div id="header_layer">
+		<h1>
+			最低限からのWordPressテーマ構築記録を開始		</h1>
+		<p>訂正 index.phpの内容に誤りがあったので訂正しました。 3行目のhave_postsの(　)がありませんでした。 誤：have_posts 正：have_posts( ) テーマ作成への考え方が変わった これまで</p>
+				<nav id="header_nav">
+			<ul id="category_nav">
+				
+				<li class="category_name">
+					<a href="/static/pochi-web.github.io/entry/category/cms/wordpress%e3%83%86%e3%83%bc%e3%83%9e%e3%81%ae%e4%bd%9c%e3%82%8a%e6%96%b9">
+						WordPressテーマの作り方					</a>
+				</li>
+															</ul>
+			2017年9月19日		</nav>
+				</div><!--END-header_layer-->
+			</header>
+	<main class="post-2115 post type-post status-publish format-standard hentry category-wordpress">
+	<article id="main_article">
+		<h2>訂正</h2>
+<p>index.<a class="keyword" href="http://d.hatena.ne.jp/keyword/php">php</a>の内容に誤りがあったので訂正しました。</p>
+<p>3行目のhave_postsの(　)がありませんでした。</p>
+<p>誤：have_posts</p>
+<p>正：have_posts( )</p>
+<h2>テーマ作成への考え方が変わった</h2>
+<p>これまでの投稿で、仕様を決めたりファイルを用意したりしていたけれども、ちょっと大きく方向転換をすることにした。</p>
+<p>これはWordCampで聞いた</p>
+<p><iframe id="talk_frame_407216" style="border: 0; padding: 0; margin: 0; background: transparent;" src="/static/pochi-web.github.io//speakerdeck.com/player/1cfb135acdab4f59837a341b001761fe" width="710" height="463" frameborder="0" allowfullscreen="true"></iframe><cite class="hatena-citation"><a href="https://speakerdeck.com/h2ham/wordcamp-tokyo-2017-h2ham-toro-unit">speakerdeck.com</a></cite></p>
+<p>による影響が大きい。</p>
+<p>正直なところ、作りたいなと思っていたのはこれと対極にあるカスタムフィールドをガンガン使ったものでした。</p>
+<p>しかし、確かにカスタムフィールドを使うということは他のテーマへの移行をし難くするということだし、さらにいってしまえば今後Gutenbergがメインエディタになった時、必要ないじゃん？となる気がしたから。</p>
+<p>というわけで、今まで多少作成を進めていたものも一旦まっさらにして、やり直すことにした。Bootstrapも削除して、綺麗さっぱりここからスタートします。</p>
+<h2><a class="keyword" href="http://d.hatena.ne.jp/keyword/WordPress">WordPress</a>をとりあえず表示するだけ５点セット</h2>
+<p>我ながら、どんだけ最初から晒すんだ？！という気がしないでもないけど、自分のための記録半分以上だから、と無理やり納得させての公開ですので、指導は喜んで頂戴します。</p>
+<p><script src="https://gist.github.com/ff581ac4513d1e5627b77214991e2109.js"> </script></p>
+<p><a href="https://gist.github.com/ff581ac4513d1e5627b77214991e2109">header.php</a></p>
+<p><script src="https://gist.github.com/1c65521cafb2c2beb248c10baf5129da.js"> </script></p>
+<p><a href="https://gist.github.com/1c65521cafb2c2beb248c10baf5129da">index.php</a></p>
+<p><a href="https://wpdocs.osdn.jp/%E3%83%AB%E3%83%BC%E3%83%97">ループ &#8211; WordPress Codex 日本語版</a></p>
+<p><script src="https://gist.github.com/0a8a658bb58d6490ba2b271101a9e8e7.js"> </script></p>
+<p><a href="https://gist.github.com/0a8a658bb58d6490ba2b271101a9e8e7">footer.php</a></p>
+<p><script src="https://gist.github.com/0723918a29a3a1ead456a8f49a326f40.js"> </script></p>
+<p><a href="https://gist.github.com/0723918a29a3a1ead456a8f49a326f40">style.css</a></p>
+<p><script src="https://gist.github.com/46733f9dde33dd276b09aec66177a6ca.js"> </script></p>
+<p><a href="https://gist.github.com/46733f9dde33dd276b09aec66177a6ca">functions.php</a></p>
+<p>styleの読み込み方法とかが既に推奨の方法でない気がするので、明日はその辺りを調べて調整していこうと思います。</p>
+<p>年内完成できるのかな？</p>
+<p> </p>
+<p> </p>
+	</article>
+	</main>
+		<header id="header">
+	<div id="header_layer">
+		<h1>
+			WordCampTokyo2017参加してきた。現状スライドまとめ、来年へ向けた反省など。		</h1>
+		<p>WordCampTokyoに参加してきました。日が経って忘れてしまう前に、書き残しておきたい。スライドまとめは最後にありますので、まとめをご覧になりたい方はそちらへ！   後悔したこと のっけから後悔したことを書くってど</p>
+				<nav id="header_nav">
+			<ul id="category_nav">
+				
+				<li class="category_name">
+					<a href="/static/pochi-web.github.io/entry/category/%e6%97%a5%e8%a8%98">
+						日記					</a>
+				</li>
+															</ul>
+			2017年9月17日		</nav>
+				</div><!--END-header_layer-->
+			</header>
+	<main class="post-2116 post type-post status-publish format-standard hentry category-157">
+	<article id="main_article">
+		<p>WordCampTokyoに参加してきました。日が経って忘れてしまう前に、書き残しておきたい。スライドまとめは最後にありますので、まとめをご覧になりたい方はそちらへ！</p>
+<p> </p>
+<h2>後悔したこと</h2>
+<p>のっけから後悔したことを書くってどうなのよーという感じですけども。人は得られたはずの利益を遺失した時、その価値は3倍（確か）に感じるようで、人間の本能であるということで許してください。</p>
+<h3>個人名刺を作っておきたい</h3>
+<p>１番の公開はこれ。こういったイベントで会社の名刺、、でもいいのかもしれないけどやっぱりなんだか違和感がある。<a class="keyword" href="http://d.hatena.ne.jp/keyword/twitter">twitter</a>は会社と完全分離させているし、イベントでは<a class="keyword" href="http://d.hatena.ne.jp/keyword/twitter">twitter</a>で繋がってる方としか多分会わないので、なおさら。自分を何者にするか？からしっかり考えて作りたい。</p>
+<h3>バッグ小さかった</h3>
+<p>ボディバッグで会場に向かいましたが、最初のセッション開始前にもう超パンパンになってしまいまして。</p>
+<p>なぜかというと、<a class="keyword" href="http://d.hatena.ne.jp/keyword/%A5%CE%A5%D9%A5%EB%A5%C6%A5%A3">ノベルティ</a>や販促物のことをすっかり忘れていて、色々頂いていたら全然足りなかった、という感じです。</p>
+<p>辞書２冊分くらいはあったんじゃないかなあ。</p>
+<p>セッション開始と終了の時に、メモを出すのも大変という結構面倒なことになっておりましたww</p>
+<p> </p>
+<p><span style="font-size: 80%;">↓頂きものたち。</span></p>
+<p><img class="hatena-fotolife" title="f:id:pochiweb:20170917104926j:plain" src="https://cdn-ak.f.st-hatena.com/images/fotolife/p/pochiweb/20170917/20170917104926.jpg" alt="f:id:pochiweb:20170917104926j:plain" /></p>
+<p>普段お世話になっている各企業の<a class="keyword" href="http://d.hatena.ne.jp/keyword/%A5%CE%A5%D9%A5%EB%A5%C6%A5%A3">ノベルティ</a>ということもあって、どれもこれも可愛い、かっこいい！と興奮しちゃいました。</p>
+<h3>懇親会も参加した方がいい</h3>
+<p>今回、色々とタイミングが悪く、WordCampの懇親会には参加できませんでしたが、それについてはちょっと後悔があります。</p>
+<p>というのも、やはりスピーカーのみなさんや、遠方から参加される方はひとまず懇親会に参加されていて、そういった方々と実際にお会いする数少ないチャンスを逃してしまったから。</p>
+<p>僕の場合は「<a class="keyword" href="http://d.hatena.ne.jp/keyword/SNS">SNS</a>だけで繋がっている方々と会う」が今回の目的の一つなので、ちょっと失敗したかな、、と思っています。東京近郊の方であれば、その気になればお会いできるので。</p>
+<p>スピーカーの方、<a class="keyword" href="http://d.hatena.ne.jp/keyword/%A5%D7%A5%E9%A5%B0%A5%A4%A5%F3">プラグイン</a>作者の方、ここでしか会えないかもしれない方がたくさんいるはずです。</p>
+<h3>会いたい人とは事前に打ち合わせする方が良かった</h3>
+<p>今回、結果的に５名の方にお会いできたのですが、結構バタバタでちょっと失礼をしてしまったこともありました。。可能なら事前にスケジュール組めてたら良かったなーと。</p>
+<h2>よかったこと</h2>
+<p>良かったことはまあみなさん大体同じ様なことになるのかなーと思いますが、書かせて頂きます。</p>
+<h3>会いたい人に会うことができる</h3>
+<p>WordCampは一年を通して最も大きな<a class="keyword" href="http://d.hatena.ne.jp/keyword/WordPress">WordPress</a>イベントですし、参加費もとても安いので、非常に多くの人が参加されます。ということは、普段はネット上でしかやりとりしていない人に会うことができる可能性も格段に上がる訳で、実際に多くの方にお会いできました。大規模イベントだからこそですね。</p>
+<h3>新たな知識を得ることができる</h3>
+<p>これも当然ですが、今まで持っていなかった考えや具体的手法を取り入れることができます。見積もりに「レビュー」項目を入れるなんてのはものすごく大事で即効性のあることで、これだけで来た甲斐があったな、という感じです。</p>
+<h3>新たな繋がりが生まれる</h3>
+<p>僕はWordCampTokyoとは違う懇親会にいって来ましたが、とても魅力的な方々とご一緒できて、大きな刺激をいただくことができましたし、色々と相談させてもらったりして本当に楽しかったです。</p>
+<h2>来年に向けて</h2>
+<p>今年、初めてWordCampに参加してみて思ったのは<span style="color: #d32f2f; font-size: 150%;">「ただ参加するだけじゃなんか申し訳ないな」</span>ということでした。</p>
+<p>これはテーマが「join」だからということは関係なく、例えば宮内さんの熱い思いや、スポンサーの皆様の厚意や、行き届いた会場整備、運営に触れて、自然と湧き起こった感情です。</p>
+<p>という訳で。来年はスタッフTシャツを来ているかも。</p>
+<p>最後に、現時点で公開されているスライドまとめておきます。公式が発表されるまで、ご利用いただければと思います。</p>
+<h2>スライドまとめ</h2>
+<p><iframe id="talk_frame_407198" style="border: 0; padding: 0; margin: 0; background: transparent;" src="/static/pochi-web.github.io//speakerdeck.com/player/02b4f58e1548427d863e9bb0c267c715" width="710" height="463" frameborder="0" allowfullscreen="true"></iframe><cite class="hatena-citation"><a href="https://speakerdeck.com/ixkaito/shi-jie-de-ren-sikadekinai-wordpress-koawoxie-jing-suruhua-xiu-xing-falsexian-nijian-tamofalsetoha">speakerdeck.com</a></cite></p>
+<p><iframe id="talk_frame_407163" style="border: 0; padding: 0; margin: 0; background: transparent;" src="/static/pochi-web.github.io//speakerdeck.com/player/d3514e9c0a314ce48984a7a70f051be0" width="710" height="463" frameborder="0" allowfullscreen="true"></iframe><cite class="hatena-citation"><a href="https://speakerdeck.com/hideokamoto/puratutohuomutositefalse-wordpress">speakerdeck.com</a></cite></p>
+<p><iframe id="talk_frame_407222" style="border: 0; padding: 0; margin: 0; background: transparent;" src="/static/pochi-web.github.io//speakerdeck.com/player/b65f97532b7a414b963cfe508f2e62ef" width="710" height="463" frameborder="0" allowfullscreen="true"></iframe><cite class="hatena-citation"><a href="https://speakerdeck.com/nayucolony/zu-mihe-wasedejian-dan-wp-rest-apitogithubdetukuru-yoriyoimedeiayun-ying-falsewakuhuro">speakerdeck.com</a></cite></p>
+<p><iframe id="talk_frame_407212" style="border: 0; padding: 0; margin: 0; background: transparent;" src="/static/pochi-web.github.io//speakerdeck.com/player/1797772487ee4a629a4c7736f47663cb" width="710" height="463" frameborder="0" allowfullscreen="true"></iframe><cite class="hatena-citation"><a href="https://speakerdeck.com/megane9988/wordpresssaitogou-zhu-puroziekutomanezimento">speakerdeck.com</a></cite></p>
+<p><iframe id="talk_frame_407224" style="border: 0; padding: 0; margin: 0; background: transparent;" src="/static/pochi-web.github.io//speakerdeck.com/player/5fb0a03028a344a6977ee06eafaa8e01" width="710" height="596" frameborder="0" allowfullscreen="true"></iframe><cite class="hatena-citation"><a href="https://speakerdeck.com/fumikito/wp-next-step-wordpress-web-sositesi-tatifalsewei-lai">speakerdeck.com</a></cite></p>
+<p><iframe id="talk_frame_407216" style="border: 0; padding: 0; margin: 0; background: transparent;" src="/static/pochi-web.github.io//speakerdeck.com/player/1cfb135acdab4f59837a341b001761fe" width="710" height="463" frameborder="0" allowfullscreen="true"></iframe><cite class="hatena-citation"><a href="https://speakerdeck.com/h2ham/wordcamp-tokyo-2017-h2ham-toro-unit">speakerdeck.com</a></cite></p>
+<p><iframe style="border: 1px solid #CCC; border-width: 1px; margin-bottom: 5px; max-width: 100%;" src="https://www.slideshare.net/slideshow/embed_code/key/msnHR1kef79qSi" width="427" height="356" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" allowfullscreen=""> </iframe></p>
+<div style="margin-bottom: 5px;"><strong> <a href="https://www.slideshare.net/masayukimaekawa/ssl-wordpress" title="常時SSL化の事前確認・注意点・手順 〜WordPressとその周辺で必要なこと〜 #wctokyo" target="_blank">常時SSL化の事前確認・注意点・手順 〜WordPressとその周辺で必要なこと〜 #wctokyo</a> </strong> from <strong><a href="https://www.slideshare.net/masayukimaekawa" target="_blank">Masayuki Maekawa</a></strong></div>
+<p><cite class="hatena-citation"><a href="https://www.slideshare.net/slideshow/embed_code/key/msnHR1kef79qSi">www.slideshare.net</a></cite></p>
+<p><iframe style="border: 1px solid #CCC; border-width: 1px; margin-bottom: 5px; max-width: 100%;" src="https://www.slideshare.net/slideshow/embed_code/key/CBRLrUUTeISjX" width="427" height="356" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" allowfullscreen=""> </iframe></p>
+<div style="margin-bottom: 5px;"><strong> <a href="https://www.slideshare.net/miiitaka/wordpress-79833295" title="WordPressをこれから始める人のためのテーマ講座" target="_blank">WordPressをこれから始める人のためのテーマ講座</a> </strong> from <strong><a href="https://www.slideshare.net/miiitaka" target="_blank">Takami Kazuya</a></strong></div>
+<p><cite class="hatena-citation"><a href="https://www.slideshare.net/slideshow/embed_code/key/CBRLrUUTeISjX">www.slideshare.net</a></cite></p>
+<p><iframe style="border: 1px solid #CCC; border-width: 1px; margin-bottom: 5px; max-width: 100%;" src="https://www.slideshare.net/slideshow/embed_code/key/INdxwYAaV4zrVt" width="427" height="356" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" allowfullscreen=""> </iframe></p>
+<div style="margin-bottom: 5px;"><strong> <a href="https://www.slideshare.net/loftwork/ss-79840901" title="大規模案件の苦悩から生まれた 柔軟なカスタムフィールド設計" target="_blank">大規模案件の苦悩から生まれた 柔軟なカスタムフィールド設計</a> </strong> from <strong><a href="https://www.slideshare.net/loftwork" target="_blank">loftwork</a></strong></div>
+<p><cite class="hatena-citation"><a href="https://www.slideshare.net/loftwork/ss-79840901">www.slideshare.net</a></cite></p>
+<p><iframe style="border: 1px solid #CCC; border-width: 1px; margin-bottom: 5px; max-width: 100%;" src="https://www.slideshare.net/slideshow/embed_code/key/qRXMartMxMePC" width="427" height="356" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" allowfullscreen=""> </iframe></p>
+<div style="margin-bottom: 5px;"><strong> <a href="https://www.slideshare.net/masatoshisomeya/wordcamp-tokyo-2017ver" title="なぜ人は怪しい壺を欲しくなってしまうのか WordCamp Tokyo 2017Ver" target="_blank">なぜ人は怪しい壺を欲しくなってしまうのか WordCamp Tokyo 2017Ver</a> </strong> from <strong><a href="https://www.slideshare.net/masatoshisomeya" target="_blank">Masatoshi Someya</a></strong></div>
+<div>補足を含むブログが公開されました。</div>
+<div>
+<p><iframe class="embed-card embed-webcard" style="display: block; width: 100%; height: 155px; max-width: 500px; margin: 10px 0px;" title="WordCampで話した「なぜ人は怪しい壺を欲しくなってしまうのか」の内容と補足説明 #wctokyo" src="https://hatenablog-parts.com/embed?url=https%3A%2F%2Fsomeyamasatoshi.jp%2Fconference%2Fwctokyo2017_pot%2F" frameborder="0" scrolling="no"></iframe><cite class="hatena-citation"><a href="https://someyamasatoshi.jp/conference/wctokyo2017_pot/">someyamasatoshi.jp</a></cite></p>
+</div>
+<p><cite class="hatena-citation"><a href="https://www.slideshare.net/masatoshisomeya/wordcamp-tokyo-2017ver">www.slideshare.net</a></cite></p>
+<p><iframe id="talk_frame_407210" style="border: 0; padding: 0; margin: 0; background: transparent;" src="/static/pochi-web.github.io//speakerdeck.com/player/98dab7c8eace4a69a255f0345ea7880c" width="710" height="596" frameborder="0" allowfullscreen="true"></iframe><cite class="hatena-citation"><a href="https://speakerdeck.com/miya0001/wordpresspuroziekutofalsekorekara">speakerdeck.com</a></cite></p>
+<p><iframe style="border: 1px solid #CCC; border-width: 1px; margin-bottom: 5px; max-width: 100%;" src="https://www.slideshare.net/slideshow/embed_code/key/AwscRIJ1JdMeuy" width="427" height="356" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" allowfullscreen=""> </iframe></p>
+<div style="margin-bottom: 5px;"><strong> <a href="https://www.slideshare.net/y3sei/wct2017-tourguide-hikari" title="利用者数倍増！ 観光協会サイト「ツアーガイドひかり」を引き継ぎ、活性化するまでの技術とプロセス" target="_blank">利用者数倍増！ 観光協会サイト「ツアーガイドひかり」を引き継ぎ、活性化するまでの技術とプロセス</a> </strong> from <strong><a href="https://www.slideshare.net/y3sei" target="_blank">Hiroyuki Ishikawa</a></strong></div>
+<p><cite class="hatena-citation"><a href="https://www.slideshare.net/y3sei/wct2017-tourguide-hikari">www.slideshare.net</a></cite></p>
+<p>それでは。</p>
+	</article>
+	</main>
+		<header id="header">
+	<div id="header_layer">
+		<h1>
+			videoタグの再生終了後にposterを表示させる方法		</h1>
+		<p>posterの再表示で詰まる HTML5のvideoタグは使い方も簡単ですし、動画がトップにどーんとあるだけで、サイトの印象を一気に変えることができるので重宝しますよね。 再生のループや待機画像（poster）なんかの設</p>
+				<nav id="header_nav">
+			<ul id="category_nav">
+				
+				<li class="category_name">
+					<a href="/static/pochi-web.github.io/entry/category/web">
+						Web制作					</a>
+				</li>
+															</ul>
+			2017年9月12日		</nav>
+				</div><!--END-header_layer-->
+			</header>
+	<main class="post-2117 post type-post status-publish format-standard hentry category-web">
+	<article id="main_article">
+		<p><img class="hatena-fotolife" title="f:id:pochiweb:20170912223430p:plain" src="https://cdn-ak.f.st-hatena.com/images/fotolife/p/pochiweb/20170912/20170912223430.png" alt="f:id:pochiweb:20170912223430p:plain" /></p>
+<h2>posterの再表示で詰まる</h2>
+<p><a class="keyword" href="http://d.hatena.ne.jp/keyword/HTML5">HTML5</a>のvideoタグは使い方も簡単ですし、動画がトップにどーんとあるだけで、サイトの印象を一気に変えることができるので重宝しますよね。</p>
+<p>再生のループや待機画像（poster）なんかの設定もHTMLだけで完結できて、とても使いやすく出来ています。</p>
+<p>そんなvideoタグですが、先日ちょっと詰まってしまったことがありました。</p>
+<p>「アクセス時は自動再生して、再生終了したらループはさせないで、posterを表示させて。」</p>
+<p>videoタグには色々と便利なイベントが用意されていたので、その方向で調べるも撃沈。結果的には以下の内容で対応しました。</p>
+<h3>posterが表示されるのは再生されるまで</h3>
+<p>早速コードを。</p>
+<h5>HTML</h5>
+<p><script src="https://gist.github.com/5f5c397c6ec3578f9bd5a079452c6c77.js"> </script></p>
+<p><a href="https://gist.github.com/5f5c397c6ec3578f9bd5a079452c6c77">videoタグ再生後、posterを再表示させる</a></p>
+<h5>JS</h5>
+<p><script src="https://gist.github.com/b16851724a52182769a90147bf2c7bf6.js"> </script></p>
+<p><a href="https://gist.github.com/b16851724a52182769a90147bf2c7bf6">videoタグの再生後にposterの画像を表示させる</a></p>
+<p> </p>
+<p>ずーっと、どうしたらposterを表示できるのか考えていたのですが、ググっても出てこず。ふと、autoplayをオフにしてた時はposterが表示されていたな、と思い出し、上記のような方法に落ち着きました。</p>
+<p>HTML上ではautoplayをオンにしておいて、1度目は再生させて、videoタグに用意されているイベントのendedが発生したタイミングでloadメソッドで再読み込み、読み込み終了後、autoplayをオフに。</p>
+<p>こうすることで、videoが読み込まれたけど、再生はされない→posterが表示される、という状況を作ることが出来ました。</p>
+<p>実はこの方法にたどり着くまで数日を要していたのですが、終わってみれば処理的には何も難しいことはなかったですね（汗）。</p>
+<p>しょっちゅう思うことですが、発想を変える、アプローチを変えるっていうのは本当に大事ですね。思考が凝り固まってないか？常に気にした方がいいなあと感じます。</p>
+<p> </p>
+	</article>
+	</main>
+		<header id="header">
+	<div id="header_layer">
+		<h1>
+			さいたまデザインDTP勉強会に参加してきた。		</h1>
+		<p>9月2日、ソニックシティで開催されたデザインの勉強会に参加してきた。 saitama.connpass.com 普段デザインを行うこともなく、これまで勉強してきたわけでもなく、更にはまだまだフリーダムな子どもたちを連れて</p>
+				<nav id="header_nav">
+			<ul id="category_nav">
+				
+				<li class="category_name">
+					<a href="/static/pochi-web.github.io/entry/category/%e6%97%a5%e8%a8%98">
+						日記					</a>
+				</li>
+															</ul>
+			2017年9月5日		</nav>
+				</div><!--END-header_layer-->
+			</header>
+	<main class="post-2118 post type-post status-publish format-standard hentry category-157">
+	<article id="main_article">
+		<p>9月2日、<a class="keyword" href="http://d.hatena.ne.jp/keyword/%A5%BD%A5%CB%A5%C3%A5%AF%A5%B7%A5%C6%A5%A3">ソニックシティ</a>で開催されたデザインの勉強会に参加してきた。</p>
+<p><iframe class="embed-card embed-webcard" style="display: block; width: 100%; height: 155px; max-width: 500px; margin: 10px 0px;" title="さいたまデザインDTP勉強会" src="https://hatenablog-parts.com/embed?url=https%3A%2F%2Fsaitama.connpass.com%2F" frameborder="0" scrolling="no"></iframe><cite class="hatena-citation"><a href="https://saitama.connpass.com/">saitama.connpass.com</a></cite></p>
+<p>普段デザインを行うこともなく、これまで勉強してきたわけでもなく、更にはまだまだフリーダムな子どもたちを連れて完全エンジョイ勢として参加してきて、正直周りの皆様に失礼＆ご迷惑であったのではという気持ちもありますが。</p>
+<p>楽しかったなあ。</p>
+<p>今回の勉強会で使用するツールは「レイアウトを工作する」という名のとおり、ハサミ、カッター、色鉛筆、定規なんかがメインで、こういう道具に触れること自体がまあ新鮮！</p>
+<p>脳の普段使わない場所にじゅわ～っと血が<a class="keyword" href="http://d.hatena.ne.jp/keyword/%CE%AE%A4%EC%A4%EB">流れる</a>感じがした。</p>
+<p>それと、同じテーマで作られた制作物を一度にたくさん見られるのはとても貴重だと思った。</p>
+<p>作品を見て、その意図を汲み取る。自分の考えが正解かはもちろん分からないのだけど、「あぁ、そういうことか！」みたいな感覚になると、そしてさらにその思想みたいなものが自分と近しいと、作品を通して理解し合ったような、不思議な感覚になった。大半は根拠のない感覚なんだけど、とても気持ちのいい体験だったなあ。</p>
+<p><strong>しかし！</strong></p>
+<p>自分のなんというか、ビジュアル面での技量、技術ってもののなさには打ちひしがれました。もっと描けたら。もっときれいに出来たら。と思いながら提出&#8230;。</p>
+<p>ときには落書きしてみようかな。。</p>
+<p> </p>
+	</article>
+	</main>
+		<header id="header">
+	<div id="header_layer">
+		<h1>
+			We Project 8月の振り返り		</h1>
+		<p>久しぶりに充実した一ヶ月 ８月が終わった。月が変わったことに気が付くといったら言い過ぎだけれど、そんな余裕もなかったのだろうなあ。とくに5，６、7月は。 とは言え、そんな状態から脱したこともあって充実した一ヶ月を過ごすこ</p>
+				<nav id="header_nav">
+			<ul id="category_nav">
+				
+				<li class="category_name">
+					<a href="/static/pochi-web.github.io/entry/category/dialy/we-project">
+						We Project					</a>
+				</li>
+															</ul>
+			2017年9月1日		</nav>
+				</div><!--END-header_layer-->
+			</header>
+	<main class="post-2119 post type-post status-publish format-standard hentry category-we-project">
+	<article id="main_article">
+		<h2>久しぶりに充実した一ヶ月</h2>
+<p>８月が終わった。月が変わったことに気が付くといったら言い過ぎだけれど、そんな余裕もなかったのだろうなあ。とくに5，６、7月は。</p>
+<p>とは言え、そんな状態から脱したこともあって充実した一ヶ月を過ごすことが出来た。</p>
+<p>知識、技術を増やし、一緒に働く仲間と飲みに行き、先日は<a class="keyword" href="http://d.hatena.ne.jp/keyword/WordPress">WordPress</a><a class="keyword" href="http://d.hatena.ne.jp/keyword/%A4%E2%A4%AF%A4%E2%A4%AF%B2%F1">もくもく会</a>にも行けたし、更に明日はデザインのワークショップに参加予定。</p>
+<p>自分の場合は何をするにでも広く浅くするのが好きで、読書でも数冊を並行して読むのが好きだったりする。</p>
+<p>そんなわけで、今月の勉強内容の節操のない感じはとても自分らしくて好きだ。</p>
+<p>器用貧乏は自覚しているけど、器用貧乏も極めればそれなりの価値はあるんではないか、と淡い期待をしてる。</p>
+<p>そんなこんなで、8月の記録。</p>
+<p> </p>
+<table style="width: 600px;">
+<thead>
+<tr>
+<th>Activity Type</th>
+<th>Duration</th>
+<th>Percent</th>
+</tr>
+</thead>
+<tfoot>
+<tr>
+<th> </th>
+<th> </th>
+<th> </th>
+</tr>
+</tfoot>
+<tbody>
+<tr>
+<td style="padding-left: 16px;"><a class="keyword" href="http://d.hatena.ne.jp/keyword/WordPress">WordPress</a>テーマ作成</td>
+<td>02:45</td>
+<td>0.4</td>
+</tr>
+<tr>
+<td style="padding-left: 16px;"><a class="keyword" href="http://d.hatena.ne.jp/keyword/PHP">PHP</a>学習</td>
+<td>26:14</td>
+<td>3.5</td>
+</tr>
+<tr>
+<td style="padding-left: 16px;">読書</td>
+<td>03:51</td>
+<td>0.5</td>
+</tr>
+<tr>
+<td style="padding-left: 16px;">Gitの勉強</td>
+<td>04:20</td>
+<td>0.6</td>
+</tr>
+<tr>
+<td style="padding-left: 16px;"><a class="keyword" href="http://d.hatena.ne.jp/keyword/Python">Python</a></td>
+<td>03:53</td>
+<td>0.5</td>
+</tr>
+<tr>
+<td style="padding-left: 8px;">BLOG</td>
+<td>06:09</td>
+<td>0.8</td>
+</tr>
+<tr>
+<td style="padding-left: 8px;">勉強</td>
+<td>03:08</td>
+<td>0.4</td>
+</tr>
+</tbody>
+</table>
+<h3><a class="keyword" href="http://d.hatena.ne.jp/keyword/PHP">PHP</a>の勉強</h3>
+<p>メインに据えてるのはこれ。</p>
+<div class="freezed">
+<div class="hatena-asin-detail"><a href="http://www.amazon.co.jp/exec/obidos/ASIN/4774144371/hatena-blog-22/"><img class="hatena-asin-detail-image" title="パーフェクトPHP (PERFECT SERIES 3)" src="https://images-fe.ssl-images-amazon.com/images/I/51fbxZn8HnL._SL160_.jpg" alt="パーフェクトPHP (PERFECT SERIES 3)" /></a></p>
+<div class="hatena-asin-detail-info">
+<p class="hatena-asin-detail-title"><a href="http://www.amazon.co.jp/exec/obidos/ASIN/4774144371/hatena-blog-22/">パーフェクトPHP (PERFECT SERIES 3)</a></p>
+<ul>
+<li><span class="hatena-asin-detail-label">作者:</span> 小川雄大,柄沢聡太郎,橋口誠</li>
+<li><span class="hatena-asin-detail-label">出版社/メーカー:</span> <a class="keyword" href="http://d.hatena.ne.jp/keyword/%B5%BB%BD%D1%C9%BE%CF%C0%BC%D2">技術評論社</a></li>
+<li><span class="hatena-asin-detail-label">発売日:</span> 2010/11/12</li>
+<li><span class="hatena-asin-detail-label">メディア:</span> 大型本</li>
+<li><span class="hatena-asin-detail-label">購入</span>: 32人 <span class="hatena-asin-detail-label">クリック</span>: 1,065回</li>
+<li><a href="http://d.hatena.ne.jp/asin/4774144371/hatena-blog-22" target="_blank">この商品を含むブログ (59件) を見る</a></li>
+</ul>
+</div>
+<div class="hatena-asin-detail-foot"> </div>
+</div>
+</div>
+<p>電車内では読む部分を、早朝会社についてからはコードを実際に打ち込む部分を、という感じで進めていて、今現在は<a class="keyword" href="http://d.hatena.ne.jp/keyword/%A5%D5%A5%EC%A1%BC%A5%E0%A5%EF%A1%BC%A5%AF">フレームワーク</a>作成のところ。</p>
+<p>正直、あまり理解できていない。多分何周かする必要がある。もしくは<a class="keyword" href="http://d.hatena.ne.jp/keyword/%A5%AA%A5%D6%A5%B8%A5%A7%A5%AF%A5%C8%BB%D8%B8%FE">オブジェクト指向</a>の勉強が必要かな。</p>
+<p>ともあれ、言語仕様を読むことで少し世界が広がった気がする。</p>
+<h3>Git</h3>
+<p> あと、Gitの勉強と<a class="keyword" href="http://d.hatena.ne.jp/keyword/Python">Python</a>の勉強を始めた。</p>
+<p>Gitを会社に導入したい。とても。そのためにまずは自分が使い始めること。自分的には先日のエントリーで書いた2箇所が一番わかり易いかな。</p>
+<p><iframe class="embed-card embed-blogcard" style="display: block; width: 100%; height: 190px; max-width: 500px; margin: 10px 0px;" title="開発環境の準備｜WordPressテーマを作ろう - 「webで何か」作るブログ" src="https://hatenablog-parts.com/embed?url=http%3A%2F%2Fpochiweb.hatenablog.com%2Fentry%2F2017%2F08%2F30%2F121807" frameborder="0" scrolling="no"></iframe></p>
+<p><cite class="hatena-citation"><a href="http://pochiweb.hatenablog.com/entry/2017/08/30/121807">pochiweb.hatenablog.com</a></cite></p>
+<p>ひとまず一人で<a class="keyword" href="http://d.hatena.ne.jp/keyword/GitHub">GitHub</a>でadd→commit→pushしまくっている。つぎブランチ。とかマージとかプルリクとか。今月で一通り使えるようになりたい。 </p>
+<h3><a class="keyword" href="http://d.hatena.ne.jp/keyword/Python">Python</a></h3>
+<p> <a class="keyword" href="http://d.hatena.ne.jp/keyword/Python">Python</a>はpaizaラーニングが無料で学べるのでそこでとりあえず始めた。まだまだ入門なんだけど、パーフェクト<a class="keyword" href="http://d.hatena.ne.jp/keyword/PHP">PHP</a>を一周完了したら次は</p>
+<p> </p>
+<div class="freezed">
+<div class="hatena-asin-detail"><a href="http://www.amazon.co.jp/exec/obidos/ASIN/487311778X/hatena-blog-22/"><img class="hatena-asin-detail-image" title="退屈なことはPythonにやらせよう ―ノンプログラマーにもできる自動化処理プログラミング" src="https://images-fe.ssl-images-amazon.com/images/I/51hk%2B5bKNrL._SL160_.jpg" alt="退屈なことはPythonにやらせよう ―ノンプログラマーにもできる自動化処理プログラミング" /></a></p>
+<div class="hatena-asin-detail-info">
+<p class="hatena-asin-detail-title"><a href="http://www.amazon.co.jp/exec/obidos/ASIN/487311778X/hatena-blog-22/">退屈なことはPythonにやらせよう ―ノンプログラマーにもできる自動化処理プログラミング</a></p>
+<ul>
+<li><span class="hatena-asin-detail-label">作者:</span> Al Sweigart,相川愛三</li>
+<li><span class="hatena-asin-detail-label">出版社/メーカー:</span> <a class="keyword" href="http://d.hatena.ne.jp/keyword/%A5%AA%A5%E9%A5%A4%A5%EA%A1%BC%A5%B8%A5%E3%A5%D1%A5%F3">オライリージャパン</a></li>
+<li><span class="hatena-asin-detail-label">発売日:</span> 2017/06/03</li>
+<li><span class="hatena-asin-detail-label">メディア:</span> 単行本（ソフトカバー）</li>
+<li><a href="http://d.hatena.ne.jp/asin/487311778X/hatena-blog-22" target="_blank">この商品を含むブログ (5件) を見る</a></li>
+</ul>
+</div>
+<div class="hatena-asin-detail-foot"> </div>
+</div>
+</div>
+<p> </p>
+<p>を参考に、日々の業務の効率化を図りたい。</p>
+<h3><a class="keyword" href="http://d.hatena.ne.jp/keyword/WordPress">WordPress</a>テーマ制作</h3>
+<p>超ゆっくり作ってる。今年中に完成させたい。<a class="keyword" href="http://d.hatena.ne.jp/keyword/%A5%EF%A5%A4%A5%E4%A1%BC%A5%D5%A5%EC%A1%BC%A5%E0">ワイヤーフレーム</a>を<a class="keyword" href="http://d.hatena.ne.jp/keyword/WordPress">WordPress</a>で出来たらいいなーと思っていて、そんな感じのものを目指してる。</p>
+<h3>読書</h3>
+<p> これ読了した。今の部署は新規部署なので、実はなんでもやり放題なのだけど、その環境を楽しんでいない人もいるのでその人に読ませたい。</p>
+<div class="freezed">
+<div class="hatena-asin-detail"><a href="http://www.amazon.co.jp/exec/obidos/ASIN/4844373293/hatena-blog-22/"><img class="hatena-asin-detail-image" title="起業家のように企業で働く" src="https://images-fe.ssl-images-amazon.com/images/I/51ZMzrlfIDL._SL160_.jpg" alt="起業家のように企業で働く" /></a></p>
+<div class="hatena-asin-detail-info">
+<p class="hatena-asin-detail-title"><a href="http://www.amazon.co.jp/exec/obidos/ASIN/4844373293/hatena-blog-22/">起業家のように企業で働く</a></p>
+<ul>
+<li><span class="hatena-asin-detail-label">作者:</span> 小杉俊哉</li>
+<li><span class="hatena-asin-detail-label">出版社/メーカー:</span> <a class="keyword" href="http://d.hatena.ne.jp/keyword/%A5%AF%A5%ED%A5%B9%A5%E1%A5%C7%A5%A3%A5%A2">クロスメディア</a>・パブリッシング(<a class="keyword" href="http://d.hatena.ne.jp/keyword/%A5%A4%A5%F3%A5%D7%A5%EC%A5%B9">インプレス</a>)</li>
+<li><span class="hatena-asin-detail-label">発売日:</span> 2013/10/16</li>
+<li><span class="hatena-asin-detail-label">メディア:</span> 単行本</li>
+<li><a href="http://d.hatena.ne.jp/asin/4844373293/hatena-blog-22" target="_blank">この商品を含むブログ (3件) を見る</a></li>
+</ul>
+</div>
+<div class="hatena-asin-detail-foot"> </div>
+</div>
+</div>
+<p> </p>
+<p> これはまだ読み終わってないけど、知識として入れておきたいから。</p>
+<div class="freezed">
+<div class="hatena-asin-detail"><a href="http://www.amazon.co.jp/exec/obidos/ASIN/4040800206/hatena-blog-22/"><img class="hatena-asin-detail-image" title="人工知能は人間を超えるか ディープラーニングの先にあるもの (角川EPUB選書)" src="https://images-fe.ssl-images-amazon.com/images/I/41awNvZKJNL._SL160_.jpg" alt="人工知能は人間を超えるか ディープラーニングの先にあるもの (角川EPUB選書)" /></a></p>
+<div class="hatena-asin-detail-info">
+<p class="hatena-asin-detail-title"><a href="http://www.amazon.co.jp/exec/obidos/ASIN/4040800206/hatena-blog-22/">人工知能は人間を超えるか ディープラーニングの先にあるもの (角川EPUB選書)</a></p>
+<ul>
+<li><span class="hatena-asin-detail-label">作者:</span> 松尾豊</li>
+<li><span class="hatena-asin-detail-label">出版社/メーカー:</span> <a class="keyword" href="http://d.hatena.ne.jp/keyword/KADOKAWA">KADOKAWA</a>/<a class="keyword" href="http://d.hatena.ne.jp/keyword/%C3%E6%B7%D0%BD%D0%C8%C7">中経出版</a></li>
+<li><span class="hatena-asin-detail-label">発売日:</span> 2015/03/11</li>
+<li><span class="hatena-asin-detail-label">メディア:</span> 単行本</li>
+<li><a href="http://d.hatena.ne.jp/asin/4040800206/hatena-blog-22" target="_blank">この商品を含むブログ (38件) を見る</a></li>
+</ul>
+</div>
+<div class="hatena-asin-detail-foot"> </div>
+</div>
+</div>
+<p> <a class="keyword" href="http://d.hatena.ne.jp/keyword/%C0%D1%A4%F3%C6%C9">積ん読</a>も増えてきたので読む時間を増やしていきたいな。</p>
+<p> </p>
+<p>以上！</p>
+	</article>
+	</main>
+		<div style="text-align:center;">;
+<a href="/static/pochi-web.github.io/" >previous page</a> &#183; <a href="/static/pochi-web.github.io/page/3" >next page</a></div>
+			<footer>
+<div class="menu-myglobal-container"><ul id="menu-myglobal" class="menu"><li id="menu-item-2107" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-2107"><a href="/static/pochi-web.github.io/entry/category/web">Web制作</a></li>
+<li id="menu-item-2104" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-2104"><a href="/static/pochi-web.github.io/entry/category/cms">CMS</a></li>
+<li id="menu-item-2105" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-2105"><a href="/static/pochi-web.github.io/entry/category/dev">Dev</a></li>
+<li id="menu-item-2106" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-2106"><a href="/static/pochi-web.github.io/entry/category/dialy">Dialy</a></li>
+</ul></div><div id="copyright">
+<p class="copyright_text">&copy;2017&nbsp;webで何か作るブログ</p>
+<nav id="total_navigation">
+<ul>
+<li class="back_to"><a href="">Homeへ</a></li>
+<li class="back_to"><a href="/static/pochi-web.github.io/entry/2017/09/01/082512#top">Topへ</a></li>
+</ul>
+</nav>
+</div>
+<script type='text/javascript' src="/static/pochi-web.github.io/wp-includes/js/wp-embed.min.js?ver=4.8.3"></script>
+</footer></body>
+</html>

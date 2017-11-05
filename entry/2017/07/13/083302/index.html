@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta http-equiv="Last-Modified" content="Sun, 05 Nov 2017 01:48:13 GMT">
+	<meta charset="UTF-8">
+	<title>FTP？サーバー？なんか怖いんだけど・・を解消しよう</title>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+       <link rel='dns-prefetch' href="/static/pochi-web.github.io//maxcdn.bootstrapcdn.com" />
+<link rel='dns-prefetch' href="/static/pochi-web.github.io//fonts.googleapis.com" />
+<link rel='dns-prefetch' href="/static/pochi-web.github.io//s.w.org" />
+		<script type="text/javascript">
+			window._wpemojiSettings = {"baseUrl":"https:\/\/s.w.org\/images\/core\/emoji\/2.3\/72x72\/","ext":".png","svgUrl":"https:\/\/s.w.org\/images\/core\/emoji\/2.3\/svg\/","svgExt":".svg","source":{"concatemoji":"http:\/\/mywp\/static\/pochi-web.github.io\/wp-includes\/js\/wp-emoji-release.min.js?ver=4.8.3"}};
+			!function(a,b,c){function d(a){var b,c,d,e,f=String.fromCharCode;if(!k||!k.fillText)return!1;switch(k.clearRect(0,0,j.width,j.height),k.textBaseline="top",k.font="600 32px Arial",a){case"flag":return k.fillText(f(55356,56826,55356,56819),0,0),b=j.toDataURL(),k.clearRect(0,0,j.width,j.height),k.fillText(f(55356,56826,8203,55356,56819),0,0),c=j.toDataURL(),b!==c&&(k.clearRect(0,0,j.width,j.height),k.fillText(f(55356,57332,56128,56423,56128,56418,56128,56421,56128,56430,56128,56423,56128,56447),0,0),b=j.toDataURL(),k.clearRect(0,0,j.width,j.height),k.fillText(f(55356,57332,8203,56128,56423,8203,56128,56418,8203,56128,56421,8203,56128,56430,8203,56128,56423,8203,56128,56447),0,0),c=j.toDataURL(),b!==c);case"emoji4":return k.fillText(f(55358,56794,8205,9794,65039),0,0),d=j.toDataURL(),k.clearRect(0,0,j.width,j.height),k.fillText(f(55358,56794,8203,9794,65039),0,0),e=j.toDataURL(),d!==e}return!1}function e(a){var c=b.createElement("script");c.src=a,c.defer=c.type="text/javascript",b.getElementsByTagName("head")[0].appendChild(c)}var f,g,h,i,j=b.createElement("canvas"),k=j.getContext&&j.getContext("2d");for(i=Array("flag","emoji4"),c.supports={everything:!0,everythingExceptFlag:!0},h=0;h<i.length;h++)c.supports[i[h]]=d(i[h]),c.supports.everything=c.supports.everything&&c.supports[i[h]],"flag"!==i[h]&&(c.supports.everythingExceptFlag=c.supports.everythingExceptFlag&&c.supports[i[h]]);c.supports.everythingExceptFlag=c.supports.everythingExceptFlag&&!c.supports.flag,c.DOMReady=!1,c.readyCallback=function(){c.DOMReady=!0},c.supports.everything||(g=function(){c.readyCallback()},b.addEventListener?(b.addEventListener("DOMContentLoaded",g,!1),a.addEventListener("load",g,!1)):(a.attachEvent("onload",g),b.attachEvent("onreadystatechange",function(){"complete"===b.readyState&&c.readyCallback()})),f=c.source||{},f.concatemoji?e(f.concatemoji):f.wpemoji&&f.twemoji&&(e(f.twemoji),e(f.wpemoji)))}(window,document,window._wpemojiSettings);
+		</script>
+		<style type="text/css">
+img.wp-smiley,
+img.emoji {
+	display: inline !important;
+	border: none !important;
+	box-shadow: none !important;
+	height: 1em !important;
+	width: 1em !important;
+	margin: 0 .07em !important;
+	vertical-align: -0.1em !important;
+	background: none !important;
+	padding: 0 !important;
+}
+</style>
+<link rel='stylesheet' id='font-aweasome-css'  href='https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css?ver=4.8.3' type='text/css' media='all' />
+<link rel='stylesheet' id='google-font-css'  href='https://fonts.googleapis.com/earlyaccess/notosansjapanese.css?ver=4.8.3' type='text/css' media='all' />
+<link rel='stylesheet' id='base-css'  href="/static/pochi-web.github.io/wp-content/themes/wire-frame-theme/css/base.css?ver=4.8.3" type='text/css' media='all' />
+<link rel='stylesheet' id='element-css'  href="/static/pochi-web.github.io/wp-content/themes/wire-frame-theme/css/element.css?ver=4.8.3" type='text/css' media='all' />
+<link rel='stylesheet' id='modifier-css'  href="/static/pochi-web.github.io/wp-content/themes/wire-frame-theme/css/modifier.css?ver=4.8.3" type='text/css' media='all' />
+<link rel='stylesheet' id='style-css'  href="/static/pochi-web.github.io/wp-content/themes/wire-frame-theme/style.css?ver=4.8.3" type='text/css' media='all' />
+<script type='text/javascript' src="/static/pochi-web.github.io/wp-includes/js/jquery/jquery.js?ver=1.12.4"></script>
+<script type='text/javascript' src="/static/pochi-web.github.io/wp-includes/js/jquery/jquery-migrate.min.js?ver=1.4.1"></script>
+<link rel='https://api.w.org/' href="/static/pochi-web.github.io/wp-json/" />
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="/static/pochi-web.github.io/wp-includes/wlwmanifest.xml" /> 
+<link rel='prev' title='WordPressの仕組みをもう少し掘り下げてみる' href="/static/pochi-web.github.io/entry/2017/07/02/140837" />
+<link rel='next' title='5,6,7月の振り返り' href="/static/pochi-web.github.io/entry/2017/08/05/092241" />
+<meta name="generator" content="WordPress 4.8.3 with StaticPress ver.0.4.5" />
+<link rel="canonical" href="http://mywp/static/pochi-web.github.io/entry/2017/07/13/083302" />
+<link rel="alternate" type="application/json+oembed" href="/static/pochi-web.github.io/wp-json/oembed/1.0/embed?url=http%3A%2F%2Fmywp%2Fentry%2F2017%2F07%2F13%2F083302" />
+<link rel="alternate" type="text/xml+oembed" href="/static/pochi-web.github.io/wp-json/oembed/1.0/embed?url=http%3A%2F%2Fmywp%2Fentry%2F2017%2F07%2F13%2F083302&#038;format=xml" />
+    <script>
+	var j = jQuery.noConflict();
+	</script>
+</head><body>
+			<header>
+		<div id="header_layer">
+			<h1>
+				FTP？サーバー？なんか怖いんだけど・・を解消しよう			</h1>
+			<p>私の周りではFTPやサーバーについて、どうも恐怖心を持っているように見える人が多くいます。 FTPソフトにはいろいろな設定項目があるので、それも無理ないのかなと思いましたが、正直個別に説明していくのは・・。 というわけで</p>
+						<nav id="header_nav">
+				<ul id="category_nav">
+										<li class="category_name">
+						<a href="/static/pochi-web.github.io/entry/category/dev">
+							Dev						</a>
+					</li>
+																			</ul>
+				2017年7月13日			</nav>
+					</div>
+		<!--END-header_layer-->
+			</header>
+	<main class="post-2125 post type-post status-publish format-standard hentry category-dev">
+		<article id="main_article">
+			<p>私の周りでは<a class="keyword" href="http://d.hatena.ne.jp/keyword/FTP">FTP</a>やサーバーについて、どうも恐怖心を持っているように見える人が多くいます。</p>
+<p><a class="keyword" href="http://d.hatena.ne.jp/keyword/FTP">FTP</a>ソフトにはいろいろな設定項目があるので、それも無理ないのかなと思いましたが、正直個別に説明していくのは・・。</p>
+<p>というわけで今回の記事を書いています。</p>
+<p>ちょっと面倒なお話も出てきますが、少しでもサーバーや<a class="keyword" href="http://d.hatena.ne.jp/keyword/FTP">FTP</a>への恐怖心を軽減出来たら嬉しいです。</p>
+<h2>サーバーはパソコンと一緒</h2>
+<p>サ―バーに恐怖心を持っている方の多くは、サーバーは特別なマシンであり、自分の知らない色々なことがあると感じているのではないでしょうか？<a class="keyword" href="http://d.hatena.ne.jp/keyword/FTP">FTP</a>で接続するという事に限って言えば実際はそうではなくて、普段使っているPCと変わりありません。</p>
+<p>ちなみに以下の記事では余りもののマシンをWebサーバーに仕立てる、という事を行っています。</p>
+<p> </p>
+<p><iframe class="embed-card embed-blogcard" style="display: block; width: 100%; height: 190px; max-width: 500px; margin: 10px 0px;" title="【2017/3/25更新】CentOSのインストールから、wordpressをインストールするまでのメモ - 「webで何か」作るブログ" src="https://hatenablog-parts.com/embed?url=http%3A%2F%2Fpochiweb.hatenablog.com%2Fentry%2F2017%2F02%2F26%2F120343" frameborder="0" scrolling="no"></iframe><cite class="hatena-citation"><a href="http://pochiweb.hatenablog.com/entry/2017/02/26/120343">pochiweb.hatenablog.com</a></cite></p>
+<p> </p>
+<p>サーバーとＰＣの違うところは、とにかくファイルを保存、提供することに最適化されていること。</p>
+<p>そして、この保存や提供は専用のソフトによって行われています。</p>
+<p>Web用の情報を管理するのは、Webサーバーソフトである<a class="keyword" href="http://d.hatena.ne.jp/keyword/Apache">Apache</a>やNginxなどのWebサーバーソフトであり、メール用のサーバーであれば<a class="keyword" href="http://d.hatena.ne.jp/keyword/PostFix">PostFix</a>などのメールサーバーソフトです。</p>
+<h2><a class="keyword" href="http://d.hatena.ne.jp/keyword/FTP">FTP</a>とは何か？</h2>
+<p>文章が続いたのでちょっとここで視覚的に類似点を見てみましょう。</p>
+<p>以下の画像は、<a class="keyword" href="http://d.hatena.ne.jp/keyword/Mac">Mac</a>のファイル管理ソフト「Finder」（<a class="keyword" href="http://d.hatena.ne.jp/keyword/Windows">Windows</a>で言う所の「<a class="keyword" href="http://d.hatena.ne.jp/keyword/%A5%A8%A5%AF%A5%B9%A5%D7%A5%ED%A1%BC%A5%E9">エクスプローラ</a>ー」に当たるもの。）の画面です。</p>
+<p>ちなみに私はよく、階層の深いところにあるファイルを移動させる場合に、こうやって二つのウィンドウでFinderを開いて移動させたりします。</p>
+<p><img class="hatena-fotolife" title="f:id:pochiweb:20170703213331p:plain" src="https://cdn-ak.f.st-hatena.com/images/fotolife/p/pochiweb/20170703/20170703213331.png" alt="f:id:pochiweb:20170703213331p:plain" /></p>
+<p> 続いてこちらが人気の<a class="keyword" href="http://d.hatena.ne.jp/keyword/FTP">FTP</a>ソフトの一つ「<a class="keyword" href="http://d.hatena.ne.jp/keyword/Filezilla">Filezilla</a>」の画面です。</p>
+<p><img class="hatena-fotolife" title="f:id:pochiweb:20170704084006j:plain" src="https://cdn-ak.f.st-hatena.com/images/fotolife/p/pochiweb/20170704/20170704084006.jpg" alt="f:id:pochiweb:20170704084006j:plain" /></p>
+<p><a class="keyword" href="http://d.hatena.ne.jp/keyword/FileZilla">FileZilla</a>では、左半分に手元のPCのファイルが、右半分にアップロード先のファイルが一覧で表示されています。</p>
+<p>どうでしょう。どちらもフォルダやファイルが並んでいて、見た目にもかなり似ていますよね。それもそのはずで、どちらも同じコンピュータであり、<a class="keyword" href="http://d.hatena.ne.jp/keyword/FTP">FTP</a>で行うファイルの移動とPCの中でファイルを移動することは、やっていること同じです。</p>
+<p>違うのは、移動先が外部のコンピュータであることだけです。</p>
+<h2><a class="keyword" href="http://d.hatena.ne.jp/keyword/FTP">FTP</a>ってなんの略？<a class="keyword" href="http://d.hatena.ne.jp/keyword/%A5%D7%A5%ED%A5%C8%A5%B3%A5%EB">プロトコル</a>について</h2>
+<p>ご存知の方も多いと思いますが、FileTransfar Protocolの頭文字をとったものです。</p>
+<p>FileとTransfarはファイル(File)の移動(Transfar)と分かり易いかと思いますが、Protocolってなんでしょう？ということでまずはメジャーなProtocolを列記してみます。</p>
+<ul>
+<li>HTTP( Hyper Text Transfar Protocol )</li>
+<li>IP(Internet Protocol)</li>
+<li><a class="keyword" href="http://d.hatena.ne.jp/keyword/FTP">FTP</a> (File Transfar Protocol)</li>
+</ul>
+<p>ご覧の通り、さまざまなところでProtocolという言葉が使用されています。</p>
+<p>Protocolというのは「規格」を意味する言葉で、インターネットの世界においては通信規格という意味になります。</p>
+<p>インターネットは世界中の様々な機器が結びつくことによって成り立っているため、通信ハードウェア各社がそれぞれ独自の規格を持っていては色々な面で不都合がありますよね。その不都合を解消し、データのスムーズなやりとりを実現するため、世界的に統一した規格である（<a class="keyword" href="http://d.hatena.ne.jp/keyword/OSI%BB%B2%BE%C8%A5%E2%A5%C7%A5%EB">OSI参照モデル</a>）が策定されています。※実際には、規格というよりはモデル、基準、といった言葉が適しているかもしれません。</p>
+<p>ファイルのやりとりには<a class="keyword" href="http://d.hatena.ne.jp/keyword/FTP">FTP</a>、アドレスのやりとりにはIPを使いましょう、それぞれはこういう方法、手順でやりとりするようにしましょうと決めることで、世界がネットで繋がることが出来ているとも言えます。</p>
+<p>そんなルール、規格が<a class="keyword" href="http://d.hatena.ne.jp/keyword/%A5%D7%A5%ED%A5%C8%A5%B3%A5%EB">プロトコル</a>です。</p>
+<h2><a class="keyword" href="http://d.hatena.ne.jp/keyword/FTP">FTP</a>の設定項目を知ろう</h2>
+<p>少し話が逸れてしまいました。続いて、<a class="keyword" href="http://d.hatena.ne.jp/keyword/FTP">FTP</a>の設定項目がそれぞれ何を意味しているのか、<a class="keyword" href="http://d.hatena.ne.jp/keyword/FileZilla">FileZilla</a>を例に紹介していきます。 </p>
+<p><img class="hatena-fotolife" title="f:id:pochiweb:20170712081731j:plain" src="https://cdn-ak.f.st-hatena.com/images/fotolife/p/pochiweb/20170712/20170712081731.jpg" alt="f:id:pochiweb:20170712081731j:plain" /></p>
+<h3>ホスト</h3>
+<p>接続先はどこか、を指定する部分です。<span style="color: #3d3f44; font-family: 'Helvetica Neue', Helvetica, Arial, 'ヒラギノ角ゴ Pro W3', 'Hiragino Kaku Gothic Pro', メイリオ, Meiryo, 'ＭＳ Ｐゴシック', 'MS PGothic', sans-serif; font-size: 16px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: normal; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; background-color: #ffffff; text-decoration-style: initial; text-decoration-color: initial; display: inline !important; float: none;">この辺がわかりにくくさせている原因かと思いますが、この欄は</span><a class="keyword" href="http://d.hatena.ne.jp/keyword/Filezilla">Filezilla</a>と<a class="keyword" href="http://d.hatena.ne.jp/keyword/FFFTP">FFFTP</a>だとホスト、<a class="keyword" href="http://d.hatena.ne.jp/keyword/CyberDuck">CyberDuck</a>や<a class="keyword" href="http://d.hatena.ne.jp/keyword/DreamWeaver">DreamWeaver</a>内臓の<a class="keyword" href="http://d.hatena.ne.jp/keyword/FTP">FTP</a>だとサーバーと言ったりして、<a class="keyword" href="http://d.hatena.ne.jp/keyword/FTP">FTP</a>ソフトによって呼び名が違います。</p>
+<p> </p>
+<p>ホスト欄に入力する内容はサーバー契約時に、<a class="keyword" href="http://d.hatena.ne.jp/keyword/FTP">FTP</a>アドレス、<a class="keyword" href="http://d.hatena.ne.jp/keyword/FTP">FTP</a>ホスト名、サーバーアドレス、などという名称でこの情報が発行されることが多いです。ここでも呼び方が違いますが、同じものを表しています。</p>
+<h3> <a class="keyword" href="http://d.hatena.ne.jp/keyword/%A5%D7%A5%ED%A5%C8%A5%B3%A5%EB">プロトコル</a></h3>
+<p>画像がおかしな事になっていますが、ご容赦ください。（データ量オーバーで変えられない）</p>
+<p>ここでは前述の<a class="keyword" href="http://d.hatena.ne.jp/keyword/%A5%D7%A5%ED%A5%C8%A5%B3%A5%EB">プロトコル</a>の指定ができます。</p>
+<p><a class="keyword" href="http://d.hatena.ne.jp/keyword/FTP">FTP</a><a class="keyword" href="http://d.hatena.ne.jp/keyword/%A5%D7%A5%ED%A5%C8%A5%B3%A5%EB">プロトコル</a>では簡単に接続が可能ですが、暗号化がされません。多少手間ではありますが、セキュリティ対策は何かが起きてからでは遅いです。なるべくSFTPなどの暗号化される<a class="keyword" href="http://d.hatena.ne.jp/keyword/%A5%D7%A5%ED%A5%C8%A5%B3%A5%EB">プロトコル</a>で利用しましょう。</p>
+<p><a class="keyword" href="http://d.hatena.ne.jp/keyword/filezilla">filezilla</a>で選択可能なのは、<a class="keyword" href="http://d.hatena.ne.jp/keyword/FTP">FTP</a>とSFTPの二つです。</p>
+<h3>暗号化</h3>
+<p><a class="keyword" href="http://d.hatena.ne.jp/keyword/filezilla">filezilla</a>では、FTPSを利用する際にはこちから設定する仕様ですが、暗号化の種類によって入力欄が分けられているのはちょっと珍しいかもしれません。他の<a class="keyword" href="http://d.hatena.ne.jp/keyword/FTP">FTP</a>ソフトでは<a class="keyword" href="http://d.hatena.ne.jp/keyword/%A5%D7%A5%ED%A5%C8%A5%B3%A5%EB">プロトコル</a>の選択と暗号化の選択を兼ねたタイプが多いです。</p>
+<h3>ポート</h3>
+<p>通信に使用する窓口を指定します。<a class="keyword" href="http://d.hatena.ne.jp/keyword/%A5%D7%A5%ED%A5%C8%A5%B3%A5%EB">プロトコル</a>とポート番号は基本的に組み合わせが決められているので、<a class="keyword" href="http://d.hatena.ne.jp/keyword/%A5%D7%A5%ED%A5%C8%A5%B3%A5%EB">プロトコル</a>に合わせた数値を入力する必要があります。</p>
+<p>ただし、多くの<a class="keyword" href="http://d.hatena.ne.jp/keyword/FTP">FTP</a>ソフトでは<a class="keyword" href="http://d.hatena.ne.jp/keyword/%A5%D7%A5%ED%A5%C8%A5%B3%A5%EB">プロトコル</a>に併せて自動的に設定してくれますので、実際にこの部分を入力するケースは少ないでしょう。</p>
+<p>代表的なポート番号は以下の通りです。</p>
+<ul>
+<li><a class="keyword" href="http://d.hatena.ne.jp/keyword/FTP">FTP</a>：20</li>
+<li>SFTP：22</li>
+<li>http：80</li>
+<li><a class="keyword" href="http://d.hatena.ne.jp/keyword/https">https</a>：443</li>
+</ul>
+<h3>ログオンの種類</h3>
+<p><a class="keyword" href="http://d.hatena.ne.jp/keyword/FTP">FTP</a>接続は、サーバーへのログインともいえます。普段会社等で使うPCと同様、サーバーにもログインにいくつかの種類があるので、どの権限でログインするのか、を選択します。</p>
+<p>使用する事が多いのは</p>
+<ul>
+<li>通常</li>
+<li>アカウント</li>
+</ul>
+<p>となるでしょう。「アカウント」はサーバー管理者によって作成され、作業可能な<a class="keyword" href="http://d.hatena.ne.jp/keyword/%A5%C7%A5%A3%A5%EC%A5%AF%A5%C8">ディレクト</a>リが制限されていたりします。</p>
+<h3>ユーザ</h3>
+<p>ログインの際に使用するユーザー名もしくはアカウント名を入力します。</p>
+<h3>パスワード</h3>
+<p>ログ<a class="keyword" href="http://d.hatena.ne.jp/keyword/%A5%A4%A5%F3%A5%D1%A5%B9">インパス</a>ワードを入力します。</p>
+<p> </p>
+<h2>おわりに</h2>
+<p><a class="keyword" href="http://d.hatena.ne.jp/keyword/FTP">FTP</a>ソフトの設定項目はまだまだたくさんありますが、通常のweb制作業務であればこの程度の知識で十分ではないでしょうか。</p>
+<p>同じものを表すのに呼び名が違うというのはどうにかして欲しいものですが、統一するような動きもありません。悲しい。</p>
+		</article>
+	</main>
+			<aside>
+					<div id="respond" class="comment-respond">
+		<h3 id="reply-title" class="comment-reply-title">コメントを残す <small><a rel="nofollow" id="cancel-comment-reply-link" href="/static/pochi-web.github.io/entry/2017/07/13/083302#respond" style="display:none;">コメントをキャンセル</a></small></h3>			<form action="/static/pochi-web.github.io/wp-comments-post.php" method="post" id="commentform" class="comment-form">
+				<p class="comment-notes"><span id="email-notes">メールアドレスが公開されることはありません。</span> <span class="required">*</span> が付いている欄は必須項目です</p><p class="comment-form-comment"><label for="comment">コメント</label> <textarea id="comment" name="comment" cols="45" rows="8" maxlength="65525" aria-required="true" required="required"></textarea></p><p class="comment-form-author"><label for="author">お名前</label> <span class="required">*</span><input id="author" name="author" type="text" value=""  aria-required='true' /></p>
+<p class="comment-form-email"><label for="email">Email</label> <span class="required">*</span><input id="email" name="email" type="text" value="" aria-required='true' /></p>
+
+<p class="form-submit"><input name="submit" type="submit" id="submit" class="submit" value="コメントを送信" /> <input type='hidden' name='comment_post_ID' value='2125' id='comment_post_ID' />
+<input type='hidden' name='comment_parent' id='comment_parent' value='0' />
+</p>			</form>
+			</div><!-- #respond -->
+				</aside>
+	<footer>
+<div class="menu-myglobal-container"><ul id="menu-myglobal" class="menu"><li id="menu-item-2107" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-2107"><a href="/static/pochi-web.github.io/entry/category/web">Web制作</a></li>
+<li id="menu-item-2104" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-2104"><a href="/static/pochi-web.github.io/entry/category/cms">CMS</a></li>
+<li id="menu-item-2105" class="menu-item menu-item-type-taxonomy menu-item-object-category current-post-ancestor current-menu-parent current-post-parent menu-item-2105"><a href="/static/pochi-web.github.io/entry/category/dev">Dev</a></li>
+<li id="menu-item-2106" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-2106"><a href="/static/pochi-web.github.io/entry/category/dialy">Dialy</a></li>
+</ul></div><div id="copyright">
+<p class="copyright_text">&copy;2017&nbsp;webで何か作るブログ</p>
+<nav id="total_navigation">
+<ul>
+<li class="back_to"><a href="">Homeへ</a></li>
+<li class="back_to"><a href="/static/pochi-web.github.io/entry/2017/07/13/083302#top">Topへ</a></li>
+</ul>
+</nav>
+</div>
+<script type='text/javascript' src="/static/pochi-web.github.io/wp-includes/js/wp-embed.min.js?ver=4.8.3"></script>
+</footer></body>
+</html>

@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta http-equiv="Last-Modified" content="Sun, 05 Nov 2017 01:48:47 GMT">
+	<meta charset="UTF-8">
+	<title>縦書きwebデザインの実現方法と環境を考える</title>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+       <link rel='dns-prefetch' href="/static/pochi-web.github.io//maxcdn.bootstrapcdn.com" />
+<link rel='dns-prefetch' href="/static/pochi-web.github.io//fonts.googleapis.com" />
+<link rel='dns-prefetch' href="/static/pochi-web.github.io//s.w.org" />
+		<script type="text/javascript">
+			window._wpemojiSettings = {"baseUrl":"https:\/\/s.w.org\/images\/core\/emoji\/2.3\/72x72\/","ext":".png","svgUrl":"https:\/\/s.w.org\/images\/core\/emoji\/2.3\/svg\/","svgExt":".svg","source":{"concatemoji":"http:\/\/mywp\/static\/pochi-web.github.io\/wp-includes\/js\/wp-emoji-release.min.js?ver=4.8.3"}};
+			!function(a,b,c){function d(a){var b,c,d,e,f=String.fromCharCode;if(!k||!k.fillText)return!1;switch(k.clearRect(0,0,j.width,j.height),k.textBaseline="top",k.font="600 32px Arial",a){case"flag":return k.fillText(f(55356,56826,55356,56819),0,0),b=j.toDataURL(),k.clearRect(0,0,j.width,j.height),k.fillText(f(55356,56826,8203,55356,56819),0,0),c=j.toDataURL(),b!==c&&(k.clearRect(0,0,j.width,j.height),k.fillText(f(55356,57332,56128,56423,56128,56418,56128,56421,56128,56430,56128,56423,56128,56447),0,0),b=j.toDataURL(),k.clearRect(0,0,j.width,j.height),k.fillText(f(55356,57332,8203,56128,56423,8203,56128,56418,8203,56128,56421,8203,56128,56430,8203,56128,56423,8203,56128,56447),0,0),c=j.toDataURL(),b!==c);case"emoji4":return k.fillText(f(55358,56794,8205,9794,65039),0,0),d=j.toDataURL(),k.clearRect(0,0,j.width,j.height),k.fillText(f(55358,56794,8203,9794,65039),0,0),e=j.toDataURL(),d!==e}return!1}function e(a){var c=b.createElement("script");c.src=a,c.defer=c.type="text/javascript",b.getElementsByTagName("head")[0].appendChild(c)}var f,g,h,i,j=b.createElement("canvas"),k=j.getContext&&j.getContext("2d");for(i=Array("flag","emoji4"),c.supports={everything:!0,everythingExceptFlag:!0},h=0;h<i.length;h++)c.supports[i[h]]=d(i[h]),c.supports.everything=c.supports.everything&&c.supports[i[h]],"flag"!==i[h]&&(c.supports.everythingExceptFlag=c.supports.everythingExceptFlag&&c.supports[i[h]]);c.supports.everythingExceptFlag=c.supports.everythingExceptFlag&&!c.supports.flag,c.DOMReady=!1,c.readyCallback=function(){c.DOMReady=!0},c.supports.everything||(g=function(){c.readyCallback()},b.addEventListener?(b.addEventListener("DOMContentLoaded",g,!1),a.addEventListener("load",g,!1)):(a.attachEvent("onload",g),b.attachEvent("onreadystatechange",function(){"complete"===b.readyState&&c.readyCallback()})),f=c.source||{},f.concatemoji?e(f.concatemoji):f.wpemoji&&f.twemoji&&(e(f.twemoji),e(f.wpemoji)))}(window,document,window._wpemojiSettings);
+		</script>
+		<style type="text/css">
+img.wp-smiley,
+img.emoji {
+	display: inline !important;
+	border: none !important;
+	box-shadow: none !important;
+	height: 1em !important;
+	width: 1em !important;
+	margin: 0 .07em !important;
+	vertical-align: -0.1em !important;
+	background: none !important;
+	padding: 0 !important;
+}
+</style>
+<link rel='stylesheet' id='font-aweasome-css'  href='https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css?ver=4.8.3' type='text/css' media='all' />
+<link rel='stylesheet' id='google-font-css'  href='https://fonts.googleapis.com/earlyaccess/notosansjapanese.css?ver=4.8.3' type='text/css' media='all' />
+<link rel='stylesheet' id='base-css'  href="/static/pochi-web.github.io/wp-content/themes/wire-frame-theme/css/base.css?ver=4.8.3" type='text/css' media='all' />
+<link rel='stylesheet' id='element-css'  href="/static/pochi-web.github.io/wp-content/themes/wire-frame-theme/css/element.css?ver=4.8.3" type='text/css' media='all' />
+<link rel='stylesheet' id='modifier-css'  href="/static/pochi-web.github.io/wp-content/themes/wire-frame-theme/css/modifier.css?ver=4.8.3" type='text/css' media='all' />
+<link rel='stylesheet' id='style-css'  href="/static/pochi-web.github.io/wp-content/themes/wire-frame-theme/style.css?ver=4.8.3" type='text/css' media='all' />
+<script type='text/javascript' src="/static/pochi-web.github.io/wp-includes/js/jquery/jquery.js?ver=1.12.4"></script>
+<script type='text/javascript' src="/static/pochi-web.github.io/wp-includes/js/jquery/jquery-migrate.min.js?ver=1.4.1"></script>
+<link rel='https://api.w.org/' href="/static/pochi-web.github.io/wp-json/" />
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="/static/pochi-web.github.io/wp-includes/wlwmanifest.xml" /> 
+<link rel='prev' title='シンプルなパララックスサイト構築のためのメモ帳 | 「webで何か」作るブログ' href="/static/pochi-web.github.io/entry/2016/12/26/192000" />
+<link rel='next' title='siblings()の使い方｜jQueryメソッドの覚え書き｜「webで何か」作るブログ' href="/static/pochi-web.github.io/entry/2016/12/31/151508" />
+<meta name="generator" content="WordPress 4.8.3 with StaticPress ver.0.4.5" />
+<link rel="canonical" href="http://mywp/static/pochi-web.github.io/entry/2016/12/28/092218" />
+<link rel="alternate" type="application/json+oembed" href="/static/pochi-web.github.io/wp-json/oembed/1.0/embed?url=http%3A%2F%2Fmywp%2Fentry%2F2016%2F12%2F28%2F092218" />
+<link rel="alternate" type="text/xml+oembed" href="/static/pochi-web.github.io/wp-json/oembed/1.0/embed?url=http%3A%2F%2Fmywp%2Fentry%2F2016%2F12%2F28%2F092218&#038;format=xml" />
+    <script>
+	var j = jQuery.noConflict();
+	</script>
+</head><body>
+			<header>
+		<div id="header_layer">
+			<h1>
+				縦書きwebデザインの実現方法と環境を考える			</h1>
+			<p>縦書きwebデザインの作り方を試す【CSS編】 本日、唐突に縦書きサイトの話が盛り上がった。 主に和食店、旅館などが「和」を感じさせる為に利用しているに止まっているイメージなのだけど、実際に縦書きのことを考えたことがなか</p>
+						<nav id="header_nav">
+				<ul id="category_nav">
+										<li class="category_name">
+						<a href="/static/pochi-web.github.io/entry/category/web">
+							Web制作						</a>
+					</li>
+																			</ul>
+				2016年12月28日			</nav>
+					</div>
+		<!--END-header_layer-->
+			</header>
+	<main class="post-2146 post type-post status-publish format-standard hentry category-web">
+		<article id="main_article">
+			<h2>縦書きwebデザインの作り方を試す【<a class="keyword" href="http://d.hatena.ne.jp/keyword/CSS">CSS</a>編】</h2>
+<p>本日、唐突に縦書きサイトの話が盛り上がった。</p>
+<p>主に和食店、旅館などが「和」を感じさせる為に利用しているに止まっているイメージなのだけど、実際に縦書きのことを考えたことがなかったので考えつつ、まとめてみる。</p>
+<p> </p>
+<h3>縦書きの実装方法</h3>
+<p>私は基本的にコードを書く方面の人間なので、まずは実装方法が気になります。</p>
+<p>縦書き　web　などで検索すればいくらでも出てくるので、皆様方にはそのサイトをご覧頂くとして、大雑把にまとめておきます。</p>
+<h5>主な実装方法とブラウザ状況</h5>
+<p>縦書きを採用しているサイトがそれなりに有ることから、特に難しいことでは無いようです。主な実装方法はこの二つ。</p>
+<ul>
+<li><a class="keyword" href="http://d.hatena.ne.jp/keyword/CSS">CSS</a>のwriting-modeを使う</li>
+</ul>
+<ul>
+<li>JSや<a class="keyword" href="http://d.hatena.ne.jp/keyword/jQuery">jQuery</a>を使う</li>
+</ul>
+<p>フロントエンドの問題なのでこの二つが実装方法なのは当然として、ブラウザの対応状況が気になるところです。</p>
+<p><span style="font-size: 13pt;">結論から言えば2016年12月現在、<a class="keyword" href="http://d.hatena.ne.jp/keyword/opera%20mini">opera mini</a>を除く最新ブラウザであれば問題無いらしい。</span></p>
+<p>Can I Useは以下からどうぞ↓</p>
+<p><a href="http://caniuse.com/#search=writing-mode">Can I use&#8230; Support tables for HTML5, CSS3, etc</a></p>
+<p>縦書きに関して言えば、最も遅れたブラウザはfire-fox。<a class="keyword" href="http://d.hatena.ne.jp/keyword/IE">IE</a>に関してはずいぶん前から独自対応していたという、珍しい展開。</p>
+<p>では現実路線、どの程度まで対応するのがいいのか？というのをはっきりさせておきたいですね。</p>
+<p> </p>
+<h5>PCブラウザ対応状況</h5>
+<p><a class="keyword" href="http://d.hatena.ne.jp/keyword/IE">IE</a> 　　　　6〜 </p>
+<p>EDGE 　　12〜</p>
+<p>fire-fox       41〜</p>
+<p><a class="keyword" href="http://d.hatena.ne.jp/keyword/chrome">chrome</a>      8〜</p>
+<p><a class="keyword" href="http://d.hatena.ne.jp/keyword/safari">safari</a>         5.1〜</p>
+<p><a class="keyword" href="http://d.hatena.ne.jp/keyword/opera">opera</a>        15〜</p>
+<h5>モ<a class="keyword" href="http://d.hatena.ne.jp/keyword/%A5%D0%A5%A4">バイ</a>ルブラウザ対応状況</h5>
+<p><a class="keyword" href="http://d.hatena.ne.jp/keyword/safari">safari</a>&amp;<a class="keyword" href="http://d.hatena.ne.jp/keyword/chrome">chrome</a> on <a class="keyword" href="http://d.hatena.ne.jp/keyword/iOS">iOS</a>    5.1〜</p>
+<p><a class="keyword" href="http://d.hatena.ne.jp/keyword/opera">opera</a> on andoroid         37〜</p>
+<p><a class="keyword" href="http://d.hatena.ne.jp/keyword/chrome">chrome</a> on <a class="keyword" href="http://d.hatena.ne.jp/keyword/android">android</a>        55〜</p>
+<p>fire-fox on <a class="keyword" href="http://d.hatena.ne.jp/keyword/android">android</a>         50〜</p>
+<p> </p>
+<p>現状、今からサイトを作るので有ればレスポンシブ対応したい！というのが多くなってくるでしょうから、その辺も併せて実験してみたいと思います。</p>
+<p>まずはただ単純に縦書きにする<a class="keyword" href="http://d.hatena.ne.jp/keyword/CSS">CSS</a>を書き加えてみます。</p>
+<h3><a class="keyword" href="http://d.hatena.ne.jp/keyword/CSS">CSS</a>：writing-modeの基本挙動</h3>
+<p>writing-modeを<a class="keyword" href="http://d.hatena.ne.jp/keyword/css">css</a>に書き込めば簡単に縦書きにはなります。</p>
+<p>こちらの練習用htmlを使って挙動を確認します。</p>
+<p> </p>
+<p><script src="https://gist.github.com/d50024506c19bdc6b206b1f267241951.js"> </script></p>
+<p>こんな状態ですね。</p>
+<p> </p>
+<p><img class="hatena-fotolife" title="f:id:pochiweb:20161228082349p:plain" src="https://cdn-ak.f.st-hatena.com/images/fotolife/p/pochiweb/20161228/20161228082349.png" alt="f:id:pochiweb:20161228082349p:plain" /></p>
+<p> </p>
+<p> </p>
+<p>それでは、class=&#8221;article&#8221;　に対して以下の様にwriting-modeを書き加えてみます。</p>
+<p><strong>writing-mode: tb-rl;/*<a class="keyword" href="http://d.hatena.ne.jp/keyword/IE">IE</a>用の記述*/</strong></p>
+<p><strong> &#8211;<a class="keyword" href="http://d.hatena.ne.jp/keyword/webkit">webkit</a>-writing-mode : vertical-rl ; /*それ以外*/</strong></p>
+<p>値のvertical-rl、tb-rlの「rl」の部分はright to leftの指定です。</p>
+<p>文章が右から左に流れていきます。</p>
+<p>今回writing-modeを書き加えた対象は id=&#8221;article&#8221;です。</p>
+<p>こうなります。</p>
+<p>簡単に縦書きになりました。</p>
+<p> </p>
+<p><img class="hatena-fotolife" title="f:id:pochiweb:20161228082633p:plain" src="https://cdn-ak.f.st-hatena.com/images/fotolife/p/pochiweb/20161228/20161228082633.png" alt="f:id:pochiweb:20161228082633p:plain" /></p>
+<p> </p>
+<p>writng-modeの値のrlは、文章を右上開始で左に流れる指定ですね。</p>
+<p>lrにするとこう。</p>
+<p>左上が開始になり、文章が右に流れていきます。</p>
+<p> </p>
+<p><img class="hatena-fotolife" title="f:id:pochiweb:20161228082952p:plain" src="https://cdn-ak.f.st-hatena.com/images/fotolife/p/pochiweb/20161228/20161228082952.png" alt="f:id:pochiweb:20161228082952p:plain" /></p>
+<h3>writing-modeは親要素にかけるもの</h3>
+<p>次に、<span style="color: #d32f2f;">#article</span>の<span style="color: #1464b3;">子要素</span>である<span style="color: #d32f2f;">.section</span>に対して同じ<a class="keyword" href="http://d.hatena.ne.jp/keyword/CSS">CSS</a>を書き込むとどうなるかを試してみます。</p>
+<p>私は今回初めて縦書きを試すに当たってこの部分で少しだけハマってしまいました。親要素に指定するものだと知らずに手を動かしてしまったので、子要素にまずかけてみたんです。仕様書を読めばこんなことにはならないのでしょうが、まず動かす！が好きなんですよね。</p>
+<p>すると、こうなりました！</p>
+<p> </p>
+<p><img class="hatena-fotolife" title="f:id:pochiweb:20161228084149p:plain" src="https://cdn-ak.f.st-hatena.com/images/fotolife/p/pochiweb/20161228/20161228084149.png" alt="f:id:pochiweb:20161228084149p:plain" /></p>
+<p>横書きが縦に積み上がっていく（笑）</p>
+<p>（heightはブログ上で見辛いので変更しています。）</p>
+<p> </p>
+<p>ちなみに、この「子要素にwriting-mode」方法でなんとかならないか？を考えているうちにこんな面白い状況にもなりました。</p>
+<p>なぜか、見出しにインデントがかかった様な感じに。</p>
+<p><img class="hatena-fotolife" title="f:id:pochiweb:20161228085133p:plain" src="https://cdn-ak.f.st-hatena.com/images/fotolife/p/pochiweb/20161228/20161228085133.png" alt="f:id:pochiweb:20161228085133p:plain" /></p>
+<p>やったことは、</p>
+<p><script src="https://gist.github.com/135be6e6d59570d8367da3978ac05e22.js"> </script></p>
+<p> #articleに<a class="keyword" href="http://d.hatena.ne.jp/keyword/flex">flex</a>をかけ、row-reverceで右詰めにして、directionにrtlを指定。</p>
+<p>右詰めの文章が縦になるとこうなるのでしょうか？試しにltrに変更してみると行頭に戻ったのでそうゆう事な様です。</p>
+		</article>
+	</main>
+			<aside>
+					<div id="respond" class="comment-respond">
+		<h3 id="reply-title" class="comment-reply-title">コメントを残す <small><a rel="nofollow" id="cancel-comment-reply-link" href="/static/pochi-web.github.io/entry/2016/12/28/092218#respond" style="display:none;">コメントをキャンセル</a></small></h3>			<form action="/static/pochi-web.github.io/wp-comments-post.php" method="post" id="commentform" class="comment-form">
+				<p class="comment-notes"><span id="email-notes">メールアドレスが公開されることはありません。</span> <span class="required">*</span> が付いている欄は必須項目です</p><p class="comment-form-comment"><label for="comment">コメント</label> <textarea id="comment" name="comment" cols="45" rows="8" maxlength="65525" aria-required="true" required="required"></textarea></p><p class="comment-form-author"><label for="author">お名前</label> <span class="required">*</span><input id="author" name="author" type="text" value=""  aria-required='true' /></p>
+<p class="comment-form-email"><label for="email">Email</label> <span class="required">*</span><input id="email" name="email" type="text" value="" aria-required='true' /></p>
+
+<p class="form-submit"><input name="submit" type="submit" id="submit" class="submit" value="コメントを送信" /> <input type='hidden' name='comment_post_ID' value='2146' id='comment_post_ID' />
+<input type='hidden' name='comment_parent' id='comment_parent' value='0' />
+</p>			</form>
+			</div><!-- #respond -->
+				</aside>
+	<footer>
+<div class="menu-myglobal-container"><ul id="menu-myglobal" class="menu"><li id="menu-item-2107" class="menu-item menu-item-type-taxonomy menu-item-object-category current-post-ancestor current-menu-parent current-post-parent menu-item-2107"><a href="/static/pochi-web.github.io/entry/category/web">Web制作</a></li>
+<li id="menu-item-2104" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-2104"><a href="/static/pochi-web.github.io/entry/category/cms">CMS</a></li>
+<li id="menu-item-2105" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-2105"><a href="/static/pochi-web.github.io/entry/category/dev">Dev</a></li>
+<li id="menu-item-2106" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-2106"><a href="/static/pochi-web.github.io/entry/category/dialy">Dialy</a></li>
+</ul></div><div id="copyright">
+<p class="copyright_text">&copy;2017&nbsp;webで何か作るブログ</p>
+<nav id="total_navigation">
+<ul>
+<li class="back_to"><a href="">Homeへ</a></li>
+<li class="back_to"><a href="/static/pochi-web.github.io/entry/2016/12/28/092218#top">Topへ</a></li>
+</ul>
+</nav>
+</div>
+<script type='text/javascript' src="/static/pochi-web.github.io/wp-includes/js/wp-embed.min.js?ver=4.8.3"></script>
+</footer></body>
+</html>
