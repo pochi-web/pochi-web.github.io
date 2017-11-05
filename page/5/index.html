@@ -1,0 +1,614 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta http-equiv="Last-Modified" content="Sun, 05 Nov 2017 04:50:27 GMT">
+	<meta charset="UTF-8">
+	<title>【2017/3/25更新】CentOSのインストールから、wordpressをインストールするまでのメモ</title>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+       <link rel='dns-prefetch' href="//maxcdn.bootstrapcdn.com" />
+<link rel='dns-prefetch' href="//fonts.googleapis.com" />
+<link rel='dns-prefetch' href="//s.w.org" />
+		<script type="text/javascript">
+			window._wpemojiSettings = {"baseUrl":"https:\/\/s.w.org\/images\/core\/emoji\/2.3\/72x72\/","ext":".png","svgUrl":"https:\/\/s.w.org\/images\/core\/emoji\/2.3\/svg\/","svgExt":".svg","source":{"concatemoji":"https:\/\/pochi-web.github.io\/wp-includes\/js\/wp-emoji-release.min.js?ver=4.8.3"}};
+			!function(a,b,c){function d(a){var b,c,d,e,f=String.fromCharCode;if(!k||!k.fillText)return!1;switch(k.clearRect(0,0,j.width,j.height),k.textBaseline="top",k.font="600 32px Arial",a){case"flag":return k.fillText(f(55356,56826,55356,56819),0,0),b=j.toDataURL(),k.clearRect(0,0,j.width,j.height),k.fillText(f(55356,56826,8203,55356,56819),0,0),c=j.toDataURL(),b!==c&&(k.clearRect(0,0,j.width,j.height),k.fillText(f(55356,57332,56128,56423,56128,56418,56128,56421,56128,56430,56128,56423,56128,56447),0,0),b=j.toDataURL(),k.clearRect(0,0,j.width,j.height),k.fillText(f(55356,57332,8203,56128,56423,8203,56128,56418,8203,56128,56421,8203,56128,56430,8203,56128,56423,8203,56128,56447),0,0),c=j.toDataURL(),b!==c);case"emoji4":return k.fillText(f(55358,56794,8205,9794,65039),0,0),d=j.toDataURL(),k.clearRect(0,0,j.width,j.height),k.fillText(f(55358,56794,8203,9794,65039),0,0),e=j.toDataURL(),d!==e}return!1}function e(a){var c=b.createElement("script");c.src=a,c.defer=c.type="text/javascript",b.getElementsByTagName("head")[0].appendChild(c)}var f,g,h,i,j=b.createElement("canvas"),k=j.getContext&&j.getContext("2d");for(i=Array("flag","emoji4"),c.supports={everything:!0,everythingExceptFlag:!0},h=0;h<i.length;h++)c.supports[i[h]]=d(i[h]),c.supports.everything=c.supports.everything&&c.supports[i[h]],"flag"!==i[h]&&(c.supports.everythingExceptFlag=c.supports.everythingExceptFlag&&c.supports[i[h]]);c.supports.everythingExceptFlag=c.supports.everythingExceptFlag&&!c.supports.flag,c.DOMReady=!1,c.readyCallback=function(){c.DOMReady=!0},c.supports.everything||(g=function(){c.readyCallback()},b.addEventListener?(b.addEventListener("DOMContentLoaded",g,!1),a.addEventListener("load",g,!1)):(a.attachEvent("onload",g),b.attachEvent("onreadystatechange",function(){"complete"===b.readyState&&c.readyCallback()})),f=c.source||{},f.concatemoji?e(f.concatemoji):f.wpemoji&&f.twemoji&&(e(f.twemoji),e(f.wpemoji)))}(window,document,window._wpemojiSettings);
+		</script>
+		<style type="text/css">
+img.wp-smiley,
+img.emoji {
+	display: inline !important;
+	border: none !important;
+	box-shadow: none !important;
+	height: 1em !important;
+	width: 1em !important;
+	margin: 0 .07em !important;
+	vertical-align: -0.1em !important;
+	background: none !important;
+	padding: 0 !important;
+}
+</style>
+<link rel='stylesheet' id='font-aweasome-css'  href='https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css?ver=4.8.3' type='text/css' media='all' />
+<link rel='stylesheet' id='google-font-css'  href='https://fonts.googleapis.com/earlyaccess/notosansjapanese.css?ver=4.8.3' type='text/css' media='all' />
+<link rel='stylesheet' id='base-css'  href="/wp-content/themes/wire-frame-theme/css/base.css?ver=4.8.3" type='text/css' media='all' />
+<link rel='stylesheet' id='element-css'  href="/wp-content/themes/wire-frame-theme/css/element.css?ver=4.8.3" type='text/css' media='all' />
+<link rel='stylesheet' id='modifier-css'  href="/wp-content/themes/wire-frame-theme/css/modifier.css?ver=4.8.3" type='text/css' media='all' />
+<link rel='stylesheet' id='style-css'  href="/wp-content/themes/wire-frame-theme/style.css?ver=4.8.3" type='text/css' media='all' />
+<script type='text/javascript' src="/wp-includes/js/jquery/jquery.js?ver=1.12.4"></script>
+<script type='text/javascript' src="/wp-includes/js/jquery/jquery-migrate.min.js?ver=1.4.1"></script>
+<link rel='https://api.w.org/' href="/wp-json/" />
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="/wp-includes/wlwmanifest.xml" /> 
+<meta name="generator" content="WordPress 4.8.3 with StaticPress ver.0.4.5" />
+    <script>
+	var j = jQuery.noConflict();
+	</script>
+</head><body>
+	<header id="header">
+	<div id="header_layer">
+		<h1>
+			【2017/3/25更新】CentOSのインストールから、wordpressをインストールするまでのメモ		</h1>
+		<p>サーバーに遊ばれる一ヶ月 今月は本当にサーバー周りの勉強に終始する一ヶ月でした。 月初のうちは、ドットインストールの学習環境作りのために。 半ばから終わりにかけて、（というか継続中だけど）業務で使うためのwordpres</p>
+				<nav id="header_nav">
+			<ul id="category_nav">
+				
+				<li class="category_name">
+					<a href="/entry/category/dev">
+						Dev					</a>
+				</li>
+															</ul>
+			2017年2月26日		</nav>
+				</div><!--END-header_layer-->
+			</header>
+	<main class="post-2137 post type-post status-publish format-standard hentry category-dev">
+	<article id="main_article">
+		<h2>サーバーに遊ばれる一ヶ月</h2>
+<p>今月は本当にサーバー周りの勉強に終始する一ヶ月でした。</p>
+<p>月初のうちは、ドットインストールの学習環境作りのために。</p>
+<p>半ばから終わりにかけて、（というか継続中だけど）業務で使うための<a class="keyword" href="http://d.hatena.ne.jp/keyword/wordpress">wordpress</a>サーバーの構築に。</p>
+<p>今回も色々なサイトに助けられて、なんとか形になりできそうです。</p>
+<p>というわけで、サーバー構築のためのメモ。</p>
+<p> </p>
+<h2>仕様的なもの</h2>
+<p>今回、業務で作るサーバーはこんな感じでした。</p>
+<p>マシン：余り物の<a class="keyword" href="http://d.hatena.ne.jp/keyword/windows">windows</a>機(32bit)</p>
+<p>動作させるもの：<a class="keyword" href="http://d.hatena.ne.jp/keyword/Wordpress">WordPress</a></p>
+<p>外部のクライアントが使用する</p>
+<p> </p>
+<h3>経緯</h3>
+<p>まずサーバー構築の本を買ってみたのですが、</p>
+<p>CentOS7を対象にした本で、OSインストールからつまづいてしまいました。</p>
+<p> </p>
+<h2>USBに<a class="keyword" href="http://d.hatena.ne.jp/keyword/linux">linux</a>を入れて、インストールする</h2>
+<p>社内にCentOS32bitのインストールディスクもない、ということで</p>
+<p>こちらのサイトを参考に BootalbeUSBを作るところからスタート。 </p>
+<p>最初は、色々とソフトとか試していたのですが、コマンドでやるのが結局一番簡単でした。</p>
+<p> </p>
+<p>2017/3/24追記</p>
+<p><a class="keyword" href="http://d.hatena.ne.jp/keyword/BIOS">BIOS</a>での立ち上げ方法のメモも残しておきます。</p>
+<p>ほとんどのPCは起動の際にF2を押しておけばOKです。</p>
+<p> </p>
+<p><iframe class="embed-card embed-webcard" style="display: block; width: 100%; height: 155px; max-width: 500px; margin: 10px 0px;" title="MacOSX上でISOファイルからインストールUSBディスクを作る - re:inventing the wheel" src="//hatenablog-parts.com/embed?url=http%3A%2F%2Fmarmotte.pyrites.jp%2Fblog%2F2015%2F01%2F04%2Fcreate-bootable-usb-from-iso-file%2F" frameborder="0" scrolling="no"></iframe><cite class="hatena-citation"><a href="http://marmotte.pyrites.jp/blog/2015/01/04/create-bootable-usb-from-iso-file/">marmotte.pyrites.jp</a></cite></p>
+<p> </p>
+<h2><a class="keyword" href="http://d.hatena.ne.jp/keyword/CentOS">CentOS</a>の各種設定</h2>
+<p>その後、<a class="keyword" href="http://d.hatena.ne.jp/keyword/CentOS">CentOS</a>の各種初期設定はこちらを参考に。</p>
+<p>依存関係って本当にややこしいし、理解しないまま進めたせいでうまく動作しなかったりしました。</p>
+<p>最後はここの設定に従っていけばとりあえずOKとなりましたが、いずれもっと深掘りして学びたいなと思っています。</p>
+<p><iframe class="embed-card embed-webcard" style="display: block; width: 100%; height: 155px; max-width: 500px; margin: 10px 0px;" title="CentOS6ÌCXg[ SÒÌ½ßÌLinuxT[o[\zuÀ(CentOS ©îT[o[Î)¨ÖT[o[.com" src="//hatenablog-parts.com/embed?url=http%3A%2F%2Fwww.obenri.com%2F_install_cent6%2Findex.html" frameborder="0" scrolling="no"></iframe><cite class="hatena-citation"><a href="http://www.obenri.com/_install_cent6/index.html">www.obenri.com</a></cite></p>
+<p> </p>
+<h2><a class="keyword" href="http://d.hatena.ne.jp/keyword/LAMP">LAMP</a>の設定</h2>
+<p>さらに、<a class="keyword" href="http://d.hatena.ne.jp/keyword/lamp">lamp</a>の設定ではこちらのサイトにお世話になりました。</p>
+<p><iframe class="embed-card embed-webcard" style="display: block; width: 100%; height: 155px; max-width: 500px; margin: 10px 0px;" title="Apache、MySQL、PHPのインストール - Linux入門 - Webkaru" src="//hatenablog-parts.com/embed?url=http%3A%2F%2Fwebkaru.net%2Flinux%2Fapache-mysql-php-install%2F" frameborder="0" scrolling="no"></iframe></p>
+<p><cite class="hatena-citation"><a href="http://webkaru.net/linux/apache-mysql-php-install/">webkaru.net</a></cite></p>
+<p> </p>
+<p>これで、とりあえず<a class="keyword" href="http://d.hatena.ne.jp/keyword/LAMP">LAMP</a>環境はできました。</p>
+<p>しかし、この状態だと結構古い環境ですし、メールサーバーの設定はされていないので、まだまだ不完全です。</p>
+<p>例えばmbstringがないとか。それについては下記の手順にて。</p>
+<p><iframe class="embed-card embed-webcard" style="display: block; width: 100%; height: 155px; max-width: 500px; margin: 10px 0px;" title="php環境構築時に入れ忘れてコケるやーつ…。 - Qiita" src="//hatenablog-parts.com/embed?url=http%3A%2F%2Fqiita.com%2Fsango%2Fitems%2Fa86f9b8cf8c9c641823a" frameborder="0" scrolling="no"></iframe><cite class="hatena-citation"><a href="http://qiita.com/sango/items/a86f9b8cf8c9c641823a">qiita.com</a></cite></p>
+<p>メール、セキュリティに関する追記と、詳細の追記を順次行なっていきたいと思っています。</p>
+<h2><a class="keyword" href="http://d.hatena.ne.jp/keyword/postfix">postfix</a>（メールサーバー）の設定</h2>
+<p><a class="keyword" href="http://d.hatena.ne.jp/keyword/wordpress">wordpress</a>を使用するにあたって、ログイン通知などでメールを飛ばすこともあるのでメールサーバーの設定も行います。</p>
+<p>今回は送信だけできればOKだったので<a class="keyword" href="http://d.hatena.ne.jp/keyword/SMTP">SMTP</a>の設定のみ。基本的な設定はこちらの記事を参考にすれば簡単に終わリます。</p>
+<p><iframe class="embed-card embed-webcard" style="display: block; width: 100%; height: 155px; max-width: 500px; margin: 10px 0px;" title="Postfixをインストールしてメール送信してみる | 本日も乙" src="//hatenablog-parts.com/embed?url=http%3A%2F%2Fblog.jicoman.info%2F2013%2F08%2Fpostfix_install%2F" frameborder="0" scrolling="no"></iframe><cite class="hatena-citation"><a href="http://blog.jicoman.info/2013/08/postfix_install/">blog.jicoman.info</a></cite></p>
+<p>unable to look up public/pickup: No such file or directoryってエラーは<a class="keyword" href="http://d.hatena.ne.jp/keyword/postfix">postfix</a>が機動していないときに出ます。基本的なことだけど、忘れがち。。</p>
+<h3><a class="keyword" href="http://d.hatena.ne.jp/keyword/SELinux">SELinux</a>の設定変更</h3>
+<p>上記の記事だと、<a class="keyword" href="http://d.hatena.ne.jp/keyword/%A5%B3%A5%DE%A5%F3%A5%C9%A5%E9%A5%A4%A5%F3">コマンドライン</a>からのメール送信は成功しますが、<a class="keyword" href="http://d.hatena.ne.jp/keyword/wordpress">wordpress</a>からのメール送信はできないはずです。そこで、<a class="keyword" href="http://d.hatena.ne.jp/keyword/SELinux">SELinux</a>の設定を変更して<a class="keyword" href="http://d.hatena.ne.jp/keyword/Wordpress">WordPress</a>からのメール送信を許可します。</p>
+<p>下記の記事が参考になります。</p>
+<p><iframe class="embed-card embed-webcard" style="display: block; width: 100%; height: 155px; max-width: 500px; margin: 10px 0px;" title="WordPress Contact Form 7からのメール送信失敗でSELinuxを設定変更した件 | CrystalSnowman.com" src="//hatenablog-parts.com/embed?url=http%3A%2F%2Fwww.crystalsnowman.com%2F%3Fp%3D49" frameborder="0" scrolling="no"></iframe><cite class="hatena-citation"><a href="http://www.crystalsnowman.com/?p=49">www.crystalsnowman.com</a></cite></p>
+<p> </p>
+<h2><a class="keyword" href="http://d.hatena.ne.jp/keyword/SSL">SSL</a>の設定 </h2>
+<p>続いて、<a class="keyword" href="http://d.hatena.ne.jp/keyword/SSL">SSL</a>を設定していきます。認証キーとかも初めて触れましたが、先輩たちのシェア精神によって簡単に設定できました。ありがたい。</p>
+<p> </p>
+<p><iframe class="embed-card embed-webcard" style="display: block; width: 100%; height: 155px; max-width: 500px; margin: 10px 0px;" title="CentOS 6 - Apache httpd - SSLの設定 ： Server World" src="//hatenablog-parts.com/embed?url=https%3A%2F%2Fwww.server-world.info%2Fquery%3Fos%3DCentOS_6%26p%3Dhttpd%26f%3D5" frameborder="0" scrolling="no"></iframe><cite class="hatena-citation"><a href="https://www.server-world.info/query?os=CentOS_6&amp;p=httpd&amp;f=5">www.server-world.info</a></cite></p>
+<p> </p>
+<h2 style="color: #3d3f44; font-family: 'Helvetica Neue', Helvetica, Arial, 'ヒラギノ角ゴ Pro W3', 'Hiragino Kaku Gothic Pro', メイリオ, Meiryo, 'ＭＳ Ｐゴシック', 'MS PGothic', sans-serif; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; text-decoration-style: initial; text-decoration-color: initial;"> 追記１：<a class="keyword" href="http://d.hatena.ne.jp/keyword/Postfix">Postfix</a>を使ってメール送信ができるようにする</h2>
+<p style="line-height: 1.5; margin: 0.5em 0px; padding: 0px; color: #3d3f44; font-family: 'Helvetica Neue', Helvetica, Arial, 'ヒラギノ角ゴ Pro W3', 'Hiragino Kaku Gothic Pro', メイリオ, Meiryo, 'ＭＳ Ｐゴシック', 'MS PGothic', sans-serif; font-size: 16px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: normal; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; text-decoration-style: initial; text-decoration-color: initial;">参考サイト</p>
+<p style="line-height: 1.5; margin: 0.5em 0px; padding: 0px; color: #3d3f44; font-family: 'Helvetica Neue', Helvetica, Arial, 'ヒラギノ角ゴ Pro W3', 'Hiragino Kaku Gothic Pro', メイリオ, Meiryo, 'ＭＳ Ｐゴシック', 'MS PGothic', sans-serif; font-size: 16px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: normal; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; text-decoration-style: initial; text-decoration-color: initial;"><iframe class="embed-card embed-webcard" style="display: block; width: 100%; height: 155px; max-width: 500px; margin: 10px 0px;" title="Postfixをインストールしてメール送信してみる | 本日も乙" src="//hatenablog-parts.com/embed?url=http%3A%2F%2Fblog.jicoman.info%2F2013%2F08%2Fpostfix_install%2F" frameborder="0" scrolling="no"></iframe><cite class="hatena-citation" style="font-style: normal; font-size: 14.4px; opacity: 0.75; display: block;"><a href="http://blog.jicoman.info/2013/08/postfix_install/" style="color: #999999; opacity: 1; font-size: 11.52px;">blog.jicoman.info</a></cite></p>
+<p style="line-height: 1.5; margin: 0.5em 0px; padding: 0px; color: #3d3f44; font-family: 'Helvetica Neue', Helvetica, Arial, 'ヒラギノ角ゴ Pro W3', 'Hiragino Kaku Gothic Pro', メイリオ, Meiryo, 'ＭＳ Ｐゴシック', 'MS PGothic', sans-serif; font-size: 16px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: normal; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; text-decoration-style: initial; text-decoration-color: initial;"><a class="keyword" href="http://d.hatena.ne.jp/keyword/SELinux">SELinux</a>の設定変更をしないと動きません。</p>
+<p style="line-height: 1.5; margin: 0.5em 0px; padding: 0px; color: #3d3f44; font-family: 'Helvetica Neue', Helvetica, Arial, 'ヒラギノ角ゴ Pro W3', 'Hiragino Kaku Gothic Pro', メイリオ, Meiryo, 'ＭＳ Ｐゴシック', 'MS PGothic', sans-serif; font-size: 16px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: normal; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; text-decoration-style: initial; text-decoration-color: initial;"><iframe class="embed-card embed-webcard" style="display: block; width: 100%; height: 155px; max-width: 500px; margin: 10px 0px;" title="WordPress Contact Form 7からのメール送信失敗でSELinuxを設定変更した件 | CrystalSnowman.com" src="//hatenablog-parts.com/embed?url=http%3A%2F%2Fwww.crystalsnowman.com%2F%3Fp%3D49" frameborder="0" scrolling="no"></iframe><cite class="hatena-citation" style="font-style: normal; font-size: 14.4px; opacity: 0.75; display: block;"><a href="http://www.crystalsnowman.com/?p=49" style="color: #999999; opacity: 1; font-size: 11.52px;">www.crystalsnowman.com</a></cite></p>
+<p style="line-height: 1.5; margin: 0.5em 0px; padding: 0px; color: #3d3f44; font-family: 'Helvetica Neue', Helvetica, Arial, 'ヒラギノ角ゴ Pro W3', 'Hiragino Kaku Gothic Pro', メイリオ, Meiryo, 'ＭＳ Ｐゴシック', 'MS PGothic', sans-serif; font-size: 16px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: normal; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; text-decoration-style: initial; text-decoration-color: initial;">追記２：<a class="keyword" href="http://d.hatena.ne.jp/keyword/SSL">SSL</a>に対応する</p>
+<p style="line-height: 1.5; margin: 0.5em 0px; padding: 0px; color: #3d3f44; font-family: 'Helvetica Neue', Helvetica, Arial, 'ヒラギノ角ゴ Pro W3', 'Hiragino Kaku Gothic Pro', メイリオ, Meiryo, 'ＭＳ Ｐゴシック', 'MS PGothic', sans-serif; font-size: 16px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: normal; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; text-decoration-style: initial; text-decoration-color: initial;">参考サイト</p>
+<p style="line-height: 1.5; margin: 0.5em 0px; padding: 0px; color: #3d3f44; font-family: 'Helvetica Neue', Helvetica, Arial, 'ヒラギノ角ゴ Pro W3', 'Hiragino Kaku Gothic Pro', メイリオ, Meiryo, 'ＭＳ Ｐゴシック', 'MS PGothic', sans-serif; font-size: 16px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: normal; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; text-decoration-style: initial; text-decoration-color: initial;">設定手順</p>
+<p style="line-height: 1.5; margin: 0.5em 0px; padding: 0px; color: #3d3f44; font-family: 'Helvetica Neue', Helvetica, Arial, 'ヒラギノ角ゴ Pro W3', 'Hiragino Kaku Gothic Pro', メイリオ, Meiryo, 'ＭＳ Ｐゴシック', 'MS PGothic', sans-serif; font-size: 16px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: normal; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; text-decoration-style: initial; text-decoration-color: initial;"><iframe class="embed-card embed-webcard" style="display: block; width: 100%; height: 155px; max-width: 500px; margin: 10px 0px;" title="CentOS 6 - Apache httpd - SSLの設定 ： Server World" src="//hatenablog-parts.com/embed?url=https%3A%2F%2Fwww.server-world.info%2Fquery%3Fos%3DCentOS_6%26p%3Dhttpd%26f%3D5" frameborder="0" scrolling="no"></iframe><cite class="hatena-citation" style="font-style: normal; font-size: 14.4px; opacity: 0.75; display: block;"><a href="https://www.server-world.info/query?os=CentOS_6&amp;p=httpd&amp;f=5" style="color: #999999; opacity: 1; font-size: 11.52px;">www.server-world.info</a></cite></p>
+<p style="line-height: 1.5; margin: 0.5em 0px; padding: 0px; color: #3d3f44; font-family: 'Helvetica Neue', Helvetica, Arial, 'ヒラギノ角ゴ Pro W3', 'Hiragino Kaku Gothic Pro', メイリオ, Meiryo, 'ＭＳ Ｐゴシック', 'MS PGothic', sans-serif; font-size: 16px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: normal; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; text-decoration-style: initial; text-decoration-color: initial;">証明書のこと</p>
+<p style="line-height: 1.5; margin: 0.5em 0px; padding: 0px; color: #3d3f44; font-family: 'Helvetica Neue', Helvetica, Arial, 'ヒラギノ角ゴ Pro W3', 'Hiragino Kaku Gothic Pro', メイリオ, Meiryo, 'ＭＳ Ｐゴシック', 'MS PGothic', sans-serif; font-size: 16px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: normal; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; text-decoration-style: initial; text-decoration-color: initial;"><a class="keyword" href="http://d.hatena.ne.jp/keyword/phpMyadmin">phpMyadmin</a>の導入</p>
+<p style="line-height: 1.5; margin: 0.5em 0px; padding: 0px; color: #3d3f44; font-family: 'Helvetica Neue', Helvetica, Arial, 'ヒラギノ角ゴ Pro W3', 'Hiragino Kaku Gothic Pro', メイリオ, Meiryo, 'ＭＳ Ｐゴシック', 'MS PGothic', sans-serif; font-size: 16px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: normal; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; text-decoration-style: initial; text-decoration-color: initial;"><iframe class="embed-card embed-blogcard" style="display: block; width: 100%; height: 190px; max-width: 500px; margin: 10px 0px;" title="【Mac/Windows版】VagrantにphpMyAdminを実装してMySQLを動かしてみよう - 『入る学科間違えた高専生』の日記" src="https://hatenablog-parts.com/embed?url=http%3A%2F%2Fnnsnodnb.hatenablog.jp%2Fentry%2F20150317%2F1426527167" frameborder="0" scrolling="no"></iframe><cite class="hatena-citation" style="font-style: normal; font-size: 14.4px; opacity: 0.75; display: block;"><a href="http://nnsnodnb.hatenablog.jp/entry/20150317/1426527167" style="color: #999999; opacity: 1; font-size: 11.52px;">nnsnodnb.hatenablog.jp</a></cite></p>
+	</article>
+	</main>
+		<header id="header">
+	<div id="header_layer">
+		<h1>
+			WE Project　2月の振り返り		</h1>
+		<p>WE Projectの振り返り。 業務時間の20%に当たる時間、自習するという本プロジェクトですが、今月は達成状況がとてもよろしくありませんでした。 というのも、ほぼ未経験の「WordPressが動作するサーバーの構築」</p>
+				<nav id="header_nav">
+			<ul id="category_nav">
+				
+				<li class="category_name">
+					<a href="/entry/category/dialy/we-project">
+						We Project					</a>
+				</li>
+															</ul>
+			2017年2月26日		</nav>
+				</div><!--END-header_layer-->
+			</header>
+	<main class="post-2138 post type-post status-publish format-standard hentry category-we-project">
+	<article id="main_article">
+		<p>WE Projectの振り返り。</p>
+<p>業務時間の20%に当たる時間、自習するという本プロジェクトですが、今月は達成状況がとてもよろしくありませんでした。</p>
+<p>というのも、ほぼ未経験の「<a class="keyword" href="http://d.hatena.ne.jp/keyword/Wordpress">WordPress</a>が動作するサーバーの構築」というタスクが突然降ってきて、これに忙殺されていたからです。</p>
+<p>朝から晩まで、<a class="keyword" href="http://d.hatena.ne.jp/keyword/CentOS">CentOS</a>のことやらコマンドのことなどを勉強する日々。</p>
+<p>メールサーバの設定ができれば動作に関しては一通り終了かとは思いますが、セキュリティとかももう少ししっかり理解しなければならないし、前途は多難です。</p>
+<p>&nbsp;</p>
+<p>そんなこんなで、少し早いのですが2月のWEProjectを振り返ります。</p>
+<style type="text/css"><!--
+body {
+font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+font-size: 14px;
+line-height: 20px;
+color: #333;
+}
+table {
+max-width: 100%;
+background-color: transparent;
+border-spacing: 0;
+width: 100%;
+margin-bottom: 20px;
+border: 1px solid #ddd;
+border-collapse: separate;
+border-left: 0;
+border-radius: 4px;
+}
+thead th {
+text-align: left;
+padding: 5px;
+}
+tfoot th {
+text-align: left;
+padding: 5px;
+border-top: 1px solid #DDD;
+}
+tbody tr:nth-child(odd) td {
+background-color: #f9f9f9;
+}
+th, td {
+padding: 8px;
+border-left: 1px solid #DDD;
+}
+td {
+border-top: 1px solid #DDD;
+}
+--></style>
+<p><a href="http://www.atimelogger.com" target="_blank"> aTimeLogger Report </a></p>
+<h2>Time Entries</h2>
+<table style="width: 600px;">
+<thead>
+<tr>
+<th>Activity Type</th>
+<th>Duration</th>
+<th>Percent</th>
+</tr>
+</thead>
+<tfoot></tfoot>
+<tbody>
+<tr>
+<td style="padding-left: 8px;">読書</td>
+<td>32:47</td>
+<td>4.9</td>
+</tr>
+<tr>
+<td style="padding-left: 8px;">勉強</td>
+<td>07:20</td>
+<td>1.1</td>
+</tr>
+<tr>
+<td style="padding-left: 8px;">BLOG</td>
+<td>02:08</td>
+<td>0.3</td>
+</tr>
+</tbody>
+</table>
+<p>&nbsp;</p>
+<p>今月の規定労働時間は、20日X7時間で140時間。</p>
+<p>20%で28時間なので、一応達成しているようです。</p>
+<p>しかし、身になっていないなあ、と、とても感じます。</p>
+<p>&nbsp;</p>
+<p>もっと集中して勉強する環境を作るのがポイントかもしれない。</p>
+<p>&nbsp;</p>
+<p>オフィスだとどうしても、話しかけられたりして自分の勉強に集中しきるのは難しいし、それは家でも同じだし。早朝のカフェが一番かもしれないですね。</p>
+	</article>
+	</main>
+		<header id="header">
+	<div id="header_layer">
+		<h1>
+			table関連のレスポンシブ対応方法メモ		</h1>
+		<p>コーポレートサイトを作る場合、&lt;table&gt;タグを非常に高い確率で使用します。 普通に使う分には特に問題はないのですが、レスポンシブ対応のケースでは融通がきかなくて困っていました。 例えば、 PC表示だと縦の</p>
+				<nav id="header_nav">
+			<ul id="category_nav">
+				
+				<li class="category_name">
+					<a href="/entry/category/web">
+						Web制作					</a>
+				</li>
+															</ul>
+			2017年2月8日		</nav>
+				</div><!--END-header_layer-->
+			</header>
+	<main class="post-2139 post type-post status-publish format-standard hentry category-web">
+	<article id="main_article">
+		<p>コーポレートサイトを作る場合、&lt;table&gt;タグを非常に高い確率で使用します。</p>
+<p>普通に使う分には特に問題はないのですが、レスポンシブ対応のケースでは融通がきかなくて困っていました。</p>
+<p>例えば、</p>
+<ul>
+<li>PC表示だと縦のセル連結するけど、<a class="keyword" href="http://d.hatena.ne.jp/keyword/%A5%B9%A5%DE%A5%DB">スマホ</a>ではしない</li>
+<li>でも、テキストはちゃんと上下中央配置にしたい</li>
+<li>テキストの行数は結構バラバラ</li>
+</ul>
+<p>こんな条件が揃うと通常の&lt;table&gt;だと厳しいというか、<a class="keyword" href="http://d.hatena.ne.jp/keyword/CSS">CSS</a>が肥大化してしまいがちです。</p>
+<p>後々の管理のためにももっとスッキリさせたいですし、そもそも対応できるのか？という疑問から、今回tableについて調べました。すると、超絶便利なものが有るではないですか。</p>
+<p>今までtableタグしか知らなくて驚愕。</p>
+<p> </p>
+<h3>要素がtableタグ風に振る舞うdisplayプロパティ</h3>
+<p><a class="keyword" href="http://d.hatena.ne.jp/keyword/CSS">CSS</a>のdisplayプロパティを使って、各要素をtableで<a class="keyword" href="http://d.hatena.ne.jp/keyword/%A5%DE%A1%BC%A5%AF%A5%A2%A5%C3%A5%D7">マークアップ</a>された様に表示が可能です。簡単なメモから。（間違いのご指摘は尻尾を振って喜びます。）</p>
+<p> </p>
+<h5>:table</h5>
+<p>内包する要素のtable系プロパティを有効にします。</p>
+<p> </p>
+<h5>:table-row</h5>
+<p>tableタグにおける&lt;tr&gt;のように振る舞います。</p>
+<p> </p>
+<h5>:table-cell</h5>
+<p>tableタグにおける&lt;td&gt;<span style="color: #3d3f44; font-family: 'Helvetica Neue', Helvetica, Arial, 'ヒラギノ角ゴ Pro W3', 'Hiragino Kaku Gothic Pro', メイリオ, Meiryo, 'ＭＳ Ｐゴシック', 'MS PGothic', sans-serif; font-size: 16px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: normal; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; background-color: #ffffff; display: inline !important; float: none;">のように振る舞います。</span>のように振る舞います。</p>
+<p style="line-height: 1.5; margin: 0.5em 0px; padding: 0px; color: #3d3f44; font-family: 'Helvetica Neue', Helvetica, Arial, 'ヒラギノ角ゴ Pro W3', 'Hiragino Kaku Gothic Pro', メイリオ, Meiryo, 'ＭＳ Ｐゴシック', 'MS PGothic', sans-serif; font-size: 16px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: normal; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px;"> </p>
+<h3>併せて覚えておきたい display関連のプロパティ</h3>
+<h5>:inline-block</h5>
+<p> テーブル(行)の中でセルを左右に分けたい時に重宝しました。</p>
+<p>例えば「企業の沿革」ページなどよくある、</p>
+<p>文章だけの行もあれば、文章と画像が入る行もあるというケース。</p>
+<p>display:table-cellだとrowspanやcollspanなどが使用できないので、そのままだと縦に並んでしまうのですが、table-cellの中でinline-blockを上手く使うといい感じに処理ができます。</p>
+<h3>その他、テーブルで便利な<a class="keyword" href="http://d.hatena.ne.jp/keyword/CSS">CSS</a></h3>
+<h5>vertical-align</h5>
+<p>なんと言ってもこれです。</p>
+<p>というか、display:tableを利用する最大のメリットはこのvertical-alignが使えることかもしれません。</p>
+<p> </p>
+<p>display:tableとdisplay:blockを使っていくことでレスポンシブでのテーブル対応も簡単になりました。次回案件からは悩まずに使っていこうと思います。</p>
+<p> </p>
+<p>ただし、「セマンティック<a class="keyword" href="http://d.hatena.ne.jp/keyword/%A5%DE%A1%BC%A5%AF%A5%A2%A5%C3%A5%D7">マークアップ</a>」という概念においては反することなのかなぁとも思うので、この辺りは引き続き考えていきたい部分です。</p>
+<p> </p>
+<h3>サンプルコード</h3>
+<p><script src="https://gist.github.com/8e5b4b15412b03fa59a022c21d3ccf6c.js"> </script></p>
+<p><a href="https://gist.github.com/8e5b4b15412b03fa59a022c21d3ccf6c">display : table のためのHTMLサンプル</a></p>
+<p><script src="https://gist.github.com/cddc386ebe9f9bbbb6c0964b3a57373d.js"> </script></p>
+<p><a href="https://gist.github.com/cddc386ebe9f9bbbb6c0964b3a57373d">display : table のためのCSSサンプル</a></p>
+<p style="line-height: 1.5; margin: 0.5em 0px; padding: 0px; color: #3d3f44; font-family: 'Helvetica Neue', Helvetica, Arial, 'ヒラギノ角ゴ Pro W3', 'Hiragino Kaku Gothic Pro', メイリオ, Meiryo, 'ＭＳ Ｐゴシック', 'MS PGothic', sans-serif; font-size: 16px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: normal; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px;"> </p>
+	</article>
+	</main>
+		<header id="header">
+	<div id="header_layer">
+		<h1>
+			We Project 1月の振り返り		</h1>
+		<p>2月ももう6日目となってしまうのですが、1月の振り返りをしたいと思います。 というのも、 1月の終盤から約一週間の間、異常とも言える疲労感に襲われてペースダウン 慣れからくるものか、エネルギーが下がってきている という状</p>
+				<nav id="header_nav">
+			<ul id="category_nav">
+				
+				<li class="category_name">
+					<a href="/entry/category/dialy/we-project">
+						We Project					</a>
+				</li>
+															</ul>
+			2017年2月6日		</nav>
+				</div><!--END-header_layer-->
+			</header>
+	<main class="post-2140 post type-post status-publish format-standard hentry category-we-project">
+	<article id="main_article">
+		<p>2月ももう6日目となってしまうのですが、1月の振り返りをしたいと思います。</p>
+<p>というのも、</p>
+<ul>
+<li>1月の終盤から約一週間の間、異常とも言える疲労感に襲われてペースダウン</li>
+<li>慣れからくるものか、エネルギーが下がってきている</li>
+</ul>
+<p>という状態になっており、経験上こういう時は、実際に自分が積み上げてきたものを振り返るのが一番だと思うためです。</p>
+<p>振り返ることで自分の行動を客観視し、それが「ああ。これだけやれば疲れも出るよね」となり、「休まなきゃ」につながる。</p>
+<p>ただただ強迫観念的に「やらなきゃ・・・。やらなきゃ・・。」と思いながら寝るのと、自分の行動量を見た上で、体や心と相談した結果として集中して休むのでは効果が全く異なるのではないかと思うのです。</p>
+<p> </p>
+<p>前置きはこのくらいにして、1月のデータを公開します。</p>
+<h3>1月の仕事、勉強時間</h3>
+<table style="width: 600px;">
+<thead>
+<tr>
+<th>Activity Type</th>
+<th>Duration</th>
+<th>Percent</th>
+</tr>
+</thead>
+<tfoot>
+<tr>
+<th>Total</th>
+<th>671:59</th>
+<th>100.0%</th>
+</tr>
+</tfoot>
+<tbody>
+<tr>
+<td style="padding-left: 8px;">仕事</td>
+<td>193:14</td>
+<td>28.8</td>
+</tr>
+<tr>
+<td style="padding-left: 8px;">勉強</td>
+<td>22:43</td>
+<td>3.4</td>
+</tr>
+<tr>
+<td style="padding-left: 16px;">勉強</td>
+<td>22:43</td>
+<td>3.4</td>
+</tr>
+<tr>
+<td style="padding-left: 8px;">読書</td>
+<td>16:12</td>
+<td>2.4</td>
+</tr>
+<tr>
+<td style="padding-left: 8px;">BLOG</td>
+<td>02:40</td>
+<td>0.4</td>
+</tr>
+<tr>
+<td style="padding-left: 8px;">勉強+仕事</td>
+<td>00:57</td>
+<td>0.1</td>
+</tr>
+<tr>
+<td style="padding-left: 16px;">勉強+仕事</td>
+<td>00:57</td>
+<td>0.1</td>
+</tr>
+<tr>
+<td style="padding-left: 8px;">その他</td>
+<td>436:11</td>
+<td>64.9</td>
+</tr>
+</tbody>
+</table>
+<p> </p>
+<p>このWe Project2020は、仕事時間の 20%を勉強の時間として追加するのが第一目標なのですが、</p>
+<p>(さすがに残業時間まで含めた20%だとハードルが高すぎるな、と今感じました。)</p>
+<p>実態はさておき、今月は出勤日数から計算すると152時間の業務時間です。</p>
+<p>そこから計算する20%は30時間30分。</p>
+<p>この時間を学習に当てていればとりあえずの目標は達成になります。</p>
+<ul>
+<li>勉強（技術書の写経）22時間43分</li>
+<li>読書（関連書籍の読み込み）16時間12分</li>
+<li>BLOG（当ブログの執筆）2時間40分</li>
+<li>「勉強+仕事」はおそらく計測ミスのため除外</li>
+</ul>
+<p><span style="font-size: 150%;">合計：41時間35分</span></p>
+<p>時間的には余裕のクリア！うん。頑張った。</p>
+<h3>1月にやったこと</h3>
+<p>1月に取り組んだのは主に<a class="keyword" href="http://d.hatena.ne.jp/keyword/jQuery">jQuery</a>の基礎固めです。</p>
+<p> 写経はこちらで。</p>
+<div class="freezed">
+<div class="hatena-asin-detail"><a href="http://www.amazon.co.jp/exec/obidos/ASIN/479737571X/hatena-blog-22/"><img class="hatena-asin-detail-image" title="作りながら学ぶjQueryデザインの教科書" src="https://images-fe.ssl-images-amazon.com/images/I/51ISOKgZkhL._SL160_.jpg" alt="作りながら学ぶjQueryデザインの教科書" /></a></p>
+<div class="hatena-asin-detail-info">
+<p class="hatena-asin-detail-title"><a href="http://www.amazon.co.jp/exec/obidos/ASIN/479737571X/hatena-blog-22/">作りながら学ぶjQueryデザインの教科書</a></p>
+<ul>
+<li><span class="hatena-asin-detail-label">作者:</span> 狩野祐東</li>
+<li><span class="hatena-asin-detail-label">出版社/メーカー:</span> SBクリエイティブ</li>
+<li><span class="hatena-asin-detail-label">発売日:</span> 2014/05/22</li>
+<li><span class="hatena-asin-detail-label">メディア:</span> 単行本</li>
+<li><a href="http://d.hatena.ne.jp/asin/479737571X/hatena-blog-22" target="_blank">この商品を含むブログ (2件) を見る</a></li>
+</ul>
+</div>
+<div class="hatena-asin-detail-foot"> </div>
+</div>
+</div>
+<p>読み物としてはこちらを。</p>
+<p> </p>
+<div class="freezed">
+<div class="hatena-asin-detail"><a href="http://www.amazon.co.jp/exec/obidos/ASIN/B00HE4R9H2/hatena-blog-22/"><img class="hatena-asin-detail-image" title="jQuery入門道場" src="https://images-fe.ssl-images-amazon.com/images/I/51iROmJTKqL._SL160_.jpg" alt="jQuery入門道場" /></a></p>
+<div class="hatena-asin-detail-info">
+<p class="hatena-asin-detail-title"><a href="http://www.amazon.co.jp/exec/obidos/ASIN/B00HE4R9H2/hatena-blog-22/">jQuery入門道場</a></p>
+<ul>
+<li><span class="hatena-asin-detail-label">作者:</span> 白岩登</li>
+<li><span class="hatena-asin-detail-label">出版社/メーカー:</span> 株式会社フェンドーラ</li>
+<li><span class="hatena-asin-detail-label">発売日:</span> 2014/01/19</li>
+<li><span class="hatena-asin-detail-label">メディア:</span> <a class="keyword" href="http://d.hatena.ne.jp/keyword/Kindle">Kindle</a>版</li>
+<li><a href="http://d.hatena.ne.jp/asin/B00HE4R9H2/hatena-blog-22" target="_blank">この商品を含むブログを見る</a></li>
+</ul>
+</div>
+<div class="hatena-asin-detail-foot"> </div>
+</div>
+</div>
+<p> </p>
+<p>「作りながら学ぶ〜」を１冊目に消化しました。解説は非常に丁寧ですし、実際に動くものを作っていくので楽しみながら覚えていくことができます。実戦でよく使うものも多く、非常にお得感の強い一冊でした。</p>
+<p> </p>
+<p>ただ、時々出てくる「これ何？」に対しての答えが非常に探しにくいです。</p>
+<p>例えば先日記事にした箇所とか、あとは引数として渡す(event)とはなんなのか？とか。</p>
+<p>反対に「<a class="keyword" href="http://d.hatena.ne.jp/keyword/jQuery">jQuery</a>入門道場」は動くものを作るタイプではなくて、理屈に特化した本でした。「作りながら学ぶ〜」で端折られていた辺りが非常に細かく解説されていて、この組み合わせはすごく良かったなと思っています。安いし。というか、unlimitedなら無料です。</p>
+<p>というわけで、技術書を２冊消化し、40時間を超える勉強をしたということで。</p>
+<p>少し休むのは当然ということにして今月も頑張ります。</p>
+<p><cite class="hatena-citation"><a href="http://pochiweb.hatenablog.com/entry/2017/01/08/234546">pochiweb.hatenablog.com</a></cite></p>
+<p> </p>
+<p> </p>
+	</article>
+	</main>
+		<header id="header">
+	<div id="header_layer">
+		<h1>
+			CSSで要素を上下入れ替える方法。[レシポンシブ対応]		</h1>
+		<p>要素を上下で入れ替える方法。レスポンシブにも対応。   CSSのpositioを使った要素の上下入れ替えってよくやりますよね？ にもかかわらずいつも忘れてしまうので、コードの理解と保存のために記しておきます。 やりたいこ</p>
+				<nav id="header_nav">
+			<ul id="category_nav">
+				
+				<li class="category_name">
+					<a href="/entry/category/web">
+						Web制作					</a>
+				</li>
+															</ul>
+			2017年1月21日		</nav>
+				</div><!--END-header_layer-->
+			</header>
+	<main class="post-2141 post type-post status-publish format-standard hentry category-web">
+	<article id="main_article">
+		<p style="line-height: 1.5; margin: 0.5em 0px; padding: 0px; color: #3d3f44; font-family: 'Helvetica Neue', Helvetica, Arial, 'ヒラギノ角ゴ Pro W3', 'Hiragino Kaku Gothic Pro', メイリオ, Meiryo, 'ＭＳ Ｐゴシック', 'MS PGothic', sans-serif; font-size: 16px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: normal; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px;"><img class="hatena-fotolife" style="border: 0px; max-width: 100%;" title="f:id:pochiweb:20170121133654j:plain" src="https://cdn-ak.f.st-hatena.com/images/fotolife/p/pochiweb/20170121/20170121133654.jpg" alt="f:id:pochiweb:20170121133654j:plain" /></p>
+<h2 style="color: #3d3f44; font-family: 'Helvetica Neue', Helvetica, Arial, 'ヒラギノ角ゴ Pro W3', 'Hiragino Kaku Gothic Pro', メイリオ, Meiryo, 'ＭＳ Ｐゴシック', 'MS PGothic', sans-serif; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px;">要素を上下で入れ替える方法。レスポンシブにも対応。</h2>
+<p style="line-height: 1.5; margin: 0.5em 0px; padding: 0px; color: #3d3f44; font-family: 'Helvetica Neue', Helvetica, Arial, 'ヒラギノ角ゴ Pro W3', 'Hiragino Kaku Gothic Pro', メイリオ, Meiryo, 'ＭＳ Ｐゴシック', 'MS PGothic', sans-serif; font-size: 16px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: normal; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px;"> </p>
+<p style="line-height: 1.5; margin: 0.5em 0px; padding: 0px; color: #3d3f44; font-family: 'Helvetica Neue', Helvetica, Arial, 'ヒラギノ角ゴ Pro W3', 'Hiragino Kaku Gothic Pro', メイリオ, Meiryo, 'ＭＳ Ｐゴシック', 'MS PGothic', sans-serif; font-size: 16px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: normal; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px;"><a class="keyword" href="http://d.hatena.ne.jp/keyword/CSS">CSS</a>のpositioを使った要素の上下入れ替えってよくやりますよね？</p>
+<p style="line-height: 1.5; margin: 0.5em 0px; padding: 0px; color: #3d3f44; font-family: 'Helvetica Neue', Helvetica, Arial, 'ヒラギノ角ゴ Pro W3', 'Hiragino Kaku Gothic Pro', メイリオ, Meiryo, 'ＭＳ Ｐゴシック', 'MS PGothic', sans-serif; font-size: 16px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: normal; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px;">にもかかわらずいつも忘れてしまうので、コードの理解と保存のために記しておきます。</p>
+<h3 style="color: #3d3f44; font-family: 'Helvetica Neue', Helvetica, Arial, 'ヒラギノ角ゴ Pro W3', 'Hiragino Kaku Gothic Pro', メイリオ, Meiryo, 'ＭＳ Ｐゴシック', 'MS PGothic', sans-serif; font-size: 16px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px;">やりたいこと</h3>
+<p style="line-height: 1.5; margin: 0.5em 0px; padding: 0px; color: #3d3f44; font-family: 'Helvetica Neue', Helvetica, Arial, 'ヒラギノ角ゴ Pro W3', 'Hiragino Kaku Gothic Pro', メイリオ, Meiryo, 'ＭＳ Ｐゴシック', 'MS PGothic', sans-serif; font-size: 16px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: normal; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px;"> </p>
+<p style="line-height: 1.5; margin: 0.5em 0px; padding: 0px; color: #3d3f44; font-family: 'Helvetica Neue', Helvetica, Arial, 'ヒラギノ角ゴ Pro W3', 'Hiragino Kaku Gothic Pro', メイリオ, Meiryo, 'ＭＳ Ｐゴシック', 'MS PGothic', sans-serif; font-size: 16px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: normal; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px;"><img class="hatena-fotolife" style="border: 0px; max-width: 100%;" title="f:id:pochiweb:20170121115137p:plain" src="https://cdn-ak.f.st-hatena.com/images/fotolife/p/pochiweb/20170121/20170121115137.png" alt="f:id:pochiweb:20170121115137p:plain" /></p>
+<p style="line-height: 1.5; margin: 0.5em 0px; padding: 0px; color: #3d3f44; font-family: 'Helvetica Neue', Helvetica, Arial, 'ヒラギノ角ゴ Pro W3', 'Hiragino Kaku Gothic Pro', メイリオ, Meiryo, 'ＭＳ Ｐゴシック', 'MS PGothic', sans-serif; font-size: 16px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: normal; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px;"> </p>
+<p style="line-height: 1.5; margin: 0.5em 0px; padding: 0px; color: #3d3f44; font-family: 'Helvetica Neue', Helvetica, Arial, 'ヒラギノ角ゴ Pro W3', 'Hiragino Kaku Gothic Pro', メイリオ, Meiryo, 'ＭＳ Ｐゴシック', 'MS PGothic', sans-serif; font-size: 16px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: normal; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px;">こんな状態を<a class="keyword" href="http://d.hatena.ne.jp/keyword/CSS">CSS</a>でこうしたい。</p>
+<p style="line-height: 1.5; margin: 0.5em 0px; padding: 0px; color: #3d3f44; font-family: 'Helvetica Neue', Helvetica, Arial, 'ヒラギノ角ゴ Pro W3', 'Hiragino Kaku Gothic Pro', メイリオ, Meiryo, 'ＭＳ Ｐゴシック', 'MS PGothic', sans-serif; font-size: 16px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: normal; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px;"> </p>
+<p style="line-height: 1.5; margin: 0.5em 0px; padding: 0px; color: #3d3f44; font-family: 'Helvetica Neue', Helvetica, Arial, 'ヒラギノ角ゴ Pro W3', 'Hiragino Kaku Gothic Pro', メイリオ, Meiryo, 'ＭＳ Ｐゴシック', 'MS PGothic', sans-serif; font-size: 16px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: normal; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px;"><img class="hatena-fotolife" style="border: 0px; max-width: 100%;" title="f:id:pochiweb:20170121115152p:plain" src="https://cdn-ak.f.st-hatena.com/images/fotolife/p/pochiweb/20170121/20170121115152.png" alt="f:id:pochiweb:20170121115152p:plain" /></p>
+<p style="line-height: 1.5; margin: 0.5em 0px; padding: 0px; color: #3d3f44; font-family: 'Helvetica Neue', Helvetica, Arial, 'ヒラギノ角ゴ Pro W3', 'Hiragino Kaku Gothic Pro', メイリオ, Meiryo, 'ＭＳ Ｐゴシック', 'MS PGothic', sans-serif; font-size: 16px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: normal; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px;"> </p>
+<p style="line-height: 1.5; margin: 0.5em 0px; padding: 0px; color: #3d3f44; font-family: 'Helvetica Neue', Helvetica, Arial, 'ヒラギノ角ゴ Pro W3', 'Hiragino Kaku Gothic Pro', メイリオ, Meiryo, 'ＭＳ Ｐゴシック', 'MS PGothic', sans-serif; font-size: 16px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: normal; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px;">これを行います。 </p>
+<p style="line-height: 1.5; margin: 0.5em 0px; padding: 0px; color: #3d3f44; font-family: 'Helvetica Neue', Helvetica, Arial, 'ヒラギノ角ゴ Pro W3', 'Hiragino Kaku Gothic Pro', メイリオ, Meiryo, 'ＭＳ Ｐゴシック', 'MS PGothic', sans-serif; font-size: 16px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: normal; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px;"> </p>
+<h5 style="color: #3d3f44; font-family: 'Helvetica Neue', Helvetica, Arial, 'ヒラギノ角ゴ Pro W3', 'Hiragino Kaku Gothic Pro', メイリオ, Meiryo, 'ＭＳ Ｐゴシック', 'MS PGothic', sans-serif; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px;">HTML</h5>
+<p style="line-height: 1.5; margin: 0.5em 0px; padding: 0px; color: #3d3f44; font-family: 'Helvetica Neue', Helvetica, Arial, 'ヒラギノ角ゴ Pro W3', 'Hiragino Kaku Gothic Pro', メイリオ, Meiryo, 'ＭＳ Ｐゴシック', 'MS PGothic', sans-serif; font-size: 16px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: normal; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px;"><script src="https://gist.github.com/ece41e726097f676775bcb10a94cfc2d.js"> </script></p>
+<p style="line-height: 1.5; margin: 0.5em 0px; padding: 0px; color: #3d3f44; font-family: 'Helvetica Neue', Helvetica, Arial, 'ヒラギノ角ゴ Pro W3', 'Hiragino Kaku Gothic Pro', メイリオ, Meiryo, 'ＭＳ Ｐゴシック', 'MS PGothic', sans-serif; font-size: 16px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: normal; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px;"><a style="color: #8bc8e1;" href="https://gist.github.com/ece41e726097f676775bcb10a94cfc2d">HTML_positionで要素の上下入れ替え（レスポンシブ）</a></p>
+<p style="line-height: 1.5; margin: 0.5em 0px; padding: 0px; color: #3d3f44; font-family: 'Helvetica Neue', Helvetica, Arial, 'ヒラギノ角ゴ Pro W3', 'Hiragino Kaku Gothic Pro', メイリオ, Meiryo, 'ＭＳ Ｐゴシック', 'MS PGothic', sans-serif; font-size: 16px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: normal; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px;"> </p>
+<h5 style="color: #3d3f44; font-family: 'Helvetica Neue', Helvetica, Arial, 'ヒラギノ角ゴ Pro W3', 'Hiragino Kaku Gothic Pro', メイリオ, Meiryo, 'ＭＳ Ｐゴシック', 'MS PGothic', sans-serif; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px;"><a class="keyword" href="http://d.hatena.ne.jp/keyword/CSS">CSS</a></h5>
+<p style="line-height: 1.5; margin: 0.5em 0px; padding: 0px; color: #3d3f44; font-family: 'Helvetica Neue', Helvetica, Arial, 'ヒラギノ角ゴ Pro W3', 'Hiragino Kaku Gothic Pro', メイリオ, Meiryo, 'ＭＳ Ｐゴシック', 'MS PGothic', sans-serif; font-size: 16px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: normal; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px;"><script src="https://gist.github.com/ba339b3fbc23a26e0185de75564efab3.js"> </script></p>
+<p style="line-height: 1.5; margin: 0.5em 0px; padding: 0px; color: #3d3f44; font-family: 'Helvetica Neue', Helvetica, Arial, 'ヒラギノ角ゴ Pro W3', 'Hiragino Kaku Gothic Pro', メイリオ, Meiryo, 'ＭＳ Ｐゴシック', 'MS PGothic', sans-serif; font-size: 16px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: normal; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px;"><a style="color: #8bc8e1;" href="https://gist.github.com/ba339b3fbc23a26e0185de75564efab3">CSS_positionで要素の上下入れ替え（レスポンシブ）</a></p>
+<p style="line-height: 1.5; margin: 0.5em 0px; padding: 0px; color: #3d3f44; font-family: 'Helvetica Neue', Helvetica, Arial, 'ヒラギノ角ゴ Pro W3', 'Hiragino Kaku Gothic Pro', メイリオ, Meiryo, 'ＭＳ Ｐゴシック', 'MS PGothic', sans-serif; font-size: 16px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: normal; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px;"> </p>
+<h3 style="color: #3d3f44; font-family: 'Helvetica Neue', Helvetica, Arial, 'ヒラギノ角ゴ Pro W3', 'Hiragino Kaku Gothic Pro', メイリオ, Meiryo, 'ＭＳ Ｐゴシック', 'MS PGothic', sans-serif; font-size: 16px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px;">手順 </h3>
+<ol style="color: #3d3f44; font-family: 'Helvetica Neue', Helvetica, Arial, 'ヒラギノ角ゴ Pro W3', 'Hiragino Kaku Gothic Pro', メイリオ, Meiryo, 'ＭＳ Ｐゴシック', 'MS PGothic', sans-serif; font-size: 16px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: normal; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px;">
+<li>全体を包むボックスを用意します。<br />今回のコードだと&lt;section&gt;です。<br />ここにposition:relativeを指定して、&lt;section&gt;内の左上をこのボックス内でのpositionの起点とします。
+<p>また、同様の要素が続く場合は特に、marginで各要素との間隔を調整します。</p>
+</li>
+<li>見出しと文章を含むボックスの用意をして、必要な要素を書き込みます。</li>
+<li>&lt;img＞を記述します。</li>
+<li><a class="keyword" href="http://d.hatena.ne.jp/keyword/css">css</a> のpositionで入れ替えを設定する</li>
+</ol>
+<h3 style="color: #3d3f44; font-family: 'Helvetica Neue', Helvetica, Arial, 'ヒラギノ角ゴ Pro W3', 'Hiragino Kaku Gothic Pro', メイリオ, Meiryo, 'ＭＳ Ｐゴシック', 'MS PGothic', sans-serif; font-size: 16px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px;">入れ替えの理屈</h3>
+<p style="line-height: 1.5; margin: 0.5em 0px; padding: 0px; color: #3d3f44; font-family: 'Helvetica Neue', Helvetica, Arial, 'ヒラギノ角ゴ Pro W3', 'Hiragino Kaku Gothic Pro', メイリオ, Meiryo, 'ＭＳ Ｐゴシック', 'MS PGothic', sans-serif; font-size: 16px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: normal; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px;">下に移したい&lt;div&gt;にposition:absoluteを指定して、任意の場所に指定します。</p>
+<p style="line-height: 1.5; margin: 0.5em 0px; padding: 0px; color: #3d3f44; font-family: 'Helvetica Neue', Helvetica, Arial, 'ヒラギノ角ゴ Pro W3', 'Hiragino Kaku Gothic Pro', メイリオ, Meiryo, 'ＭＳ Ｐゴシック', 'MS PGothic', sans-serif; font-size: 16px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: normal; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px;">今回は&lt;div&gt;を&lt;img&gt;の下に配置しました。</p>
+<p style="line-height: 1.5; margin: 0.5em 0px; padding: 0px; color: #3d3f44; font-family: 'Helvetica Neue', Helvetica, Arial, 'ヒラギノ角ゴ Pro W3', 'Hiragino Kaku Gothic Pro', メイリオ, Meiryo, 'ＭＳ Ｐゴシック', 'MS PGothic', sans-serif; font-size: 16px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: normal; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px;">absoluteを使うと、後続の要素は<strong style="font-weight: bold;">absoluteが指定された要素の高さ分詰まってきます</strong>。floating-Boxと考え方は同様です。</p>
+<p style="line-height: 1.5; margin: 0.5em 0px; padding: 0px; color: #3d3f44; font-family: 'Helvetica Neue', Helvetica, Arial, 'ヒラギノ角ゴ Pro W3', 'Hiragino Kaku Gothic Pro', メイリオ, Meiryo, 'ＭＳ Ｐゴシック', 'MS PGothic', sans-serif; font-size: 16px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: normal; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px;"><img class="hatena-fotolife" style="border: 0px; max-width: 100%;" title="f:id:pochiweb:20170121131400p:plain" src="https://cdn-ak.f.st-hatena.com/images/fotolife/p/pochiweb/20170121/20170121131400.png" alt="f:id:pochiweb:20170121131400p:plain" /></p>
+<p style="line-height: 1.5; margin: 0.5em 0px; padding: 0px; color: #3d3f44; font-family: 'Helvetica Neue', Helvetica, Arial, 'ヒラギノ角ゴ Pro W3', 'Hiragino Kaku Gothic Pro', メイリオ, Meiryo, 'ＭＳ Ｐゴシック', 'MS PGothic', sans-serif; font-size: 16px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: normal; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px;"><img class="hatena-fotolife" style="border: 0px; max-width: 100%;" title="f:id:pochiweb:20170121131539p:plain" src="https://cdn-ak.f.st-hatena.com/images/fotolife/p/pochiweb/20170121/20170121131539.png" alt="f:id:pochiweb:20170121131539p:plain" /></p>
+<p style="line-height: 1.5; margin: 0.5em 0px; padding: 0px; color: #3d3f44; font-family: 'Helvetica Neue', Helvetica, Arial, 'ヒラギノ角ゴ Pro W3', 'Hiragino Kaku Gothic Pro', メイリオ, Meiryo, 'ＭＳ Ｐゴシック', 'MS PGothic', sans-serif; font-size: 16px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: normal; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px;">&lt;div&gt;に対して、positionをbottom:0;にすることで、imgの下に配置して、padding-topを%で指定することでボックスの高さが変わることに対応します。<br />配置したい位置次第でこの数値は変更します。<br />この&lt;section&gt;を複数使用する場合は、sectionに対してmarginを設定します。&lt;div&gt;内の&lt;p&gt;などの高さ次第では、メディアクエリで何段階か指定が必要になります。</p>
+<h2 style="color: #3d3f44; font-family: 'Helvetica Neue', Helvetica, Arial, 'ヒラギノ角ゴ Pro W3', 'Hiragino Kaku Gothic Pro', メイリオ, Meiryo, 'ＭＳ Ｐゴシック', 'MS PGothic', sans-serif; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px;">残念なあとがき</h2>
+<p style="line-height: 1.5; margin: 0.5em 0px; padding: 0px; color: #3d3f44; font-family: 'Helvetica Neue', Helvetica, Arial, 'ヒラギノ角ゴ Pro W3', 'Hiragino Kaku Gothic Pro', メイリオ, Meiryo, 'ＭＳ Ｐゴシック', 'MS PGothic', sans-serif; font-size: 16px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: normal; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px;">そもそもこの上下入れ替えは「sectionやarticleタグの直下は見出しタグでなければならない」というvalidationエラーが出ていた為に行なっていました。</p>
+<p style="line-height: 1.5; margin: 0.5em 0px; padding: 0px; color: #3d3f44; font-family: 'Helvetica Neue', Helvetica, Arial, 'ヒラギノ角ゴ Pro W3', 'Hiragino Kaku Gothic Pro', メイリオ, Meiryo, 'ＭＳ Ｐゴシック', 'MS PGothic', sans-serif; font-size: 16px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: normal; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px;">しかし、最近ではこのsectionやarticleの直後にimgが有ることに対してエラーを吐かない様なのです。いや、そもそもそんなエラーは存在しなかったのかもしれないんですが。</p>
+<p style="line-height: 1.5; margin: 0.5em 0px; padding: 0px; color: #3d3f44; font-family: 'Helvetica Neue', Helvetica, Arial, 'ヒラギノ角ゴ Pro W3', 'Hiragino Kaku Gothic Pro', メイリオ, Meiryo, 'ＭＳ Ｐゴシック', 'MS PGothic', sans-serif; font-size: 16px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: normal; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px;">今回記事を書くにあたりテスト的に色々な並びでバリデータかけてみましたが、不要な様です。</p>
+	</article>
+	</main>
+		<header id="header">
+	<div id="header_layer">
+		<h1>
+			We Project2200 [2017/01/09~01/15]の記録		</h1>
+		<p>We Project 2200開始から 1月8日から1週間の記録。 読書に約3時間半、 勉強（写経）に7時間半で 約11時間。 土日がないとやっぱり厳しいな。 Statistics Activity Type Durat</p>
+				<nav id="header_nav">
+			<ul id="category_nav">
+				
+				<li class="category_name">
+					<a href="/entry/category/dialy/we-project">
+						We Project					</a>
+				</li>
+															</ul>
+			2017年1月15日		</nav>
+				</div><!--END-header_layer-->
+			</header>
+	<main class="post-2142 post type-post status-publish format-standard hentry category-we-project">
+	<article id="main_article">
+		<p>We Project 2200開始から</p>
+<p>1月8日から1週間の記録。</p>
+<p>読書に約3時間半、</p>
+<p>勉強（写経）に7時間半で</p>
+<p>約11時間。</p>
+<p>土日がないとやっぱり厳しいな。</p>
+<h2>Statistics</h2>
+<table style="width: 600px;">
+<thead>
+<tr>
+<th>Activity Type</th>
+<th>Duration</th>
+<th>Percent</th>
+</tr>
+</thead>
+<tfoot>
+<tr>
+<th>Total</th>
+<th>167:59</th>
+<th>100.0%</th>
+</tr>
+</tfoot>
+<tbody>
+<tr>
+<td style="padding-left: 8px;">仕事</td>
+<td>41:50</td>
+<td>24.9</td>
+</tr>
+<tr>
+<td style="padding-left: 8px;">勉強</td>
+<td>07:33</td>
+<td>4.5</td>
+</tr>
+<tr>
+<td style="padding-left: 16px;">勉強</td>
+<td>07:33</td>
+<td>4.5</td>
+</tr>
+<tr>
+<td style="padding-left: 8px;">読書</td>
+<td>03:18</td>
+<td>2.0</td>
+</tr>
+<tr>
+<td style="padding-left: 8px;">勉強+仕事</td>
+<td>00:40</td>
+<td>0.4</td>
+</tr>
+<tr>
+<td style="padding-left: 16px;">勉強+仕事</td>
+<td>00:40</td>
+<td>0.4</td>
+</tr>
+<tr>
+<td style="padding-left: 8px;">その他</td>
+<td>114:37</td>
+<td>68.2</td>
+</tr>
+</tbody>
+</table>
+	</article>
+	</main>
+		<div style="text-align:center;">;
+<a href="/page/4" >previous page</a> &#183; <a href="/page/6" >next page</a></div>
+			<footer>
+<div class="menu-myglobal-container"><ul id="menu-myglobal" class="menu"><li id="menu-item-2107" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-2107"><a href="/entry/category/web">Web制作</a></li>
+<li id="menu-item-2104" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-2104"><a href="/entry/category/cms">CMS</a></li>
+<li id="menu-item-2105" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-2105"><a href="/entry/category/dev">Dev</a></li>
+<li id="menu-item-2106" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-2106"><a href="/entry/category/dialy">Dialy</a></li>
+</ul></div><div id="copyright">
+<p class="copyright_text">&copy;2017&nbsp;webで何か作るブログ</p>
+<nav id="total_navigation">
+<ul>
+<li class="back_to"><a href="">Homeへ</a></li>
+<li class="back_to"><a href="/entry/2017/01/15/203801#top">Topへ</a></li>
+</ul>
+</nav>
+</div>
+<script type='text/javascript' src="/wp-includes/js/wp-embed.min.js?ver=4.8.3"></script>
+</footer></body>
+</html>

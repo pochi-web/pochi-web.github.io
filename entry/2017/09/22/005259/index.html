@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta http-equiv="Last-Modified" content="Sun, 05 Nov 2017 04:45:48 GMT">
+	<meta charset="UTF-8">
+	<title>カスタムメニューの登録と表示”register_nav_menus”｜WordPressテーマの作り方</title>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+       <link rel='dns-prefetch' href="//maxcdn.bootstrapcdn.com" />
+<link rel='dns-prefetch' href="//fonts.googleapis.com" />
+<link rel='dns-prefetch' href="//s.w.org" />
+		<script type="text/javascript">
+			window._wpemojiSettings = {"baseUrl":"https:\/\/s.w.org\/images\/core\/emoji\/2.3\/72x72\/","ext":".png","svgUrl":"https:\/\/s.w.org\/images\/core\/emoji\/2.3\/svg\/","svgExt":".svg","source":{"concatemoji":"https:\/\/pochi-web.github.io\/wp-includes\/js\/wp-emoji-release.min.js?ver=4.8.3"}};
+			!function(a,b,c){function d(a){var b,c,d,e,f=String.fromCharCode;if(!k||!k.fillText)return!1;switch(k.clearRect(0,0,j.width,j.height),k.textBaseline="top",k.font="600 32px Arial",a){case"flag":return k.fillText(f(55356,56826,55356,56819),0,0),b=j.toDataURL(),k.clearRect(0,0,j.width,j.height),k.fillText(f(55356,56826,8203,55356,56819),0,0),c=j.toDataURL(),b!==c&&(k.clearRect(0,0,j.width,j.height),k.fillText(f(55356,57332,56128,56423,56128,56418,56128,56421,56128,56430,56128,56423,56128,56447),0,0),b=j.toDataURL(),k.clearRect(0,0,j.width,j.height),k.fillText(f(55356,57332,8203,56128,56423,8203,56128,56418,8203,56128,56421,8203,56128,56430,8203,56128,56423,8203,56128,56447),0,0),c=j.toDataURL(),b!==c);case"emoji4":return k.fillText(f(55358,56794,8205,9794,65039),0,0),d=j.toDataURL(),k.clearRect(0,0,j.width,j.height),k.fillText(f(55358,56794,8203,9794,65039),0,0),e=j.toDataURL(),d!==e}return!1}function e(a){var c=b.createElement("script");c.src=a,c.defer=c.type="text/javascript",b.getElementsByTagName("head")[0].appendChild(c)}var f,g,h,i,j=b.createElement("canvas"),k=j.getContext&&j.getContext("2d");for(i=Array("flag","emoji4"),c.supports={everything:!0,everythingExceptFlag:!0},h=0;h<i.length;h++)c.supports[i[h]]=d(i[h]),c.supports.everything=c.supports.everything&&c.supports[i[h]],"flag"!==i[h]&&(c.supports.everythingExceptFlag=c.supports.everythingExceptFlag&&c.supports[i[h]]);c.supports.everythingExceptFlag=c.supports.everythingExceptFlag&&!c.supports.flag,c.DOMReady=!1,c.readyCallback=function(){c.DOMReady=!0},c.supports.everything||(g=function(){c.readyCallback()},b.addEventListener?(b.addEventListener("DOMContentLoaded",g,!1),a.addEventListener("load",g,!1)):(a.attachEvent("onload",g),b.attachEvent("onreadystatechange",function(){"complete"===b.readyState&&c.readyCallback()})),f=c.source||{},f.concatemoji?e(f.concatemoji):f.wpemoji&&f.twemoji&&(e(f.twemoji),e(f.wpemoji)))}(window,document,window._wpemojiSettings);
+		</script>
+		<style type="text/css">
+img.wp-smiley,
+img.emoji {
+	display: inline !important;
+	border: none !important;
+	box-shadow: none !important;
+	height: 1em !important;
+	width: 1em !important;
+	margin: 0 .07em !important;
+	vertical-align: -0.1em !important;
+	background: none !important;
+	padding: 0 !important;
+}
+</style>
+<link rel='stylesheet' id='font-aweasome-css'  href='https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css?ver=4.8.3' type='text/css' media='all' />
+<link rel='stylesheet' id='google-font-css'  href='https://fonts.googleapis.com/earlyaccess/notosansjapanese.css?ver=4.8.3' type='text/css' media='all' />
+<link rel='stylesheet' id='base-css'  href="/wp-content/themes/wire-frame-theme/css/base.css?ver=4.8.3" type='text/css' media='all' />
+<link rel='stylesheet' id='element-css'  href="/wp-content/themes/wire-frame-theme/css/element.css?ver=4.8.3" type='text/css' media='all' />
+<link rel='stylesheet' id='modifier-css'  href="/wp-content/themes/wire-frame-theme/css/modifier.css?ver=4.8.3" type='text/css' media='all' />
+<link rel='stylesheet' id='style-css'  href="/wp-content/themes/wire-frame-theme/style.css?ver=4.8.3" type='text/css' media='all' />
+<script type='text/javascript' src="/wp-includes/js/jquery/jquery.js?ver=1.12.4"></script>
+<script type='text/javascript' src="/wp-includes/js/jquery/jquery-migrate.min.js?ver=1.4.1"></script>
+<link rel='https://api.w.org/' href="/wp-json/" />
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="/wp-includes/wlwmanifest.xml" /> 
+<link rel='prev' title='最低限からのWordPressテーマ構築記録を開始' href="/entry/2017/09/19/225014" />
+<link rel='next' title='カテゴリ、タグ、投稿日を表示する｜WordPressテーマの作り方' href="/entry/2017/09/24/115654" />
+<meta name="generator" content="WordPress 4.8.3 with StaticPress ver.0.4.5" />
+<link rel="canonical" href="https://pochi-web.github.io/entry/2017/09/22/005259" />
+<link rel="alternate" type="application/json+oembed" href="/wp-json/oembed/1.0/embed?url=http%3A%2F%2Fmywp%2Fentry%2F2017%2F09%2F22%2F005259" />
+<link rel="alternate" type="text/xml+oembed" href="/wp-json/oembed/1.0/embed?url=http%3A%2F%2Fmywp%2Fentry%2F2017%2F09%2F22%2F005259&#038;format=xml" />
+    <script>
+	var j = jQuery.noConflict();
+	</script>
+</head><body>
+			<header>
+		<div id="header_layer">
+			<h1>
+				カスタムメニューの登録と表示”register_nav_menus”｜WordPressテーマの作り方			</h1>
+			<p>カスタムメニューの使い方 とりあえず、全開で至極簡単な表示はできたので、今度はWordPress純正のメニューを表示させてみる。 WordPressCodexをみると、流れ的には以下。 カスタムメニューを表示させるまでの</p>
+						<nav id="header_nav">
+				<ul id="category_nav">
+										<li class="category_name">
+						<a href="/entry/category/cms/wordpress%e3%83%86%e3%83%bc%e3%83%9e%e3%81%ae%e4%bd%9c%e3%82%8a%e6%96%b9">
+							WordPressテーマの作り方						</a>
+					</li>
+																			</ul>
+				2017年9月22日			</nav>
+					</div>
+		<!--END-header_layer-->
+			</header>
+	<main class="post-2114 post type-post status-publish format-standard hentry category-wordpress">
+		<article id="main_article">
+			<h2>カスタムメニューの使い方</h2>
+<p>とりあえず、全開で至極簡単な表示はできたので、今度は<a class="keyword" href="http://d.hatena.ne.jp/keyword/WordPress">WordPress</a>純正のメニューを表示させてみる。</p>
+<p>WordPressCodexをみると、流れ的には以下。</p>
+<h3>カスタムメニューを表示させるまでの流れ</h3>
+<ol>
+<li>functions.<a class="keyword" href="http://d.hatena.ne.jp/keyword/php">php</a>でフック？アンカーになる文字列と、管理画面上での名前を決めてメニューを登録。
+<p><script src="https://gist.github.com/4aee5a5a296ed3d1dc359006e8309997.js"> </script></p>
+<p><a href="https://gist.github.com/4aee5a5a296ed3d1dc359006e8309997">カスタムメニュー有効化</a></p>
+</li>
+<li>その文字列をパラメータに持つwp_nav_menuをテーマに書き込む。
+<p><script src="https://gist.github.com/32fe91edae0f30b4f91c7a5c33b24524.js"> </script></p>
+<p><a href="https://gist.github.com/32fe91edae0f30b4f91c7a5c33b24524">カスタムメニューを読み込む</a></p>
+<p><script src="https://gist.github.com/1169d7927ca1263eeb94ed59eae7c162.js"> </script></p>
+<p><a href="https://gist.github.com/1169d7927ca1263eeb94ed59eae7c162">wp_nav_menuを使って、カスタムメニューを表示＆任意クラス付与</a></p>
+</li>
+<li>
+<p>メニューを作って、表示させたいところにチェックを入れる。</p>
+</li>
+</ol>
+<p><img class="hatena-fotolife" title="f:id:pochiweb:20170922004016p:plain" src="https://cdn-ak.f.st-hatena.com/images/fotolife/p/pochiweb/20170922/20170922004016.png" alt="f:id:pochiweb:20170922004016p:plain" /></p>
+<h3>注意点</h3>
+<p><a class="keyword" href="http://d.hatena.ne.jp/keyword/widget">widget</a>ばっかり使ってきて、この方法は初めて。簡単に注意点を書いておく。</p>
+<ul>
+<li>wp_nav_menu一つに対して一つしかメニューは表示できない。（当然すぎるな）</li>
+<li>メニュー管理画面では、表示させたい部分に対して<a class="keyword" href="http://d.hatena.ne.jp/keyword/%A5%C1%A5%A7%A5%C3%A5%AF%A5%DC%A5%C3%A5%AF%A5%B9">チェックボックス</a>のチェックを入れるのだけど、違うメニューを同じところに表示させようとしても特に警告なしで上書きされる。</li>
+</ul>
+<p>次はwp_nav_menuの細かいパラメータをCodex見ながら試してみたい。（<a class="keyword" href="http://d.hatena.ne.jp/keyword/CSS">CSS</a>とかの読み込みはメニューのスタイル当てるときにでも。。）</p>
+<p> </p>
+		</article>
+	</main>
+			<aside>
+					<div id="respond" class="comment-respond">
+		<h3 id="reply-title" class="comment-reply-title">コメントを残す <small><a rel="nofollow" id="cancel-comment-reply-link" href="/entry/2017/09/22/005259#respond" style="display:none;">コメントをキャンセル</a></small></h3>			<form action="/wp-comments-post.php" method="post" id="commentform" class="comment-form">
+				<p class="comment-notes"><span id="email-notes">メールアドレスが公開されることはありません。</span> <span class="required">*</span> が付いている欄は必須項目です</p><p class="comment-form-comment"><label for="comment">コメント</label> <textarea id="comment" name="comment" cols="45" rows="8" maxlength="65525" aria-required="true" required="required"></textarea></p><p class="comment-form-author"><label for="author">お名前</label> <span class="required">*</span><input id="author" name="author" type="text" value=""  aria-required='true' /></p>
+<p class="comment-form-email"><label for="email">Email</label> <span class="required">*</span><input id="email" name="email" type="text" value="" aria-required='true' /></p>
+
+<p class="form-submit"><input name="submit" type="submit" id="submit" class="submit" value="コメントを送信" /> <input type='hidden' name='comment_post_ID' value='2114' id='comment_post_ID' />
+<input type='hidden' name='comment_parent' id='comment_parent' value='0' />
+</p>			</form>
+			</div><!-- #respond -->
+				</aside>
+	<footer>
+<div class="menu-myglobal-container"><ul id="menu-myglobal" class="menu"><li id="menu-item-2107" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-2107"><a href="/entry/category/web">Web制作</a></li>
+<li id="menu-item-2104" class="menu-item menu-item-type-taxonomy menu-item-object-category current-post-ancestor menu-item-2104"><a href="/entry/category/cms">CMS</a></li>
+<li id="menu-item-2105" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-2105"><a href="/entry/category/dev">Dev</a></li>
+<li id="menu-item-2106" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-2106"><a href="/entry/category/dialy">Dialy</a></li>
+</ul></div><div id="copyright">
+<p class="copyright_text">&copy;2017&nbsp;webで何か作るブログ</p>
+<nav id="total_navigation">
+<ul>
+<li class="back_to"><a href="">Homeへ</a></li>
+<li class="back_to"><a href="/entry/2017/09/22/005259#top">Topへ</a></li>
+</ul>
+</nav>
+</div>
+<script type='text/javascript' src="/wp-includes/js/wp-embed.min.js?ver=4.8.3"></script>
+</footer></body>
+</html>
