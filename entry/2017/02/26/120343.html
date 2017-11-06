@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta http-equiv="Last-Modified" content="Sun, 05 Nov 2017 23:08:19 GMT">
+	<meta charset="UTF-8">
+	<title>【2017/3/25更新】CentOSのインストールから、wordpressをインストールするまでのメモ</title>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+       <link rel='dns-prefetch' href="//maxcdn.bootstrapcdn.com" />
+<link rel='dns-prefetch' href="//fonts.googleapis.com" />
+<link rel='dns-prefetch' href="//s.w.org" />
+		<script type="text/javascript">
+			window._wpemojiSettings = {"baseUrl":"https:\/\/s.w.org\/images\/core\/emoji\/2.3\/72x72\/","ext":".png","svgUrl":"https:\/\/s.w.org\/images\/core\/emoji\/2.3\/svg\/","svgExt":".svg","source":{"concatemoji":"https:\/\/pochi-web.github.io\/wp-includes\/js\/wp-emoji-release.min.js?ver=4.8.3"}};
+			!function(a,b,c){function d(a){var b,c,d,e,f=String.fromCharCode;if(!k||!k.fillText)return!1;switch(k.clearRect(0,0,j.width,j.height),k.textBaseline="top",k.font="600 32px Arial",a){case"flag":return k.fillText(f(55356,56826,55356,56819),0,0),b=j.toDataURL(),k.clearRect(0,0,j.width,j.height),k.fillText(f(55356,56826,8203,55356,56819),0,0),c=j.toDataURL(),b!==c&&(k.clearRect(0,0,j.width,j.height),k.fillText(f(55356,57332,56128,56423,56128,56418,56128,56421,56128,56430,56128,56423,56128,56447),0,0),b=j.toDataURL(),k.clearRect(0,0,j.width,j.height),k.fillText(f(55356,57332,8203,56128,56423,8203,56128,56418,8203,56128,56421,8203,56128,56430,8203,56128,56423,8203,56128,56447),0,0),c=j.toDataURL(),b!==c);case"emoji4":return k.fillText(f(55358,56794,8205,9794,65039),0,0),d=j.toDataURL(),k.clearRect(0,0,j.width,j.height),k.fillText(f(55358,56794,8203,9794,65039),0,0),e=j.toDataURL(),d!==e}return!1}function e(a){var c=b.createElement("script");c.src=a,c.defer=c.type="text/javascript",b.getElementsByTagName("head")[0].appendChild(c)}var f,g,h,i,j=b.createElement("canvas"),k=j.getContext&&j.getContext("2d");for(i=Array("flag","emoji4"),c.supports={everything:!0,everythingExceptFlag:!0},h=0;h<i.length;h++)c.supports[i[h]]=d(i[h]),c.supports.everything=c.supports.everything&&c.supports[i[h]],"flag"!==i[h]&&(c.supports.everythingExceptFlag=c.supports.everythingExceptFlag&&c.supports[i[h]]);c.supports.everythingExceptFlag=c.supports.everythingExceptFlag&&!c.supports.flag,c.DOMReady=!1,c.readyCallback=function(){c.DOMReady=!0},c.supports.everything||(g=function(){c.readyCallback()},b.addEventListener?(b.addEventListener("DOMContentLoaded",g,!1),a.addEventListener("load",g,!1)):(a.attachEvent("onload",g),b.attachEvent("onreadystatechange",function(){"complete"===b.readyState&&c.readyCallback()})),f=c.source||{},f.concatemoji?e(f.concatemoji):f.wpemoji&&f.twemoji&&(e(f.twemoji),e(f.wpemoji)))}(window,document,window._wpemojiSettings);
+		</script>
+		<style type="text/css">
+img.wp-smiley,
+img.emoji {
+	display: inline !important;
+	border: none !important;
+	box-shadow: none !important;
+	height: 1em !important;
+	width: 1em !important;
+	margin: 0 .07em !important;
+	vertical-align: -0.1em !important;
+	background: none !important;
+	padding: 0 !important;
+}
+</style>
+<link rel='stylesheet' id='font-aweasome-css'  href='https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css?ver=4.8.3' type='text/css' media='all' />
+<link rel='stylesheet' id='google-font-css'  href='https://fonts.googleapis.com/earlyaccess/notosansjapanese.css?ver=4.8.3' type='text/css' media='all' />
+<link rel='stylesheet' id='base-css'  href="/wp-content/themes/wire-frame-theme/css/base.css?ver=4.8.3" type='text/css' media='all' />
+<link rel='stylesheet' id='element-css'  href="/wp-content/themes/wire-frame-theme/css/element.css?ver=4.8.3" type='text/css' media='all' />
+<link rel='stylesheet' id='modifier-css'  href="/wp-content/themes/wire-frame-theme/css/modifier.css?ver=4.8.3" type='text/css' media='all' />
+<link rel='stylesheet' id='style-css'  href="/wp-content/themes/wire-frame-theme/style.css?ver=4.8.3" type='text/css' media='all' />
+<script type='text/javascript' src="/wp-includes/js/jquery/jquery.js?ver=1.12.4"></script>
+<script type='text/javascript' src="/wp-includes/js/jquery/jquery-migrate.min.js?ver=1.4.1"></script>
+<link rel='https://api.w.org/' href="/wp-json/" />
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="/wp-includes/wlwmanifest.xml" /> 
+<link rel='prev' title='WE Project　2月の振り返り' href="/entry/2017/02/26/112458.html" />
+<link rel='next' title='Webサーバーの仕組みをざっくりまとめておく' href="/entry/2017/03/12/211400.html" />
+<meta name="generator" content="WordPress 4.8.3 with StaticPress ver.0.4.5" />
+<link rel="canonical" href="https://pochi-web.github.io/entry/2017/02/26/120343.html" />
+<link rel="alternate" type="application/json+oembed" href="/wp-json/oembed/1.0/embed?url=http%3A%2F%2Fmywp%2Fentry%2F2017%2F02%2F26%2F120343.html" />
+<link rel="alternate" type="text/xml+oembed" href="/wp-json/oembed/1.0/embed?url=http%3A%2F%2Fmywp%2Fentry%2F2017%2F02%2F26%2F120343.html&#038;format=xml" />
+    <script>
+	var j = jQuery.noConflict();
+	</script>
+</head><body>
+			<header>
+		<div id="header_layer">
+			<h1>
+				【2017/3/25更新】CentOSのインストールから、wordpressをインストールするまでのメモ			</h1>
+			<p>サーバーに遊ばれる一ヶ月 今月は本当にサーバー周りの勉強に終始する一ヶ月でした。 月初のうちは、ドットインストールの学習環境作りのために。 半ばから終わりにかけて、（というか継続中だけど）業務で使うためのwordpres</p>
+						<nav id="header_nav">
+				<ul id="category_nav">
+										<li class="category_name">
+						<a href="/entry/category/dev">
+							Dev						</a>
+					</li>
+																			</ul>
+				2017年2月26日			</nav>
+					</div>
+		<!--END-header_layer-->
+			</header>
+	<main class="post-2137 post type-post status-publish format-standard hentry category-dev">
+		<article id="main_article">
+			<h2>サーバーに遊ばれる一ヶ月</h2>
+<p>今月は本当にサーバー周りの勉強に終始する一ヶ月でした。</p>
+<p>月初のうちは、ドットインストールの学習環境作りのために。</p>
+<p>半ばから終わりにかけて、（というか継続中だけど）業務で使うための<a class="keyword" href="http://d.hatena.ne.jp/keyword/wordpress">wordpress</a>サーバーの構築に。</p>
+<p>今回も色々なサイトに助けられて、なんとか形になりできそうです。</p>
+<p>というわけで、サーバー構築のためのメモ。</p>
+<p> </p>
+<h2>仕様的なもの</h2>
+<p>今回、業務で作るサーバーはこんな感じでした。</p>
+<p>マシン：余り物の<a class="keyword" href="http://d.hatena.ne.jp/keyword/windows">windows</a>機(32bit)</p>
+<p>動作させるもの：<a class="keyword" href="http://d.hatena.ne.jp/keyword/Wordpress">WordPress</a></p>
+<p>外部のクライアントが使用する</p>
+<p> </p>
+<h3>経緯</h3>
+<p>まずサーバー構築の本を買ってみたのですが、</p>
+<p>CentOS7を対象にした本で、OSインストールからつまづいてしまいました。</p>
+<p> </p>
+<h2>USBに<a class="keyword" href="http://d.hatena.ne.jp/keyword/linux">linux</a>を入れて、インストールする</h2>
+<p>社内にCentOS32bitのインストールディスクもない、ということで</p>
+<p>こちらのサイトを参考に BootalbeUSBを作るところからスタート。 </p>
+<p>最初は、色々とソフトとか試していたのですが、コマンドでやるのが結局一番簡単でした。</p>
+<p> </p>
+<p>2017/3/24追記</p>
+<p><a class="keyword" href="http://d.hatena.ne.jp/keyword/BIOS">BIOS</a>での立ち上げ方法のメモも残しておきます。</p>
+<p>ほとんどのPCは起動の際にF2を押しておけばOKです。</p>
+<p> </p>
+<p><iframe class="embed-card embed-webcard" style="display: block; width: 100%; height: 155px; max-width: 500px; margin: 10px 0px;" title="MacOSX上でISOファイルからインストールUSBディスクを作る - re:inventing the wheel" src="//hatenablog-parts.com/embed?url=http%3A%2F%2Fmarmotte.pyrites.jp%2Fblog%2F2015%2F01%2F04%2Fcreate-bootable-usb-from-iso-file%2F" frameborder="0" scrolling="no"></iframe><cite class="hatena-citation"><a href="http://marmotte.pyrites.jp/blog/2015/01/04/create-bootable-usb-from-iso-file/">marmotte.pyrites.jp</a></cite></p>
+<p> </p>
+<h2><a class="keyword" href="http://d.hatena.ne.jp/keyword/CentOS">CentOS</a>の各種設定</h2>
+<p>その後、<a class="keyword" href="http://d.hatena.ne.jp/keyword/CentOS">CentOS</a>の各種初期設定はこちらを参考に。</p>
+<p>依存関係って本当にややこしいし、理解しないまま進めたせいでうまく動作しなかったりしました。</p>
+<p>最後はここの設定に従っていけばとりあえずOKとなりましたが、いずれもっと深掘りして学びたいなと思っています。</p>
+<p><iframe class="embed-card embed-webcard" style="display: block; width: 100%; height: 155px; max-width: 500px; margin: 10px 0px;" title="CentOS6ÌCXg[ SÒÌ½ßÌLinuxT[o[\zuÀ(CentOS ©îT[o[Î)¨ÖT[o[.com" src="//hatenablog-parts.com/embed?url=http%3A%2F%2Fwww.obenri.com%2F_install_cent6%2Findex.html" frameborder="0" scrolling="no"></iframe><cite class="hatena-citation"><a href="http://www.obenri.com/_install_cent6/index.html">www.obenri.com</a></cite></p>
+<p> </p>
+<h2><a class="keyword" href="http://d.hatena.ne.jp/keyword/LAMP">LAMP</a>の設定</h2>
+<p>さらに、<a class="keyword" href="http://d.hatena.ne.jp/keyword/lamp">lamp</a>の設定ではこちらのサイトにお世話になりました。</p>
+<p><iframe class="embed-card embed-webcard" style="display: block; width: 100%; height: 155px; max-width: 500px; margin: 10px 0px;" title="Apache、MySQL、PHPのインストール - Linux入門 - Webkaru" src="//hatenablog-parts.com/embed?url=http%3A%2F%2Fwebkaru.net%2Flinux%2Fapache-mysql-php-install%2F" frameborder="0" scrolling="no"></iframe></p>
+<p><cite class="hatena-citation"><a href="http://webkaru.net/linux/apache-mysql-php-install/">webkaru.net</a></cite></p>
+<p> </p>
+<p>これで、とりあえず<a class="keyword" href="http://d.hatena.ne.jp/keyword/LAMP">LAMP</a>環境はできました。</p>
+<p>しかし、この状態だと結構古い環境ですし、メールサーバーの設定はされていないので、まだまだ不完全です。</p>
+<p>例えばmbstringがないとか。それについては下記の手順にて。</p>
+<p><iframe class="embed-card embed-webcard" style="display: block; width: 100%; height: 155px; max-width: 500px; margin: 10px 0px;" title="php環境構築時に入れ忘れてコケるやーつ…。 - Qiita" src="//hatenablog-parts.com/embed?url=http%3A%2F%2Fqiita.com%2Fsango%2Fitems%2Fa86f9b8cf8c9c641823a" frameborder="0" scrolling="no"></iframe><cite class="hatena-citation"><a href="http://qiita.com/sango/items/a86f9b8cf8c9c641823a">qiita.com</a></cite></p>
+<p>メール、セキュリティに関する追記と、詳細の追記を順次行なっていきたいと思っています。</p>
+<h2><a class="keyword" href="http://d.hatena.ne.jp/keyword/postfix">postfix</a>（メールサーバー）の設定</h2>
+<p><a class="keyword" href="http://d.hatena.ne.jp/keyword/wordpress">wordpress</a>を使用するにあたって、ログイン通知などでメールを飛ばすこともあるのでメールサーバーの設定も行います。</p>
+<p>今回は送信だけできればOKだったので<a class="keyword" href="http://d.hatena.ne.jp/keyword/SMTP">SMTP</a>の設定のみ。基本的な設定はこちらの記事を参考にすれば簡単に終わリます。</p>
+<p><iframe class="embed-card embed-webcard" style="display: block; width: 100%; height: 155px; max-width: 500px; margin: 10px 0px;" title="Postfixをインストールしてメール送信してみる | 本日も乙" src="//hatenablog-parts.com/embed?url=http%3A%2F%2Fblog.jicoman.info%2F2013%2F08%2Fpostfix_install%2F" frameborder="0" scrolling="no"></iframe><cite class="hatena-citation"><a href="http://blog.jicoman.info/2013/08/postfix_install/">blog.jicoman.info</a></cite></p>
+<p>unable to look up public/pickup: No such file or directoryってエラーは<a class="keyword" href="http://d.hatena.ne.jp/keyword/postfix">postfix</a>が機動していないときに出ます。基本的なことだけど、忘れがち。。</p>
+<h3><a class="keyword" href="http://d.hatena.ne.jp/keyword/SELinux">SELinux</a>の設定変更</h3>
+<p>上記の記事だと、<a class="keyword" href="http://d.hatena.ne.jp/keyword/%A5%B3%A5%DE%A5%F3%A5%C9%A5%E9%A5%A4%A5%F3">コマンドライン</a>からのメール送信は成功しますが、<a class="keyword" href="http://d.hatena.ne.jp/keyword/wordpress">wordpress</a>からのメール送信はできないはずです。そこで、<a class="keyword" href="http://d.hatena.ne.jp/keyword/SELinux">SELinux</a>の設定を変更して<a class="keyword" href="http://d.hatena.ne.jp/keyword/Wordpress">WordPress</a>からのメール送信を許可します。</p>
+<p>下記の記事が参考になります。</p>
+<p><iframe class="embed-card embed-webcard" style="display: block; width: 100%; height: 155px; max-width: 500px; margin: 10px 0px;" title="WordPress Contact Form 7からのメール送信失敗でSELinuxを設定変更した件 | CrystalSnowman.com" src="//hatenablog-parts.com/embed?url=http%3A%2F%2Fwww.crystalsnowman.com%2F%3Fp%3D49" frameborder="0" scrolling="no"></iframe><cite class="hatena-citation"><a href="http://www.crystalsnowman.com/?p=49">www.crystalsnowman.com</a></cite></p>
+<p> </p>
+<h2><a class="keyword" href="http://d.hatena.ne.jp/keyword/SSL">SSL</a>の設定 </h2>
+<p>続いて、<a class="keyword" href="http://d.hatena.ne.jp/keyword/SSL">SSL</a>を設定していきます。認証キーとかも初めて触れましたが、先輩たちのシェア精神によって簡単に設定できました。ありがたい。</p>
+<p> </p>
+<p><iframe class="embed-card embed-webcard" style="display: block; width: 100%; height: 155px; max-width: 500px; margin: 10px 0px;" title="CentOS 6 - Apache httpd - SSLの設定 ： Server World" src="//hatenablog-parts.com/embed?url=https%3A%2F%2Fwww.server-world.info%2Fquery%3Fos%3DCentOS_6%26p%3Dhttpd%26f%3D5" frameborder="0" scrolling="no"></iframe><cite class="hatena-citation"><a href="https://www.server-world.info/query?os=CentOS_6&amp;p=httpd&amp;f=5">www.server-world.info</a></cite></p>
+<p> </p>
+<h2 style="color: #3d3f44; font-family: 'Helvetica Neue', Helvetica, Arial, 'ヒラギノ角ゴ Pro W3', 'Hiragino Kaku Gothic Pro', メイリオ, Meiryo, 'ＭＳ Ｐゴシック', 'MS PGothic', sans-serif; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; text-decoration-style: initial; text-decoration-color: initial;"> 追記１：<a class="keyword" href="http://d.hatena.ne.jp/keyword/Postfix">Postfix</a>を使ってメール送信ができるようにする</h2>
+<p style="line-height: 1.5; margin: 0.5em 0px; padding: 0px; color: #3d3f44; font-family: 'Helvetica Neue', Helvetica, Arial, 'ヒラギノ角ゴ Pro W3', 'Hiragino Kaku Gothic Pro', メイリオ, Meiryo, 'ＭＳ Ｐゴシック', 'MS PGothic', sans-serif; font-size: 16px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: normal; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; text-decoration-style: initial; text-decoration-color: initial;">参考サイト</p>
+<p style="line-height: 1.5; margin: 0.5em 0px; padding: 0px; color: #3d3f44; font-family: 'Helvetica Neue', Helvetica, Arial, 'ヒラギノ角ゴ Pro W3', 'Hiragino Kaku Gothic Pro', メイリオ, Meiryo, 'ＭＳ Ｐゴシック', 'MS PGothic', sans-serif; font-size: 16px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: normal; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; text-decoration-style: initial; text-decoration-color: initial;"><iframe class="embed-card embed-webcard" style="display: block; width: 100%; height: 155px; max-width: 500px; margin: 10px 0px;" title="Postfixをインストールしてメール送信してみる | 本日も乙" src="//hatenablog-parts.com/embed?url=http%3A%2F%2Fblog.jicoman.info%2F2013%2F08%2Fpostfix_install%2F" frameborder="0" scrolling="no"></iframe><cite class="hatena-citation" style="font-style: normal; font-size: 14.4px; opacity: 0.75; display: block;"><a href="http://blog.jicoman.info/2013/08/postfix_install/" style="color: #999999; opacity: 1; font-size: 11.52px;">blog.jicoman.info</a></cite></p>
+<p style="line-height: 1.5; margin: 0.5em 0px; padding: 0px; color: #3d3f44; font-family: 'Helvetica Neue', Helvetica, Arial, 'ヒラギノ角ゴ Pro W3', 'Hiragino Kaku Gothic Pro', メイリオ, Meiryo, 'ＭＳ Ｐゴシック', 'MS PGothic', sans-serif; font-size: 16px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: normal; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; text-decoration-style: initial; text-decoration-color: initial;"><a class="keyword" href="http://d.hatena.ne.jp/keyword/SELinux">SELinux</a>の設定変更をしないと動きません。</p>
+<p style="line-height: 1.5; margin: 0.5em 0px; padding: 0px; color: #3d3f44; font-family: 'Helvetica Neue', Helvetica, Arial, 'ヒラギノ角ゴ Pro W3', 'Hiragino Kaku Gothic Pro', メイリオ, Meiryo, 'ＭＳ Ｐゴシック', 'MS PGothic', sans-serif; font-size: 16px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: normal; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; text-decoration-style: initial; text-decoration-color: initial;"><iframe class="embed-card embed-webcard" style="display: block; width: 100%; height: 155px; max-width: 500px; margin: 10px 0px;" title="WordPress Contact Form 7からのメール送信失敗でSELinuxを設定変更した件 | CrystalSnowman.com" src="//hatenablog-parts.com/embed?url=http%3A%2F%2Fwww.crystalsnowman.com%2F%3Fp%3D49" frameborder="0" scrolling="no"></iframe><cite class="hatena-citation" style="font-style: normal; font-size: 14.4px; opacity: 0.75; display: block;"><a href="http://www.crystalsnowman.com/?p=49" style="color: #999999; opacity: 1; font-size: 11.52px;">www.crystalsnowman.com</a></cite></p>
+<p style="line-height: 1.5; margin: 0.5em 0px; padding: 0px; color: #3d3f44; font-family: 'Helvetica Neue', Helvetica, Arial, 'ヒラギノ角ゴ Pro W3', 'Hiragino Kaku Gothic Pro', メイリオ, Meiryo, 'ＭＳ Ｐゴシック', 'MS PGothic', sans-serif; font-size: 16px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: normal; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; text-decoration-style: initial; text-decoration-color: initial;">追記２：<a class="keyword" href="http://d.hatena.ne.jp/keyword/SSL">SSL</a>に対応する</p>
+<p style="line-height: 1.5; margin: 0.5em 0px; padding: 0px; color: #3d3f44; font-family: 'Helvetica Neue', Helvetica, Arial, 'ヒラギノ角ゴ Pro W3', 'Hiragino Kaku Gothic Pro', メイリオ, Meiryo, 'ＭＳ Ｐゴシック', 'MS PGothic', sans-serif; font-size: 16px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: normal; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; text-decoration-style: initial; text-decoration-color: initial;">参考サイト</p>
+<p style="line-height: 1.5; margin: 0.5em 0px; padding: 0px; color: #3d3f44; font-family: 'Helvetica Neue', Helvetica, Arial, 'ヒラギノ角ゴ Pro W3', 'Hiragino Kaku Gothic Pro', メイリオ, Meiryo, 'ＭＳ Ｐゴシック', 'MS PGothic', sans-serif; font-size: 16px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: normal; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; text-decoration-style: initial; text-decoration-color: initial;">設定手順</p>
+<p style="line-height: 1.5; margin: 0.5em 0px; padding: 0px; color: #3d3f44; font-family: 'Helvetica Neue', Helvetica, Arial, 'ヒラギノ角ゴ Pro W3', 'Hiragino Kaku Gothic Pro', メイリオ, Meiryo, 'ＭＳ Ｐゴシック', 'MS PGothic', sans-serif; font-size: 16px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: normal; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; text-decoration-style: initial; text-decoration-color: initial;"><iframe class="embed-card embed-webcard" style="display: block; width: 100%; height: 155px; max-width: 500px; margin: 10px 0px;" title="CentOS 6 - Apache httpd - SSLの設定 ： Server World" src="//hatenablog-parts.com/embed?url=https%3A%2F%2Fwww.server-world.info%2Fquery%3Fos%3DCentOS_6%26p%3Dhttpd%26f%3D5" frameborder="0" scrolling="no"></iframe><cite class="hatena-citation" style="font-style: normal; font-size: 14.4px; opacity: 0.75; display: block;"><a href="https://www.server-world.info/query?os=CentOS_6&amp;p=httpd&amp;f=5" style="color: #999999; opacity: 1; font-size: 11.52px;">www.server-world.info</a></cite></p>
+<p style="line-height: 1.5; margin: 0.5em 0px; padding: 0px; color: #3d3f44; font-family: 'Helvetica Neue', Helvetica, Arial, 'ヒラギノ角ゴ Pro W3', 'Hiragino Kaku Gothic Pro', メイリオ, Meiryo, 'ＭＳ Ｐゴシック', 'MS PGothic', sans-serif; font-size: 16px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: normal; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; text-decoration-style: initial; text-decoration-color: initial;">証明書のこと</p>
+<p style="line-height: 1.5; margin: 0.5em 0px; padding: 0px; color: #3d3f44; font-family: 'Helvetica Neue', Helvetica, Arial, 'ヒラギノ角ゴ Pro W3', 'Hiragino Kaku Gothic Pro', メイリオ, Meiryo, 'ＭＳ Ｐゴシック', 'MS PGothic', sans-serif; font-size: 16px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: normal; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; text-decoration-style: initial; text-decoration-color: initial;"><a class="keyword" href="http://d.hatena.ne.jp/keyword/phpMyadmin">phpMyadmin</a>の導入</p>
+<p style="line-height: 1.5; margin: 0.5em 0px; padding: 0px; color: #3d3f44; font-family: 'Helvetica Neue', Helvetica, Arial, 'ヒラギノ角ゴ Pro W3', 'Hiragino Kaku Gothic Pro', メイリオ, Meiryo, 'ＭＳ Ｐゴシック', 'MS PGothic', sans-serif; font-size: 16px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: normal; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; text-decoration-style: initial; text-decoration-color: initial;"><iframe class="embed-card embed-blogcard" style="display: block; width: 100%; height: 190px; max-width: 500px; margin: 10px 0px;" title="【Mac/Windows版】VagrantにphpMyAdminを実装してMySQLを動かしてみよう - 『入る学科間違えた高専生』の日記" src="https://hatenablog-parts.com/embed?url=http%3A%2F%2Fnnsnodnb.hatenablog.jp%2Fentry%2F20150317%2F1426527167" frameborder="0" scrolling="no"></iframe><cite class="hatena-citation" style="font-style: normal; font-size: 14.4px; opacity: 0.75; display: block;"><a href="http://nnsnodnb.hatenablog.jp/entry/20150317/1426527167" style="color: #999999; opacity: 1; font-size: 11.52px;">nnsnodnb.hatenablog.jp</a></cite></p>
+		</article>
+	</main>
+			<aside>
+					<div id="respond" class="comment-respond">
+		<h3 id="reply-title" class="comment-reply-title">コメントを残す <small><a rel="nofollow" id="cancel-comment-reply-link" href="/entry/2017/02/26/120343.html#respond" style="display:none;">コメントをキャンセル</a></small></h3>			<form action="/wp-comments-post.php" method="post" id="commentform" class="comment-form">
+				<p class="comment-notes"><span id="email-notes">メールアドレスが公開されることはありません。</span> <span class="required">*</span> が付いている欄は必須項目です</p><p class="comment-form-comment"><label for="comment">コメント</label> <textarea id="comment" name="comment" cols="45" rows="8" maxlength="65525" aria-required="true" required="required"></textarea></p><p class="comment-form-author"><label for="author">お名前</label> <span class="required">*</span><input id="author" name="author" type="text" value=""  aria-required='true' /></p>
+<p class="comment-form-email"><label for="email">Email</label> <span class="required">*</span><input id="email" name="email" type="text" value="" aria-required='true' /></p>
+
+<p class="form-submit"><input name="submit" type="submit" id="submit" class="submit" value="コメントを送信" /> <input type='hidden' name='comment_post_ID' value='2137' id='comment_post_ID' />
+<input type='hidden' name='comment_parent' id='comment_parent' value='0' />
+</p>			</form>
+			</div><!-- #respond -->
+				</aside>
+	<footer>
+<div class="menu-myglobal-container"><ul id="menu-myglobal" class="menu"><li id="menu-item-2107" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-2107"><a href="/entry/category/web">Web制作</a></li>
+<li id="menu-item-2104" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-2104"><a href="/entry/category/cms">CMS</a></li>
+<li id="menu-item-2105" class="menu-item menu-item-type-taxonomy menu-item-object-category current-post-ancestor current-menu-parent current-post-parent menu-item-2105"><a href="/entry/category/dev">Dev</a></li>
+<li id="menu-item-2106" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-2106"><a href="/entry/category/dialy">Dialy</a></li>
+</ul></div><div id="copyright">
+<p class="copyright_text">&copy;2017&nbsp;webで何か作るブログ</p>
+<nav id="total_navigation">
+<ul>
+<li class="back_to"><a href="">Homeへ</a></li>
+<li class="back_to"><a href="/entry/2017/02/26/120343.html#top">Topへ</a></li>
+</ul>
+</nav>
+</div>
+<script type='text/javascript' src="/wp-includes/js/wp-embed.min.js?ver=4.8.3"></script>
+</footer></body>
+</html>
