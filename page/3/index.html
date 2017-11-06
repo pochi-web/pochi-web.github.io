@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-<meta http-equiv="Last-Modified" content="Mon, 06 Nov 2017 00:10:35 GMT">
+<meta http-equiv="Last-Modified" content="Mon, 06 Nov 2017 22:49:29 GMT">
 	<meta charset="UTF-8">
 	<title>開発環境の準備｜WordPressテーマの作り方</title>
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -43,445 +43,93 @@ img.emoji {
 		
 	</script>
 </head><body>
-	<header id="header">
+	<header>
 	<div id="header_layer">
 		<h1>
-			開発環境の準備｜WordPressテーマの作り方		</h1>
-		<p>  昨日はさいたま市大宮駅のコワーキングスペース「7Ｆ」で開催されたWordPressもくもく会に参加してきました。 もくもく会というのは初めて参加したんですが、かなり最高です！僕は普段人に聞いて解決できる環境にいないの</p>
-				<nav id="header_nav">
-			<ul id="category_nav">
+			Welcome to the VCCW		</h1>
+		<p>Hello VCCW.</p>
+		<nav id="header_nav">
+			</nav>
+		</div><!--END-header_layer-->
+	</header>
+	<main id="category_main" class="post-2120 post type-post status-publish format-standard hentry category-wordpress">
 				
-				<li class="category_name">
-					<a href="/entry/category/cms/wordpress%e3%83%86%e3%83%bc%e3%83%9e%e3%81%ae%e4%bd%9c%e3%82%8a%e6%96%b9">
-						WordPressテーマの作り方					</a>
-				</li>
-															</ul>
-			2017年8月30日		</nav>
-				</div><!--END-header_layer-->
-			</header>
-	<main class="post-2120 post type-post status-publish format-standard hentry category-wordpress">
-	<article id="main_article">
-		<p> </p>
-<p>昨日は<a class="keyword" href="http://d.hatena.ne.jp/keyword/%A4%B5%A4%A4%A4%BF%A4%DE%BB%D4">さいたま市</a>大宮駅の<a class="keyword" href="http://d.hatena.ne.jp/keyword/%A5%B3%A5%EF%A1%BC%A5%AD%A5%F3%A5%B0%A5%B9%A5%DA%A1%BC%A5%B9">コワーキングスペース</a>「7Ｆ」で開催された<a class="keyword" href="http://d.hatena.ne.jp/keyword/WordPress">WordPress</a><a class="keyword" href="http://d.hatena.ne.jp/keyword/%A4%E2%A4%AF%A4%E2%A4%AF%B2%F1">もくもく会</a>に参加してきました。</p>
-<p><a class="keyword" href="http://d.hatena.ne.jp/keyword/%A4%E2%A4%AF%A4%E2%A4%AF%B2%F1">もくもく会</a>というのは初めて参加したんですが、かなり最高です！僕は普段人に聞いて解決できる環境にいないので、人にアド<a class="keyword" href="http://d.hatena.ne.jp/keyword/%A5%D0%A5%A4%A5%B9">バイス</a>を求めることが出来るというのが本当に幸せ。</p>
-<p>そして、やっぱり同じことに対して興味関心を持っている方と同じ空間で作業できることもあって、適度な緊張感を持って数時間作業を進めることが出来るのがいいです。</p>
-<p>毎月開催しているみたいなので、次回もぜひ参加したいなと思っています。</p>
-<p>しかし、僕は昨日の<a class="keyword" href="http://d.hatena.ne.jp/keyword/WordPress">WordPress</a><a class="keyword" href="http://d.hatena.ne.jp/keyword/%A4%E2%A4%AF%A4%E2%A4%AF%B2%F1">もくもく会</a>で<a class="keyword" href="http://d.hatena.ne.jp/keyword/WordPress">WordPress</a>を触っていた時間は1/4程度でした・・。なぜなら、環境構築でハマってしまっていたから。</p>
-<p>今日はその辺りをおさらいしながら書いていきたいと思います。</p>
-<h2>開発環境を準備することも技術のひとつ</h2>
-<p><img class="hatena-fotolife" title="f:id:pochiweb:20170830083041j:plain" src="https://cdn-ak.f.st-hatena.com/images/fotolife/p/pochiweb/20170830/20170830083041.jpg" alt="f:id:pochiweb:20170830083041j:plain" /></p>
-<p>実は今回、テーマを作成する中で並行して身に着けたいスキルがいくつかありまして、それが</p>
-<ul>
-<li><a class="keyword" href="http://d.hatena.ne.jp/keyword/vagrant">vagrant</a>を使ったローカル開発環境に慣れること</li>
-<li><a class="keyword" href="http://d.hatena.ne.jp/keyword/DreamWeaver">DreamWeaver</a>を上手く使えるようになること</li>
-<li>Git、<a class="keyword" href="http://d.hatena.ne.jp/keyword/GitHub">GitHub</a>に慣れること </li>
-</ul>
-<p> なんですが、まあ割と一般的な技術なのだろうと思います。ただ、僕の場合は仕事上で必要に迫られることないし、こういったメジャーな開発環境くらいは自分で用意できるってのも大事な技術の一つだと思うので、個人で導入していこうと思った次第です。</p>
-<p>後はタ<a class="keyword" href="http://d.hatena.ne.jp/keyword/%A5%B9%A5%AF%A5%E9%A5%F3">スクラン</a>ナー入れたり、<a class="keyword" href="http://d.hatena.ne.jp/keyword/CSS">CSS</a>メタ使う、ってのも外せないところだと思うのですがそこまでやってるとテーマ作成が始まらない気がしたので、ひとまずこれで走り始めちゃいます。</p>
-<p>というわけで、だいぶ前置きが長くなりましたがまず環境構築についてメモ。</p>
-<h2>仮想環境の概要と導入</h2>
-<p><a class="keyword" href="http://d.hatena.ne.jp/keyword/WordPress">WordPress</a>の開発環境としては３通りあるのだろうと思います。</p>
-<ul>
-<li>ネットワークに繋がっているサーバー</li>
-<li>Xampp、Mampp</li>
-<li>仮想環境</li>
-</ul>
-<p>今回作るのは最後者の仮想環境。</p>
-<p>仮想環境のいいところは本番環境との連携ができることであったり、チームで環境を揃え易いこと。</p>
-<h3>導入方法</h3>
-<h5>仮想環境を使う準備</h5>
-<p>仮想環境を作るのにはソフトを二つインストール必要があるので、それぞれを公式サイトからダウンロード＆インストールします。<a class="keyword" href="http://d.hatena.ne.jp/keyword/%A5%A4%A5%F3%A5%B9%A5%C8%A1%BC%A5%E9">インストーラ</a>の指示に従っていればOK。</p>
-<p>一つ目が<strong><a class="keyword" href="http://d.hatena.ne.jp/keyword/virtualBox">virtualBox</a></strong>、二つ目が<strong><a class="keyword" href="http://d.hatena.ne.jp/keyword/Vagrant">Vagrant</a>。</strong></p>
-<p>それぞれの役割は<br /><strong><a class="keyword" href="http://d.hatena.ne.jp/keyword/virtualBox">virtualBox</a></strong>→PCの中にサーバーを構築するための仮想空間とマシンを作る。<br /><strong><a class="keyword" href="http://d.hatena.ne.jp/keyword/vagrant">vagrant</a></strong>→<a class="keyword" href="http://d.hatena.ne.jp/keyword/VirtualBox">VirtualBox</a>で作るサーバーの設定をコン<a class="keyword" href="http://d.hatena.ne.jp/keyword/%A5%C8%A5%ED%A1%BC%A5%EB">トロール</a>する。<br />といったイメージ。</p>
-<p>ただし、この二つをインストールしただけでは仮想サーバーを起動することはできなくて、<a class="keyword" href="http://d.hatena.ne.jp/keyword/vagrant">vagrant</a>のboxファイルを用意してあげる必要がある。<br />ファイルとしてはvagrantfileというものが<a class="keyword" href="http://d.hatena.ne.jp/keyword/vagrant">vagrant</a>のboxファイルにあたる。このvagrantfileがフォルダに設置されると、そのフォルダを含む配下が全て仮想サーバーの中身になる。Gitのinitに考え方は近いかもしれない。</p>
-<h5><strong>VCCWを使う</strong></h5>
-<p>vccwは<a class="keyword" href="http://d.hatena.ne.jp/keyword/WordPress">WordPress</a>開発専用のvagrntボックスファイルという感じで、基本的にこれさえあればすぐに<a class="keyword" href="http://d.hatena.ne.jp/keyword/WordPress">WordPress</a>のテーマや<a class="keyword" href="http://d.hatena.ne.jp/keyword/%A5%D7%A5%E9%A5%B0%A5%A4%A5%F3">プラグイン</a>の開発に最適化された環境が得られる。</p>
-<h5><strong><a class="keyword" href="http://d.hatena.ne.jp/keyword/GIthub">GIthub</a>に連携する</strong></h5>
-<p>開発しながらGitに慣れていきたいので、<a class="keyword" href="http://d.hatena.ne.jp/keyword/Github">Github</a>も連携。</p>
-<p><iframe class="embed-card embed-blogcard" style="display: block; width: 100%; height: 190px; max-width: 500px; margin: 10px 0px;" title="今日からはじめるGitHub 〜 初心者がGitをインストールして、プルリクできるようになるまでを解説 - エンジニアHub｜若手Webエンジニアのキャリアを考える！" src="https://hatenablog-parts.com/embed?url=https%3A%2F%2Femployment.en-japan.com%2Fengineerhub%2Fentry%2F2017%2F01%2F31%2F110000" frameborder="0" scrolling="no"></iframe><cite class="hatena-citation"><a href="https://employment.en-japan.com/engineerhub/entry/2017/01/31/110000">employment.en-japan.com</a></cite></p>
-<p>この記事に沿って設定していったら特に躓くことなく出来ました。ありがたい！</p>
-<p>gitの操作とか概念はここ↓を見ながら練習中。</p>
-<p><iframe class="embed-card embed-webcard" style="display: block; width: 100%; height: 155px; max-width: 500px; margin: 10px 0px;" title="Shinpeim/introduction-to-git" src="https://hatenablog-parts.com/embed?url=https%3A%2F%2Fgithub.com%2FShinpeim%2Fintroduction-to-git" frameborder="0" scrolling="no"></iframe><cite class="hatena-citation"><a href="https://github.com/Shinpeim/introduction-to-git">github.com</a></cite></p>
-<p> </p>
-<h5><strong><a class="keyword" href="http://d.hatena.ne.jp/keyword/DreamWeaver">DreamWeaver</a>のローカルサーバーとして仮想環境をセット</strong></h5>
-<p>これは特になんてこともなくて、「サイトの設定」でサーバーをセットするときに、</p>
-<p>「使用する接続」を<strong><span style="color: #1464b3;">ローカル / ネットワークにして、対象のフォルダを設定するだけ。</span></strong></p>
-<p>カンタン！</p>
-<p> </p>
-<p>これで開発環境も整いました。さあ次のステップも頑張ります。</p>
-<p> </p>
-	</article>
-	</main>
-		<header id="header">
-	<div id="header_layer">
-		<h1>
-			テーマの仕様を考える｜ WordPressテーマの作り方		</h1>
-		<p>WordPressのテーマを作る時って、みんなどうしてるんでしょうか？僕は基本的にHTMLとかCSS用意してからWordPressの関数に置き換えていっています。タイトルタグの出力なんかは先に書いちゃったりするけど。 さ</p>
-				<nav id="header_nav">
-			<ul id="category_nav">
+		<section class="articles_index">
+			<h2><a href="/entry/2017/08/30/121807">開発環境の準備｜WordPressテーマの作り方</a></h2>
+		<time class="date">2017年8月30日</time>
+		<div class="articles_index_thumbnail">
+		<a href="/entry/2017/08/30/121807">
+				</a>
+		</div>
+		<nav id="tag_navigation">	
+	<ul class="post-categories">
+	<li><a href="/entry/category/cms/wordpress%e3%83%86%e3%83%bc%e3%83%9e%e3%81%ae%e4%bd%9c%e3%82%8a%e6%96%b9" rel="category tag">WordPressテーマの作り方</a></li></ul>	</nav>
+	</section>
 				
-				<li class="category_name">
-					<a href="/entry/category/cms/wordpress%e3%83%86%e3%83%bc%e3%83%9e%e3%81%ae%e4%bd%9c%e3%82%8a%e6%96%b9">
-						WordPressテーマの作り方					</a>
-				</li>
-															</ul>
-			2017年8月22日		</nav>
-				</div><!--END-header_layer-->
-			</header>
-	<main class="post-2121 post type-post status-publish format-standard hentry category-wordpress">
-	<article id="main_article">
-		<p><a class="keyword" href="http://d.hatena.ne.jp/keyword/WordPress">WordPress</a>のテーマを作る時って、みんなどうしてるんでしょうか？僕は基本的にHTMLとか<a class="keyword" href="http://d.hatena.ne.jp/keyword/CSS">CSS</a>用意してから<a class="keyword" href="http://d.hatena.ne.jp/keyword/WordPress">WordPress</a>の関数に置き換えていっています。タイトルタグの出力なんかは先に書いちゃったりするけど。</p>
-<p>さて前回で各ファイルの準備は終わったので、どんなテーマにするかを決めていきます。ただし、仕様は刻々と変わっていくでしょう。人から言われる仕様変更は辛いですが自分でする仕様変更は楽しいもんです。</p>
-<h2>仕様決め</h2>
-<h3>全体</h3>
-<p>レスポンシブで構築。<a class="keyword" href="http://d.hatena.ne.jp/keyword/DreamWeaver">DreamWeaver</a>+Bootstrapが高速構築可能らしいので試してみる。</p>
-<h3>header</h3>
-<p>ナビゲーション、サイト内検索、メインイメージ（スライダー、動画に対応。）、メインイメージにメッセージ挿入が可能。<a class="keyword" href="http://d.hatena.ne.jp/keyword/Google">Google</a>のWebフォントを選べるようにしたい。</p>
-<h3>footer</h3>
-<p>背景画像が設定可能、メニュー、サイト内検索、コピーライト情報が設定可能</p>
-<h3>main</h3>
-<p>理想としては、Wordにそっくりな感覚でレイアウト組めたらいいのかなと思うけれども、相当難しいだろうから代表的なレイアウトのパターンをいくつか用意して対応する。</p>
-<p> </p>
-<p>まずはこの程度で始めてみようかな。</p>
-<p> </p>
-<p> </p>
-<p> </p>
-	</article>
-	</main>
-		<header id="header">
-	<div id="header_layer">
-		<h1>
-			【テーマに必要なファイルと役割について】　|　WordPressテーマの作り方		</h1>
-		<p>若干、ドットインストールっぽいタイトルになってますけども。タイトルの通りオリジナルWordPressのテーマ作成を始めたくて、勢いでまたしてもカテゴリーを作ってしまいました。大丈夫なのか自分。 とはいえ始めてしまったので</p>
-				<nav id="header_nav">
-			<ul id="category_nav">
+		<section class="articles_index">
+			<h2><a href="/entry/2017/08/22/022256">テーマの仕様を考える｜ WordPressテーマの作り方</a></h2>
+		<time class="date">2017年8月22日</time>
+		<div class="articles_index_thumbnail">
+		<a href="/entry/2017/08/22/022256">
+				</a>
+		</div>
+		<nav id="tag_navigation">	
+	<ul class="post-categories">
+	<li><a href="/entry/category/cms/wordpress%e3%83%86%e3%83%bc%e3%83%9e%e3%81%ae%e4%bd%9c%e3%82%8a%e6%96%b9" rel="category tag">WordPressテーマの作り方</a></li></ul>	</nav>
+	</section>
 				
-				<li class="category_name">
-					<a href="/entry/category/cms/wordpress%e3%83%86%e3%83%bc%e3%83%9e%e3%81%ae%e4%bd%9c%e3%82%8a%e6%96%b9">
-						WordPressテーマの作り方					</a>
-				</li>
-															</ul>
-			2017年8月19日		</nav>
-				</div><!--END-header_layer-->
-			</header>
-	<main class="post-2122 post type-post status-publish format-standard hentry category-wordpress">
-	<article id="main_article">
-		<p>若干、ドットインストールっぽいタイトルになってますけども。タイトルの通りオリジナル<a class="keyword" href="http://d.hatena.ne.jp/keyword/WordPress">WordPress</a>のテーマ作成を始めたくて、勢いでまたしてもカテゴリーを作ってしまいました。大丈夫なのか自分。</p>
-<p>とはいえ始めてしまったので、順を追って進めていきたいと思います。</p>
-<p>ちなみに、完成形のイメージはありません。ぼんやり思っているのは、<a class="keyword" href="http://d.hatena.ne.jp/keyword/WordPress">WordPress</a>で<a class="keyword" href="http://d.hatena.ne.jp/keyword/%A5%EF%A5%A4%A5%E4%A1%BC%A5%D5%A5%EC%A1%BC%A5%E0">ワイヤーフレーム</a>作りができたらいいんじゃないかな？それをしやすいテーマがあったら色々と捗るんでは？という程度です。実際にそれをやるかは別のお話・・。</p>
-<p>それでは、早速今回の本題に入っていきたいと思います。</p>
-<h2>テーマファイルの準備</h2>
-<p>まずはテーマで必要になるファイルの準備から。</p>
-<ul>
-<li>functions.<a class="keyword" href="http://d.hatena.ne.jp/keyword/php">php</a></li>
-<li>header.<a class="keyword" href="http://d.hatena.ne.jp/keyword/php">php</a></li>
-<li><a class="keyword" href="http://d.hatena.ne.jp/keyword/sidebar">sidebar</a>.<a class="keyword" href="http://d.hatena.ne.jp/keyword/php">php</a></li>
-<li>footer.<a class="keyword" href="http://d.hatena.ne.jp/keyword/php">php</a></li>
-<li>index.<a class="keyword" href="http://d.hatena.ne.jp/keyword/php">php</a></li>
-<li>page.<a class="keyword" href="http://d.hatena.ne.jp/keyword/php">php</a></li>
-<li>single.<a class="keyword" href="http://d.hatena.ne.jp/keyword/php">php</a></li>
-<li>archive.<a class="keyword" href="http://d.hatena.ne.jp/keyword/php">php</a></li>
-<li>tag.<a class="keyword" href="http://d.hatena.ne.jp/keyword/php">php</a></li>
-<li>search.<a class="keyword" href="http://d.hatena.ne.jp/keyword/php">php</a></li>
-<li>404.<a class="keyword" href="http://d.hatena.ne.jp/keyword/php">php</a></li>
-<li>style.<a class="keyword" href="http://d.hatena.ne.jp/keyword/css">css</a></li>
-</ul>
-<p>ひとまずこのくらいあればいいかな。まだ色々あるのは理解していますが、とりあえず作り始めたいので。</p>
-<p>一応簡単にそれぞれの役割をまとめておきたい。何か間違いがあればご指摘いただけるとありがたいです。</p>
-<p> </p>
-<h3>functions.<a class="keyword" href="http://d.hatena.ne.jp/keyword/php">php</a></h3>
-<p>テーマで使う関数を書いておけたり、<a class="keyword" href="http://d.hatena.ne.jp/keyword/WordPress">WordPress</a>に用意されている機能の管理をするためのファイル。テーマ全体の動作に影響する。</p>
-<h3>header.<a class="keyword" href="http://d.hatena.ne.jp/keyword/php">php</a></h3>
-<p>テーマに使用するヘッダー。複数用意したりもできる。</p>
-<h3><a class="keyword" href="http://d.hatena.ne.jp/keyword/sidebar">sidebar</a>.<a class="keyword" href="http://d.hatena.ne.jp/keyword/php">php</a></h3>
-<p>テーマに使用するサイドバー。これも複数用意可能だけど、複数作ることって珍しいかもしれない。</p>
-<h3>footer.<a class="keyword" href="http://d.hatena.ne.jp/keyword/php">php</a></h3>
-<p>テーマ共通で使うフッター。</p>
-<h3>index.<a class="keyword" href="http://d.hatena.ne.jp/keyword/php">php</a></h3>
-<p>テーマのメインテンプレート。テーマ作成には必ず必要。</p>
-<h3>page.<a class="keyword" href="http://d.hatena.ne.jp/keyword/php">php</a></h3>
-<p><a class="keyword" href="http://d.hatena.ne.jp/keyword/WordPress">WordPress</a>にあらかじめ用意されているページのタイプの一つ、「固定ページ」のためのテンプレート。基本的にはほとんどindex.<a class="keyword" href="http://d.hatena.ne.jp/keyword/php">php</a>と同じなことが多い。</p>
-<h3>single.<a class="keyword" href="http://d.hatena.ne.jp/keyword/php">php</a></h3>
-<p><span style="color: #3d3f44; font-family: 'Helvetica Neue', Helvetica, Arial, 'ヒラギノ角ゴ Pro W3', 'Hiragino Kaku Gothic Pro', メイリオ, Meiryo, 'ＭＳ Ｐゴシック', 'MS PGothic', sans-serif; font-size: 16px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: normal; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; background-color: #ffffff; text-decoration-style: initial; text-decoration-color: initial; display: inline !important; float: none;"><a class="keyword" href="http://d.hatena.ne.jp/keyword/WordPress">WordPress</a>にあらかじめ用意されているページのタイプの一つ、「投稿」のためのテンプレート。こちらも基本的にはほとんどindex.<a class="keyword" href="http://d.hatena.ne.jp/keyword/php">php</a>と同じなことが多い。</span></p>
-<h3>archive.<a class="keyword" href="http://d.hatena.ne.jp/keyword/php">php</a></h3>
-<p>「投稿」タイプのページを一覧で表示するテンプレート。対応できるクエリは「カテゴリ、作成者、日付」。</p>
-<h3>tag.<a class="keyword" href="http://d.hatena.ne.jp/keyword/php">php</a></h3>
-<p>タグを利用したクエリに対応するためのテンプレート。</p>
-<h3>search.<a class="keyword" href="http://d.hatena.ne.jp/keyword/php">php</a></h3>
-<p>サイト内検索の結果を表示するためのテンプレート</p>
-<h3>404.<a class="keyword" href="http://d.hatena.ne.jp/keyword/php">php</a></h3>
-<p>404 Not Foundのためのページ</p>
-<h3>style.<a class="keyword" href="http://d.hatena.ne.jp/keyword/css">css</a></h3>
-<p>テーマの<a class="keyword" href="http://d.hatena.ne.jp/keyword/CSS">CSS</a></p>
-<h2>次回</h2>
-<p>とりあえず今日はここまで。</p>
-<p>まずは基本的なテーマを作ろう。</p>
-<p> </p>
-	</article>
-	</main>
-		<header id="header">
-	<div id="header_layer">
-		<h1>
-			アカウント登録の基本的な流れ		</h1>
-		<p>そろそろ「何か作る」をしなければ！というわけで、企画を考えつつ実際の構築方法を学んでいきたいと思います。 というわけで、3月に取り掛かり始めた「よくわかるPHPの教科書」を終え、現在「パーフェクトPHP」にて勉強していま</p>
-				<nav id="header_nav">
-			<ul id="category_nav">
+		<section class="articles_index">
+			<h2><a href="/entry/2017/08/19/215820">【テーマに必要なファイルと役割について】　|　WordPressテーマの作り方</a></h2>
+		<time class="date">2017年8月19日</time>
+		<div class="articles_index_thumbnail">
+		<a href="/entry/2017/08/19/215820">
+				</a>
+		</div>
+		<nav id="tag_navigation">	
+	<ul class="post-categories">
+	<li><a href="/entry/category/cms/wordpress%e3%83%86%e3%83%bc%e3%83%9e%e3%81%ae%e4%bd%9c%e3%82%8a%e6%96%b9" rel="category tag">WordPressテーマの作り方</a></li></ul>	</nav>
+	</section>
 				
-				<li class="category_name">
-					<a href="/entry/category/%e3%82%b5%e3%83%bc%e3%83%93%e3%82%b9%e9%96%8b%e7%99%ba">
-						サービス開発					</a>
-				</li>
-															</ul>
-			2017年8月18日		</nav>
-				</div><!--END-header_layer-->
-			</header>
-	<main class="post-2123 post type-post status-publish format-standard hentry category-159">
-	<article id="main_article">
-		<p>そろそろ「何か作る」をしなければ！というわけで、企画を考えつつ実際の構築方法を学んでいきたいと思います。</p>
-<p>というわけで、3月に取り掛かり始めた「よくわかる<a class="keyword" href="http://d.hatena.ne.jp/keyword/PHP">PHP</a>の教科書」を終え、現在「パーフェクト<a class="keyword" href="http://d.hatena.ne.jp/keyword/PHP">PHP</a>」にて勉強しています。</p>
-<p>年のせいもあり一度や二度の作業では覚えられないので、作りながらブログに書きながら覚えていこう、といういつもの魂胆で、「サービス開発」カテゴリを作りました。</p>
-<h2> サービス開発に欠かせない、ユーザー登録</h2>
-<p>今回はアカウント登録のことをメモしておきます。</p>
-<p>アカウント登録というのはほぼ絶対的に発生するので、キッチリ身に着けておきたい。</p>
-<h2>アカウント登録の基本的な流れ</h2>
-<ol>
-<li>登録に利用するデータの決定</li>
-<li>データベースの準備</li>
-<li> 入力画面の作成</li>
-<li>エラーチェック</li>
-<li>データベースへの書き込み</li>
-</ol>
-<h3>1.登録に使用するデータの決定</h3>
-<p>当然といえば当然だけど、利用登録の時にどんな情報を入力してもらうか？を考えなくてはいけない。この後続くデータベースの準備もこの情報をもとに行うし、ユーザーにどんなデータを入力させるかで気軽に利用できるかそうでないかが変わったりする。</p>
-<h3>2.データベースの準備</h3>
-<p>ユーザーに何を入力してもらうかが決まったら、入力してもらった情報を保存する場所を用意しておかないといけない。データベースに保存するのが一般的。</p>
-<p>サービス全体を考えたデータベース設計も必要なのだろうけど、とりあえずログインのことだけ考える。</p>
-<h3> 3.入力画面の作成</h3>
-<p>データベースの準備が出来たら、実際に入力するための画面を作る。</p>
-<p>HTMLでformを作って、POSTでデータを送信することが目的のファイル。</p>
-<h3>4.エラーチェック</h3>
-<p>POSTで送信されてきた内容を受け取って、必要な情報が全てあるか？危険な文字列が含まれていないか？を判別するステップ。不足などがあれば、入力画面にリダイレクトして、エラーメッセージを伝えたりする。</p>
-<h3>5.データベースへの書き込み</h3>
-<p>入力画面から送信された内容をエラーチェックにかけて、問題がなければデータベースへ書き込む。送信内容を<a class="keyword" href="http://d.hatena.ne.jp/keyword/SQL">SQL</a>文に反映させて、実行。データを書き込む。」</p>
-<p>後はセッションの管理なんかもあるけど今回はここまでで。</p>
-	</article>
-	</main>
-		<header id="header">
-	<div id="header_layer">
-		<h1>
-			5,6,7月の振り返り		</h1>
-		<p>このカテゴリへのエントリーは4か月ぶり・・。言い訳になってしまうけど、特大の案件で業務外の勉強どころではなかったというのが正直なところ。もちろん、眼前の業務のために業務時間外で勉強したことは含めていない。 でも、出来なか</p>
-				<nav id="header_nav">
-			<ul id="category_nav">
+		<section class="articles_index">
+			<h2><a href="/entry/2017/08/18/084601">アカウント登録の基本的な流れ</a></h2>
+		<time class="date">2017年8月18日</time>
+		<div class="articles_index_thumbnail">
+		<a href="/entry/2017/08/18/084601">
+				</a>
+		</div>
+		<nav id="tag_navigation">	
+	<ul class="post-categories">
+	<li><a href="/entry/category/%e3%82%b5%e3%83%bc%e3%83%93%e3%82%b9%e9%96%8b%e7%99%ba" rel="category tag">サービス開発</a></li></ul>	</nav>
+	</section>
 				
-				<li class="category_name">
-					<a href="/entry/category/dialy/we-project">
-						We Project					</a>
-				</li>
-															</ul>
-			2017年8月5日		</nav>
-				</div><!--END-header_layer-->
-			</header>
-	<main class="post-2124 post type-post status-publish format-standard hentry category-we-project">
-	<article id="main_article">
-		<p>このカテゴリへのエントリーは4か月ぶり・・。言い訳になってしまうけど、特大の案件で業務外の勉強どころではなかったというのが正直なところ。もちろん、眼前の業務のために業務時間外で勉強したことは含めていない。</p>
-<p>でも、出来なかったということもきちんと振り返るべきだと思っている。このままこのWeProjectを終了させたくはないから。</p>
-<p>といことで唐突にログ公開。</p>
-<h2>５月</h2>
-<h2 style="color: #333333; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; text-decoration-style: initial; text-decoration-color: initial;">Statistics</h2>
-<table style="max-width: 100%; background-color: transparent; border-spacing: 0px; width: 600px; margin-bottom: 20px; border-width: 1px 1px 1px 0px; border-image: initial; border-collapse: separate; border-radius: 4px; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; letter-spacing: normal; orphans: 2; text-indent: 0px; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; text-decoration-style: initial; text-decoration-color: initial; border-color: #dddddd #dddddd #dddddd initial; border-style: solid solid solid initial;">
-<thead>
-<tr>
-<th style="padding: 5px; border-left: 1px solid #dddddd; text-align: left;">Activity Type</th>
-<th style="padding: 5px; border-left: 1px solid #dddddd; text-align: left;">Duration</th>
-<th style="padding: 5px; border-left: 1px solid #dddddd; text-align: left;">Percent</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="padding: 8px; border-left: 1px solid #dddddd; border-top: 1px solid #dddddd; background-color: #f9f9f9;">読書</td>
-<td style="padding: 8px; border-left: 1px solid #dddddd; border-top: 1px solid #dddddd; background-color: #f9f9f9;">03:51</td>
-<td style="padding: 8px; border-left: 1px solid #dddddd; border-top: 1px solid #dddddd; background-color: #f9f9f9;">0.5</td>
-</tr>
-<tr>
-<td style="padding: 8px; border-left: 1px solid #dddddd; border-top: 1px solid #dddddd;">BLOG</td>
-<td style="padding: 8px; border-left: 1px solid #dddddd; border-top: 1px solid #dddddd;">03:26</td>
-<td style="padding: 8px; border-left: 1px solid #dddddd; border-top: 1px solid #dddddd;">0.5</td>
-</tr>
-<tr>
-<td style="padding: 8px; border-left: 1px solid #dddddd; border-top: 1px solid #dddddd; background-color: #f9f9f9;">勉強</td>
-<td style="padding: 8px; border-left: 1px solid #dddddd; border-top: 1px solid #dddddd; background-color: #f9f9f9;">00:35</td>
-<td style="padding: 8px; border-left: 1px solid #dddddd; border-top: 1px solid #dddddd; background-color: #f9f9f9;">0.1</td>
-</tr>
-</tbody>
-</table>
-<p>約８時間・・。WeProjectは規定業務時間の２割にあたる時間、勉強や個人製作にあてるというのが目標の活動なので、３５時間がノルマになってくるのだけど、まったくもって足りていない。</p>
-<p>５月の業務内容はまだ自分の知識、経験の延長のことがメインであったために多少の勉強時間は作ることができていた。自分としてはたくさんの課題に直面し、解決していくことで大きく成長できたのでは、と思っている。</p>
-<h2>６月</h2>
-<h2 style="color: #333333; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; text-decoration-style: initial; text-decoration-color: initial;">Statistics</h2>
-<table style="max-width: 100%; background-color: transparent; border-spacing: 0px; width: 600px; margin-bottom: 20px; border-width: 1px 1px 1px 0px; border-image: initial; border-collapse: separate; border-radius: 4px; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; letter-spacing: normal; orphans: 2; text-indent: 0px; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; text-decoration-style: initial; text-decoration-color: initial; border-color: #dddddd #dddddd #dddddd initial; border-style: solid solid solid initial;">
-<thead>
-<tr>
-<th style="padding: 5px; border-left: 1px solid #dddddd; text-align: left;">Activity Type</th>
-<th style="padding: 5px; border-left: 1px solid #dddddd; text-align: left;">Duration</th>
-<th style="padding: 5px; border-left: 1px solid #dddddd; text-align: left;">Percent</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="padding: 8px; border-left: 1px solid #dddddd; border-top: 1px solid #dddddd; background-color: #f9f9f9;">BLOG</td>
-<td style="padding: 8px; border-left: 1px solid #dddddd; border-top: 1px solid #dddddd; background-color: #f9f9f9;">02:34</td>
-<td style="padding: 8px; border-left: 1px solid #dddddd; border-top: 1px solid #dddddd; background-color: #f9f9f9;">0.4</td>
-</tr>
-<tr>
-<td style="padding: 8px; border-left: 1px solid #dddddd; border-top: 1px solid #dddddd;">読書</td>
-<td style="padding: 8px; border-left: 1px solid #dddddd; border-top: 1px solid #dddddd;">01:06</td>
-<td style="padding: 8px; border-left: 1px solid #dddddd; border-top: 1px solid #dddddd;">0.2</td>
-</tr>
-</tbody>
-</table>
-<p>６月に入ってくると、未知の領域に一人で突っ込んでいくことが増えてきた。ということで勉強時間が激減。ここまで来ると笑えてしまう。</p>
-<h2>７月</h2>
-<h2 style="color: #333333; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; text-decoration-style: initial; text-decoration-color: initial;">Statistics</h2>
-<table style="max-width: 100%; background-color: transparent; border-spacing: 0px; width: 600px; margin-bottom: 20px; border-width: 1px 1px 1px 0px; border-image: initial; border-collapse: separate; border-radius: 4px; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; letter-spacing: normal; orphans: 2; text-indent: 0px; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; text-decoration-style: initial; text-decoration-color: initial; border-color: #dddddd #dddddd #dddddd initial; border-style: solid solid solid initial;">
-<thead>
-<tr>
-<th style="padding: 5px; border-left: 1px solid #dddddd; text-align: left;">Activity Type</th>
-<th style="padding: 5px; border-left: 1px solid #dddddd; text-align: left;">Duration</th>
-<th style="padding: 5px; border-left: 1px solid #dddddd; text-align: left;">Percent</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="padding: 8px; border-left: 1px solid #dddddd; border-top: 1px solid #dddddd; background-color: #f9f9f9;">BLOG</td>
-<td style="padding: 8px; border-left: 1px solid #dddddd; border-top: 1px solid #dddddd; background-color: #f9f9f9;">09:36</td>
-<td style="padding: 8px; border-left: 1px solid #dddddd; border-top: 1px solid #dddddd; background-color: #f9f9f9;">1.3</td>
-</tr>
-<tr>
-<td style="padding: 8px; border-left: 1px solid #dddddd; border-top: 1px solid #dddddd;">読書</td>
-<td style="padding: 8px; border-left: 1px solid #dddddd; border-top: 1px solid #dddddd;">06:01</td>
-<td style="padding: 8px; border-left: 1px solid #dddddd; border-top: 1px solid #dddddd;">0.8</td>
-</tr>
-<tr>
-<td style="padding: 8px; bhttp: //blog.hatena.ne.jp/pochiweb/pochiweb.hatenablog.com/edit?editinplace=1#wysiwygorder-left: 1px solid #dddddd; border-top: 1px solid #dddddd; background-color: #f9f9f9;">勉強</td>
-<td style="padding: 8px; border-left: 1px solid #dddddd; border-top: 1px solid #dddddd; background-color: #f9f9f9;">01:22</td>
-<td style="padding: 8px; border-left: 1px solid #dddddd; border-top: 1px solid #dddddd; background-color: #f9f9f9;">0.2</td>
-</tr>
-</tbody>
-</table>
-<p>約１９時間。案件の終わりが見えてきて、少しづつ時間を作る余裕が出てきた。案件を通して身に着けた経験と、見えてきたチーム課題を解決するために、ブログを通してチームに情報を発信していくことを考えている。</p>
-<p> </p>
-<h2>これから</h2>
-<p>幸いにして４月までの勉強時間の貯金があるため、年間目標はおそらく達成可能だろう。８月からはハイペースで勉強できている。</p>
-<p>少し前まで自分がどの道に進むのか悩んでいたのだけど、それもクリアになったし。具体的には<a class="keyword" href="http://d.hatena.ne.jp/keyword/PHP">PHP</a>をもう少し勉強したら<a class="keyword" href="http://d.hatena.ne.jp/keyword/Python">Python</a>を学ぶつもり。</p>
-<p>プロダクトとしては、</p>
-<p>・<a class="keyword" href="http://d.hatena.ne.jp/keyword/WordPress">WordPress</a>テーマ</p>
-<p>・<a class="keyword" href="http://d.hatena.ne.jp/keyword/WordPress">WordPress</a><a class="keyword" href="http://d.hatena.ne.jp/keyword/%A5%D7%A5%E9%A5%B0%A5%A4%A5%F3">プラグイン</a></p>
-<p>・Webアプリケーション</p>
-<p>・日常業務効率化のためのデスクトップアプリ</p>
-<p>をイメージしている。</p>
-<p>というわけで昨日パーフェクト<a class="keyword" href="http://d.hatena.ne.jp/keyword/PHP">PHP</a>を購入。勉強が楽しみだ！</p>
-	</article>
-	</main>
-		<header id="header">
-	<div id="header_layer">
-		<h1>
-			FTP？サーバー？なんか怖いんだけど・・を解消しよう		</h1>
-		<p>私の周りではFTPやサーバーについて、どうも恐怖心を持っているように見える人が多くいます。 FTPソフトにはいろいろな設定項目があるので、それも無理ないのかなと思いましたが、正直個別に説明していくのは・・。 というわけで</p>
-				<nav id="header_nav">
-			<ul id="category_nav">
+		<section class="articles_index">
+			<h2><a href="/entry/2017/08/05/092241">5,6,7月の振り返り</a></h2>
+		<time class="date">2017年8月5日</time>
+		<div class="articles_index_thumbnail">
+		<a href="/entry/2017/08/05/092241">
+				</a>
+		</div>
+		<nav id="tag_navigation">	
+	<ul class="post-categories">
+	<li><a href="/entry/category/dialy/we-project" rel="category tag">We Project</a></li></ul>	</nav>
+	</section>
 				
-				<li class="category_name">
-					<a href="/entry/category/dev">
-						Dev					</a>
-				</li>
-															</ul>
-			2017年7月13日		</nav>
-				</div><!--END-header_layer-->
-			</header>
-	<main class="post-2125 post type-post status-publish format-standard hentry category-dev">
-	<article id="main_article">
-		<p>私の周りでは<a class="keyword" href="http://d.hatena.ne.jp/keyword/FTP">FTP</a>やサーバーについて、どうも恐怖心を持っているように見える人が多くいます。</p>
-<p><a class="keyword" href="http://d.hatena.ne.jp/keyword/FTP">FTP</a>ソフトにはいろいろな設定項目があるので、それも無理ないのかなと思いましたが、正直個別に説明していくのは・・。</p>
-<p>というわけで今回の記事を書いています。</p>
-<p>ちょっと面倒なお話も出てきますが、少しでもサーバーや<a class="keyword" href="http://d.hatena.ne.jp/keyword/FTP">FTP</a>への恐怖心を軽減出来たら嬉しいです。</p>
-<h2>サーバーはパソコンと一緒</h2>
-<p>サ―バーに恐怖心を持っている方の多くは、サーバーは特別なマシンであり、自分の知らない色々なことがあると感じているのではないでしょうか？<a class="keyword" href="http://d.hatena.ne.jp/keyword/FTP">FTP</a>で接続するという事に限って言えば実際はそうではなくて、普段使っているPCと変わりありません。</p>
-<p>ちなみに以下の記事では余りもののマシンをWebサーバーに仕立てる、という事を行っています。</p>
-<p> </p>
-<p><iframe class="embed-card embed-blogcard" style="display: block; width: 100%; height: 190px; max-width: 500px; margin: 10px 0px;" title="【2017/3/25更新】CentOSのインストールから、wordpressをインストールするまでのメモ - 「webで何か」作るブログ" src="https://hatenablog-parts.com/embed?url=http%3A%2F%2Fpochiweb.hatenablog.com%2Fentry%2F2017%2F02%2F26%2F120343" frameborder="0" scrolling="no"></iframe><cite class="hatena-citation"><a href="http://pochiweb.hatenablog.com/entry/2017/02/26/120343">pochiweb.hatenablog.com</a></cite></p>
-<p> </p>
-<p>サーバーとＰＣの違うところは、とにかくファイルを保存、提供することに最適化されていること。</p>
-<p>そして、この保存や提供は専用のソフトによって行われています。</p>
-<p>Web用の情報を管理するのは、Webサーバーソフトである<a class="keyword" href="http://d.hatena.ne.jp/keyword/Apache">Apache</a>やNginxなどのWebサーバーソフトであり、メール用のサーバーであれば<a class="keyword" href="http://d.hatena.ne.jp/keyword/PostFix">PostFix</a>などのメールサーバーソフトです。</p>
-<h2><a class="keyword" href="http://d.hatena.ne.jp/keyword/FTP">FTP</a>とは何か？</h2>
-<p>文章が続いたのでちょっとここで視覚的に類似点を見てみましょう。</p>
-<p>以下の画像は、<a class="keyword" href="http://d.hatena.ne.jp/keyword/Mac">Mac</a>のファイル管理ソフト「Finder」（<a class="keyword" href="http://d.hatena.ne.jp/keyword/Windows">Windows</a>で言う所の「<a class="keyword" href="http://d.hatena.ne.jp/keyword/%A5%A8%A5%AF%A5%B9%A5%D7%A5%ED%A1%BC%A5%E9">エクスプローラ</a>ー」に当たるもの。）の画面です。</p>
-<p>ちなみに私はよく、階層の深いところにあるファイルを移動させる場合に、こうやって二つのウィンドウでFinderを開いて移動させたりします。</p>
-<p><img class="hatena-fotolife" title="f:id:pochiweb:20170703213331p:plain" src="https://cdn-ak.f.st-hatena.com/images/fotolife/p/pochiweb/20170703/20170703213331.png" alt="f:id:pochiweb:20170703213331p:plain" /></p>
-<p> 続いてこちらが人気の<a class="keyword" href="http://d.hatena.ne.jp/keyword/FTP">FTP</a>ソフトの一つ「<a class="keyword" href="http://d.hatena.ne.jp/keyword/Filezilla">Filezilla</a>」の画面です。</p>
-<p><img class="hatena-fotolife" title="f:id:pochiweb:20170704084006j:plain" src="https://cdn-ak.f.st-hatena.com/images/fotolife/p/pochiweb/20170704/20170704084006.jpg" alt="f:id:pochiweb:20170704084006j:plain" /></p>
-<p><a class="keyword" href="http://d.hatena.ne.jp/keyword/FileZilla">FileZilla</a>では、左半分に手元のPCのファイルが、右半分にアップロード先のファイルが一覧で表示されています。</p>
-<p>どうでしょう。どちらもフォルダやファイルが並んでいて、見た目にもかなり似ていますよね。それもそのはずで、どちらも同じコンピュータであり、<a class="keyword" href="http://d.hatena.ne.jp/keyword/FTP">FTP</a>で行うファイルの移動とPCの中でファイルを移動することは、やっていること同じです。</p>
-<p>違うのは、移動先が外部のコンピュータであることだけです。</p>
-<h2><a class="keyword" href="http://d.hatena.ne.jp/keyword/FTP">FTP</a>ってなんの略？<a class="keyword" href="http://d.hatena.ne.jp/keyword/%A5%D7%A5%ED%A5%C8%A5%B3%A5%EB">プロトコル</a>について</h2>
-<p>ご存知の方も多いと思いますが、FileTransfar Protocolの頭文字をとったものです。</p>
-<p>FileとTransfarはファイル(File)の移動(Transfar)と分かり易いかと思いますが、Protocolってなんでしょう？ということでまずはメジャーなProtocolを列記してみます。</p>
-<ul>
-<li>HTTP( Hyper Text Transfar Protocol )</li>
-<li>IP(Internet Protocol)</li>
-<li><a class="keyword" href="http://d.hatena.ne.jp/keyword/FTP">FTP</a> (File Transfar Protocol)</li>
-</ul>
-<p>ご覧の通り、さまざまなところでProtocolという言葉が使用されています。</p>
-<p>Protocolというのは「規格」を意味する言葉で、インターネットの世界においては通信規格という意味になります。</p>
-<p>インターネットは世界中の様々な機器が結びつくことによって成り立っているため、通信ハードウェア各社がそれぞれ独自の規格を持っていては色々な面で不都合がありますよね。その不都合を解消し、データのスムーズなやりとりを実現するため、世界的に統一した規格である（<a class="keyword" href="http://d.hatena.ne.jp/keyword/OSI%BB%B2%BE%C8%A5%E2%A5%C7%A5%EB">OSI参照モデル</a>）が策定されています。※実際には、規格というよりはモデル、基準、といった言葉が適しているかもしれません。</p>
-<p>ファイルのやりとりには<a class="keyword" href="http://d.hatena.ne.jp/keyword/FTP">FTP</a>、アドレスのやりとりにはIPを使いましょう、それぞれはこういう方法、手順でやりとりするようにしましょうと決めることで、世界がネットで繋がることが出来ているとも言えます。</p>
-<p>そんなルール、規格が<a class="keyword" href="http://d.hatena.ne.jp/keyword/%A5%D7%A5%ED%A5%C8%A5%B3%A5%EB">プロトコル</a>です。</p>
-<h2><a class="keyword" href="http://d.hatena.ne.jp/keyword/FTP">FTP</a>の設定項目を知ろう</h2>
-<p>少し話が逸れてしまいました。続いて、<a class="keyword" href="http://d.hatena.ne.jp/keyword/FTP">FTP</a>の設定項目がそれぞれ何を意味しているのか、<a class="keyword" href="http://d.hatena.ne.jp/keyword/FileZilla">FileZilla</a>を例に紹介していきます。 </p>
-<p><img class="hatena-fotolife" title="f:id:pochiweb:20170712081731j:plain" src="https://cdn-ak.f.st-hatena.com/images/fotolife/p/pochiweb/20170712/20170712081731.jpg" alt="f:id:pochiweb:20170712081731j:plain" /></p>
-<h3>ホスト</h3>
-<p>接続先はどこか、を指定する部分です。<span style="color: #3d3f44; font-family: 'Helvetica Neue', Helvetica, Arial, 'ヒラギノ角ゴ Pro W3', 'Hiragino Kaku Gothic Pro', メイリオ, Meiryo, 'ＭＳ Ｐゴシック', 'MS PGothic', sans-serif; font-size: 16px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: normal; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; background-color: #ffffff; text-decoration-style: initial; text-decoration-color: initial; display: inline !important; float: none;">この辺がわかりにくくさせている原因かと思いますが、この欄は</span><a class="keyword" href="http://d.hatena.ne.jp/keyword/Filezilla">Filezilla</a>と<a class="keyword" href="http://d.hatena.ne.jp/keyword/FFFTP">FFFTP</a>だとホスト、<a class="keyword" href="http://d.hatena.ne.jp/keyword/CyberDuck">CyberDuck</a>や<a class="keyword" href="http://d.hatena.ne.jp/keyword/DreamWeaver">DreamWeaver</a>内臓の<a class="keyword" href="http://d.hatena.ne.jp/keyword/FTP">FTP</a>だとサーバーと言ったりして、<a class="keyword" href="http://d.hatena.ne.jp/keyword/FTP">FTP</a>ソフトによって呼び名が違います。</p>
-<p> </p>
-<p>ホスト欄に入力する内容はサーバー契約時に、<a class="keyword" href="http://d.hatena.ne.jp/keyword/FTP">FTP</a>アドレス、<a class="keyword" href="http://d.hatena.ne.jp/keyword/FTP">FTP</a>ホスト名、サーバーアドレス、などという名称でこの情報が発行されることが多いです。ここでも呼び方が違いますが、同じものを表しています。</p>
-<h3> <a class="keyword" href="http://d.hatena.ne.jp/keyword/%A5%D7%A5%ED%A5%C8%A5%B3%A5%EB">プロトコル</a></h3>
-<p>画像がおかしな事になっていますが、ご容赦ください。（データ量オーバーで変えられない）</p>
-<p>ここでは前述の<a class="keyword" href="http://d.hatena.ne.jp/keyword/%A5%D7%A5%ED%A5%C8%A5%B3%A5%EB">プロトコル</a>の指定ができます。</p>
-<p><a class="keyword" href="http://d.hatena.ne.jp/keyword/FTP">FTP</a><a class="keyword" href="http://d.hatena.ne.jp/keyword/%A5%D7%A5%ED%A5%C8%A5%B3%A5%EB">プロトコル</a>では簡単に接続が可能ですが、暗号化がされません。多少手間ではありますが、セキュリティ対策は何かが起きてからでは遅いです。なるべくSFTPなどの暗号化される<a class="keyword" href="http://d.hatena.ne.jp/keyword/%A5%D7%A5%ED%A5%C8%A5%B3%A5%EB">プロトコル</a>で利用しましょう。</p>
-<p><a class="keyword" href="http://d.hatena.ne.jp/keyword/filezilla">filezilla</a>で選択可能なのは、<a class="keyword" href="http://d.hatena.ne.jp/keyword/FTP">FTP</a>とSFTPの二つです。</p>
-<h3>暗号化</h3>
-<p><a class="keyword" href="http://d.hatena.ne.jp/keyword/filezilla">filezilla</a>では、FTPSを利用する際にはこちから設定する仕様ですが、暗号化の種類によって入力欄が分けられているのはちょっと珍しいかもしれません。他の<a class="keyword" href="http://d.hatena.ne.jp/keyword/FTP">FTP</a>ソフトでは<a class="keyword" href="http://d.hatena.ne.jp/keyword/%A5%D7%A5%ED%A5%C8%A5%B3%A5%EB">プロトコル</a>の選択と暗号化の選択を兼ねたタイプが多いです。</p>
-<h3>ポート</h3>
-<p>通信に使用する窓口を指定します。<a class="keyword" href="http://d.hatena.ne.jp/keyword/%A5%D7%A5%ED%A5%C8%A5%B3%A5%EB">プロトコル</a>とポート番号は基本的に組み合わせが決められているので、<a class="keyword" href="http://d.hatena.ne.jp/keyword/%A5%D7%A5%ED%A5%C8%A5%B3%A5%EB">プロトコル</a>に合わせた数値を入力する必要があります。</p>
-<p>ただし、多くの<a class="keyword" href="http://d.hatena.ne.jp/keyword/FTP">FTP</a>ソフトでは<a class="keyword" href="http://d.hatena.ne.jp/keyword/%A5%D7%A5%ED%A5%C8%A5%B3%A5%EB">プロトコル</a>に併せて自動的に設定してくれますので、実際にこの部分を入力するケースは少ないでしょう。</p>
-<p>代表的なポート番号は以下の通りです。</p>
-<ul>
-<li><a class="keyword" href="http://d.hatena.ne.jp/keyword/FTP">FTP</a>：20</li>
-<li>SFTP：22</li>
-<li>http：80</li>
-<li><a class="keyword" href="http://d.hatena.ne.jp/keyword/https">https</a>：443</li>
-</ul>
-<h3>ログオンの種類</h3>
-<p><a class="keyword" href="http://d.hatena.ne.jp/keyword/FTP">FTP</a>接続は、サーバーへのログインともいえます。普段会社等で使うPCと同様、サーバーにもログインにいくつかの種類があるので、どの権限でログインするのか、を選択します。</p>
-<p>使用する事が多いのは</p>
-<ul>
-<li>通常</li>
-<li>アカウント</li>
-</ul>
-<p>となるでしょう。「アカウント」はサーバー管理者によって作成され、作業可能な<a class="keyword" href="http://d.hatena.ne.jp/keyword/%A5%C7%A5%A3%A5%EC%A5%AF%A5%C8">ディレクト</a>リが制限されていたりします。</p>
-<h3>ユーザ</h3>
-<p>ログインの際に使用するユーザー名もしくはアカウント名を入力します。</p>
-<h3>パスワード</h3>
-<p>ログ<a class="keyword" href="http://d.hatena.ne.jp/keyword/%A5%A4%A5%F3%A5%D1%A5%B9">インパス</a>ワードを入力します。</p>
-<p> </p>
-<h2>おわりに</h2>
-<p><a class="keyword" href="http://d.hatena.ne.jp/keyword/FTP">FTP</a>ソフトの設定項目はまだまだたくさんありますが、通常のweb制作業務であればこの程度の知識で十分ではないでしょうか。</p>
-<p>同じものを表すのに呼び名が違うというのはどうにかして欲しいものですが、統一するような動きもありません。悲しい。</p>
-	</article>
-	</main>
-		<div style="text-align:center;">;
+		<section class="articles_index">
+			<h2><a href="/entry/2017/07/13/083302">FTP？サーバー？なんか怖いんだけど・・を解消しよう</a></h2>
+		<time class="date">2017年7月13日</time>
+		<div class="articles_index_thumbnail">
+		<a href="/entry/2017/07/13/083302">
+				</a>
+		</div>
+		<nav id="tag_navigation">	
+	<ul class="post-categories">
+	<li><a href="/entry/category/dev" rel="category tag">Dev</a></li></ul>	</nav>
+	</section>
+				<div style="width:100%; text-align:center;">;
 <a href="/page/2" >previous page</a> &#183; <a href="/page/4" >next page</a></div>
-			<div class="menu-myglobal-container"><ul id="menu-myglobal" class="menu"><li id="menu-item-2107" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-2107"><a href="/entry/category/web">Web制作</a></li>
+			</main>
+		<footer>
+	<div class="menu-myglobal-container"><ul id="menu-myglobal" class="menu"><li id="menu-item-2107" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-2107"><a href="/entry/category/web">Web制作</a></li>
 <li id="menu-item-2104" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-2104"><a href="/entry/category/cms">CMS</a></li>
 <li id="menu-item-2105" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-2105"><a href="/entry/category/dev">Dev</a></li>
 <li id="menu-item-2106" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-2106"><a href="/entry/category/dialy">Dialy</a></li>
@@ -489,12 +137,12 @@ img.emoji {
 <p class="copyright_text">&copy;2017&nbsp;webで何か作るブログ</p>
 <nav id="total_navigation">
 <ul>
-<li class="back_to"><a href="
-">Homeへ</a></li>
+<li class="back_to"><a href="">Homeへ</a></li>
 <li class="back_to"><a href="/entry/2017/07/13/083302#top">Topへ</a></li>
 </ul>
 </nav>
 </div>
 <script type='text/javascript' src="/wp-includes/js/wp-embed.min.js?ver=4.8.3"></script>
+	</footer>
 </body>
 </html>
