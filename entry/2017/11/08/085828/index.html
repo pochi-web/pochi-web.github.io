@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta http-equiv="Last-Modified" content="Wed, 08 Nov 2017 23:46:36 GMT">
+	<meta charset="UTF-8">
+	<title>投稿のアイキャッチにデフォルトの画像を設定する仕組み</title>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+       <link rel='dns-prefetch' href="//maxcdn.bootstrapcdn.com" />
+<link rel='dns-prefetch' href="//fonts.googleapis.com" />
+<link rel='dns-prefetch' href="//s.w.org" />
+		<script type="text/javascript">
+			window._wpemojiSettings = {"baseUrl":"https:\/\/s.w.org\/images\/core\/emoji\/2.3\/72x72\/","ext":".png","svgUrl":"https:\/\/s.w.org\/images\/core\/emoji\/2.3\/svg\/","svgExt":".svg","source":{"concatemoji":"https:\/\/pochi-web.github.io\/wp-includes\/js\/wp-emoji-release.min.js?ver=4.8.3"}};
+			!function(a,b,c){function d(a){var b,c,d,e,f=String.fromCharCode;if(!k||!k.fillText)return!1;switch(k.clearRect(0,0,j.width,j.height),k.textBaseline="top",k.font="600 32px Arial",a){case"flag":return k.fillText(f(55356,56826,55356,56819),0,0),b=j.toDataURL(),k.clearRect(0,0,j.width,j.height),k.fillText(f(55356,56826,8203,55356,56819),0,0),c=j.toDataURL(),b!==c&&(k.clearRect(0,0,j.width,j.height),k.fillText(f(55356,57332,56128,56423,56128,56418,56128,56421,56128,56430,56128,56423,56128,56447),0,0),b=j.toDataURL(),k.clearRect(0,0,j.width,j.height),k.fillText(f(55356,57332,8203,56128,56423,8203,56128,56418,8203,56128,56421,8203,56128,56430,8203,56128,56423,8203,56128,56447),0,0),c=j.toDataURL(),b!==c);case"emoji4":return k.fillText(f(55358,56794,8205,9794,65039),0,0),d=j.toDataURL(),k.clearRect(0,0,j.width,j.height),k.fillText(f(55358,56794,8203,9794,65039),0,0),e=j.toDataURL(),d!==e}return!1}function e(a){var c=b.createElement("script");c.src=a,c.defer=c.type="text/javascript",b.getElementsByTagName("head")[0].appendChild(c)}var f,g,h,i,j=b.createElement("canvas"),k=j.getContext&&j.getContext("2d");for(i=Array("flag","emoji4"),c.supports={everything:!0,everythingExceptFlag:!0},h=0;h<i.length;h++)c.supports[i[h]]=d(i[h]),c.supports.everything=c.supports.everything&&c.supports[i[h]],"flag"!==i[h]&&(c.supports.everythingExceptFlag=c.supports.everythingExceptFlag&&c.supports[i[h]]);c.supports.everythingExceptFlag=c.supports.everythingExceptFlag&&!c.supports.flag,c.DOMReady=!1,c.readyCallback=function(){c.DOMReady=!0},c.supports.everything||(g=function(){c.readyCallback()},b.addEventListener?(b.addEventListener("DOMContentLoaded",g,!1),a.addEventListener("load",g,!1)):(a.attachEvent("onload",g),b.attachEvent("onreadystatechange",function(){"complete"===b.readyState&&c.readyCallback()})),f=c.source||{},f.concatemoji?e(f.concatemoji):f.wpemoji&&f.twemoji&&(e(f.twemoji),e(f.wpemoji)))}(window,document,window._wpemojiSettings);
+		</script>
+		<style type="text/css">
+img.wp-smiley,
+img.emoji {
+	display: inline !important;
+	border: none !important;
+	box-shadow: none !important;
+	height: 1em !important;
+	width: 1em !important;
+	margin: 0 .07em !important;
+	vertical-align: -0.1em !important;
+	background: none !important;
+	padding: 0 !important;
+}
+</style>
+<link rel='stylesheet' id='font-aweasome-css'  href='https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css?ver=4.8.3' type='text/css' media='all' />
+<link rel='stylesheet' id='google-font-css'  href='https://fonts.googleapis.com/earlyaccess/notosansjapanese.css?ver=4.8.3' type='text/css' media='all' />
+<link rel='stylesheet' id='base-css'  href="/wp-content/themes/wire-frame-theme/css/base.css?ver=4.8.3" type='text/css' media='all' />
+<link rel='stylesheet' id='element-css'  href="/wp-content/themes/wire-frame-theme/css/element.css?ver=4.8.3" type='text/css' media='all' />
+<link rel='stylesheet' id='modifier-css'  href="/wp-content/themes/wire-frame-theme/css/modifier.css?ver=4.8.3" type='text/css' media='all' />
+<link rel='stylesheet' id='style-css'  href="/wp-content/themes/wire-frame-theme/style.css?ver=4.8.3" type='text/css' media='all' />
+<script type='text/javascript' src="/wp-includes/js/jquery/jquery.js?ver=1.12.4"></script>
+<script type='text/javascript' src="/wp-includes/js/jquery/jquery-migrate.min.js?ver=1.4.1"></script>
+<link rel='https://api.w.org/' href="/wp-json/" />
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="/wp-includes/wlwmanifest.xml" /> 
+<link rel='prev' title='ループについて｜WordPressテーマの作り方' href="/entry/2017/11/03/104527" />
+<meta name="generator" content="WordPress 4.8.3 with StaticPress ver.0.4.5" />
+<link rel="canonical" href="https://pochi-web.github.io/entry/2017/11/08/085828" />
+<link rel="alternate" type="application/json+oembed" href="/wp-json/oembed/1.0/embed?url=http%3A%2F%2Fmywp%2Fentry%2F2017%2F11%2F08%2F085828" />
+<link rel="alternate" type="text/xml+oembed" href="/wp-json/oembed/1.0/embed?url=http%3A%2F%2Fmywp%2Fentry%2F2017%2F11%2F08%2F085828&#038;format=xml" />
+    <script>
+	var j = jQuery.noConflict();
+		
+	</script>
+</head><body>
+			<header>
+		<div id="header_layer">
+			<h1>
+				投稿のアイキャッチにデフォルトの画像を設定する仕組み			</h1>
+			<p>WordPressのアイキャッチにデフォルトの画像を設定できるようにカスタマイズする方法を調べました。また、それに関わるフックや引数もなるべく調査します。</p>
+						<nav id="header_nav">
+				<ul id="category_nav">
+										<li class="category_name">
+						<a href="/entry/category/cms/wordpress%e3%83%86%e3%83%bc%e3%83%9e%e3%81%ae%e4%bd%9c%e3%82%8a%e6%96%b9">
+							WordPressテーマ制作						</a>
+					</li>
+																				<li class="tag_name">
+						<a href="/entry/tag/post_meta">
+							post_meta						</a>
+					</li>
+										<li class="tag_name">
+						<a href="/entry/tag/%e3%82%b5%e3%83%a0%e3%83%8d%e3%82%a4%e3%83%ab">
+							サムネイル						</a>
+					</li>
+														</ul>
+				2017年11月8日			</nav>
+					</div>
+		<!--END-header_layer-->
+		<img width="1920" height="1280" src="/wp-content/uploads/2017/11/default-eye-chacth-compressor.jpg" class="attachment-post-thumbnail size-post-thumbnail wp-post-image" alt="" srcset="https://pochi-web.github.io/wp-content/uploads/2017/11/default-eye-chacth-compressor.jpg 1920w, https://pochi-web.github.io/wp-content/uploads/2017/11/default-eye-chacth-compressor-300x200.jpg 300w, https://pochi-web.github.io/wp-content/uploads/2017/11/default-eye-chacth-compressor-768x512.jpg 768w, https://pochi-web.github.io/wp-content/uploads/2017/11/default-eye-chacth-compressor-1024x683.jpg 1024w" sizes="(max-width: 1920px) 100vw, 1920px" />	</header>
+	<main class="post-2252 post type-post status-publish format-standard has-post-thumbnail hentry category-wordpress tag-post_meta tag-164">
+		<article id="main_article">
+			<p>ページ送りがデフォルトだったり、サイドバーが一切なかったりしてますが、テーマを利用し始めました。使いながら少しつ良くしていきたいなと思います。</p>
+<p>あと、はてなブログからgithub.ioへ引っ越しました。VCCW+StaticPress+github.ioの組み合わせで無料ホスティング。<br />
+若干手間は増えますが、そのあたりの自動化も課題としてやっていきたいなと思います。</p>
+<p>さてタイトルの件ですが、今現在ほとんどのページでアイキャッチを設定していません。イコール、インデックス系のページにはサムネイルがありません。大事なのは理解しているのですが、正直若干面倒だな&#8230;と思うんですよね。</p>
+<p>このテーマのヘッダーデザインはそういう理由だったりもします。この作りなら忘れてしまってもカッコつくかなと。</p>
+<p>とは言え、カテゴリとかタグのページにはどうしても必要ですし、これまで設定してこなかった分を一つ一つ設定するよりアイキャッチ画像のデフォルト設定をしてしまった方が勉強にもなるし一石二鳥だ！というわけでアイキャッチにデフォルト設定をかけていきます。</p>
+<h2>特定の画像をデフォルト画像としてアイキャッチに設定する方法</h2>
+<blockquote>
+<pre>add_action( 'save_post', 'save_default_thumbnail' );
+function save_default_thumbnail( $post_id ) {
+	$post_thumbnail = get_post_meta( $post_id, $key = '_thumbnail_id', $single = true );
+	if ( !wp_is_post_revision( $post_id ) ) {
+		if ( empty( $post_thumbnail ) ) {
+			update_post_meta( $post_id, $meta_key = '_thumbnail_id', $meta_value = '56' );
+		}
+	}
+}</pre>
+<p><a href="http://kachibito.net/wordpress/custom/saving-a-default-post-thumbnail.html">WordPressのアイキャッチ画像に任意のデフォルト画像を登録する方法</a><br />
+<em>WordPress</em>のアイキャッチ画像に任意の<em>デフォルト</em>画像を登録する方法をご紹介します。クライアントワークでも使えると思います。−kachibito.netさまより引用</p></blockquote>
+<p>デフォルト画像はこちらを設定します。まずは任意の画像をアップ。全投稿を更新します。</p>
+<div id="attachment_2266" style="width: 310px" class="wp-caption aligncenter"><img class="wp-image-2266 size-medium" src="/wp-content/uploads/2017/11/default-eye-chacth-compressor-300x200.jpg" alt="" width="300" height="200" srcset="https://pochi-web.github.io/wp-content/uploads/2017/11/default-eye-chacth-compressor-300x200.jpg 300w, https://pochi-web.github.io/wp-content/uploads/2017/11/default-eye-chacth-compressor-768x512.jpg 768w, https://pochi-web.github.io/wp-content/uploads/2017/11/default-eye-chacth-compressor-1024x683.jpg 1024w" sizes="(max-width: 300px) 100vw, 300px" /><p class="wp-caption-text">写真ACさんよりいただきました。</p></div>
+<h2>実行結果</h2>
+<p><strong>before</strong></p>
+<p><img class="size-medium wp-image-2269 aligncenter" src="/wp-content/uploads/2017/11/930c308a70bdcf8121e8872d31c23568-300x158.png" alt="" width="300" height="158" srcset="https://pochi-web.github.io/wp-content/uploads/2017/11/930c308a70bdcf8121e8872d31c23568-300x158.png 300w, https://pochi-web.github.io/wp-content/uploads/2017/11/930c308a70bdcf8121e8872d31c23568-768x405.png 768w, https://pochi-web.github.io/wp-content/uploads/2017/11/930c308a70bdcf8121e8872d31c23568-1024x540.png 1024w, https://pochi-web.github.io/wp-content/uploads/2017/11/930c308a70bdcf8121e8872d31c23568.png 1431w" sizes="(max-width: 300px) 100vw, 300px" /></p>
+<p><strong>after</strong><br />
+<img class="size-medium wp-image-2270 aligncenter" style="font-size: 16px;" src="/wp-content/uploads/2017/11/ddbe14fa712ea2612302bdc4e1e61028-300x158.png" alt="" width="300" height="158" srcset="https://pochi-web.github.io/wp-content/uploads/2017/11/ddbe14fa712ea2612302bdc4e1e61028-300x158.png 300w, https://pochi-web.github.io/wp-content/uploads/2017/11/ddbe14fa712ea2612302bdc4e1e61028-768x405.png 768w, https://pochi-web.github.io/wp-content/uploads/2017/11/ddbe14fa712ea2612302bdc4e1e61028-1024x539.png 1024w, https://pochi-web.github.io/wp-content/uploads/2017/11/ddbe14fa712ea2612302bdc4e1e61028.png 1435w" sizes="(max-width: 300px) 100vw, 300px" /><br />
+無事、期待通りの結果になりました！続いてなぜこうなるのか？を追っていきます。</p>
+<h2>コードの仕組み</h2>
+<p>まず、フックになっている<strong>post_save</strong>ですが、Codexによると</p>
+<blockquote><p>インポート機能の利用、投稿・ページ編集フォームの利用、XMLRPCでの投稿、メールでの投稿のうちいずれかの方法で投稿・ページが作成・更新された際に実行する。実行されるタイミングはデータがデータベースに保存された後。アクション関数引数: 投稿 ID投稿 ID は最後に保存した投稿ではなく投稿履歴を参照していることもある。実際の投稿の ID を取得するには、[[関数リファレンス/<tt>wp_is_post_revision()</tt>]] を使う。</p>
+<p><a href="https://wpdocs.osdn.jp/%E3%83%97%E3%83%A9%E3%82%B0%E3%82%A4%E3%83%B3_API/%E3%82%A2%E3%82%AF%E3%82%B7%E3%83%A7%E3%83%B3%E3%83%95%E3%83%83%E3%82%AF%E4%B8%80%E8%A6%A7#.E6.8A.95.E7.A8.BF.E3.80.81.E3.83.9A.E3.83.BC.E3.82.B8.E3.80.81.E6.B7.BB.E4.BB.98.E3.83.95.E3.82.A1.E3.82.A4.E3.83.AB.E3.80.81.E3.82.AB.E3.83.86.E3.82.B4.E3.83.AA.E3.83.BC.E9.96.A2.E9.80.A3.E3.81.AE.E3.82.A2.E3.82.AF.E3.82.B7.E3.83.A7.E3.83.B3">WordPressCodex-アクションフック一覧</a></p></blockquote>
+<p>とのこと。要は何かしら投稿が保存されたタイミングで何かしたいときにどうぞーということですね。で、引数にはpost_idが渡されるので、保存が行われた投稿に対してのみの動作になると。なるほど。</p>
+<p>実際の処理の流れは、</p>
+<ol>
+<li>get_post_metaでサムネイルを$post_thumbnailに入れて、（thumbnailってカスタムフィールド扱いだったんですね）</li>
+<li>!wp_is_post_revision( $post_id )でリビジョン除外して、</li>
+<li>取ってきた$post_thumbnailが空だったらupdate_post_metaでサムネイルの書き換え</li>
+</ol>
+<p>と。post_meta系は色々と使い道がありそうですね。以上、デフォルトのアイキャッチを設定する方法でした。</p>
+		</article>
+	</main>
+			<aside>
+							</aside>
+	<footer>
+	<div class="menu-myglobal-container"><ul id="menu-myglobal" class="menu"><li id="menu-item-2107" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-2107"><a href="/entry/category/web">Web制作</a></li>
+<li id="menu-item-2104" class="menu-item menu-item-type-taxonomy menu-item-object-category current-post-ancestor menu-item-2104"><a href="/entry/category/cms">CMS</a></li>
+<li id="menu-item-2105" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-2105"><a href="/entry/category/dev">Dev</a></li>
+<li id="menu-item-2106" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-2106"><a href="/entry/category/dialy">Dialy</a></li>
+</ul></div><div id="copyright">
+<p class="copyright_text">&copy;2017&nbsp;webで何か作るブログ</p>
+<nav id="total_navigation">
+<ul>
+<li class="back_to"><a href="/">Homeへ</a></li>
+<li class="back_to"><a href="/entry/2017/11/08/085828#top">Topへ</a></li>
+</ul>
+</nav>
+</div>
+<script type='text/javascript' src="/wp-includes/js/wp-embed.min.js?ver=4.8.3"></script>
+	</footer>
+</body>
+</html>

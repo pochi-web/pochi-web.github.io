@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-<meta http-equiv="Last-Modified" content="Tue, 07 Nov 2017 00:16:45 GMT">
+<meta http-equiv="Last-Modified" content="Wed, 08 Nov 2017 23:45:15 GMT">
 	<meta charset="UTF-8">
 	<title>ループについて｜WordPressテーマの作り方</title>
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -37,7 +37,8 @@ img.emoji {
 <script type='text/javascript' src="/wp-includes/js/jquery/jquery-migrate.min.js?ver=1.4.1"></script>
 <link rel='https://api.w.org/' href="/wp-json/" />
 <link rel="wlwmanifest" type="application/wlwmanifest+xml" href="/wp-includes/wlwmanifest.xml" /> 
-<link rel='prev' title='ループについて' href="/entry/2017/11/03/103807" />
+<link rel='prev' title='WeProject 10月の振り返り' href="/entry/2017/11/01/081057" />
+<link rel='next' title='投稿のアイキャッチにデフォルトの画像を設定する仕組み' href="/entry/2017/11/08/085828" />
 <meta name="generator" content="WordPress 4.8.3 with StaticPress ver.0.4.5" />
 <link rel="canonical" href="https://pochi-web.github.io/entry/2017/11/03/104527" />
 <link rel="alternate" type="application/json+oembed" href="/wp-json/oembed/1.0/embed?url=http%3A%2F%2Fmywp%2Fentry%2F2017%2F11%2F03%2F104527" />
@@ -51,7 +52,7 @@ img.emoji {
 		<div id="header_layer">
 			<h1>
 				ループについて｜WordPressテーマの作り方			</h1>
-			<p> しばらく書いていませんでしたが、WordPressテーマの作成を続けています。 この投稿では、作成したindex.phpを振り返りながら、ループやWordPressの関数についてメモをしておきたいと思います。 まずはコ</p>
+			<p>しばらく書いていませんでしたが、WordPressテーマの作成を続けています。 この投稿では、作成したindex.phpを振り返りながら、ループやWordPressの関数についてメモをしておきたいと思います。 まずはコー</p>
 						<nav id="header_nav">
 				<ul id="category_nav">
 										<li class="category_name">
@@ -62,10 +63,10 @@ img.emoji {
 				2017年11月3日			</nav>
 					</div>
 		<!--END-header_layer-->
-			</header>
-	<main class="post-2109 post type-post status-publish format-standard hentry category-cms">
+		<img width="1920" height="1280" src="/wp-content/uploads/2017/11/default-eye-chacth-compressor.jpg" class="attachment-post-thumbnail size-post-thumbnail wp-post-image" alt="" srcset="https://pochi-web.github.io/wp-content/uploads/2017/11/default-eye-chacth-compressor.jpg 1920w, https://pochi-web.github.io/wp-content/uploads/2017/11/default-eye-chacth-compressor-300x200.jpg 300w, https://pochi-web.github.io/wp-content/uploads/2017/11/default-eye-chacth-compressor-768x512.jpg 768w, https://pochi-web.github.io/wp-content/uploads/2017/11/default-eye-chacth-compressor-1024x683.jpg 1024w" sizes="(max-width: 1920px) 100vw, 1920px" />	</header>
+	<main class="post-2109 post type-post status-publish format-standard has-post-thumbnail hentry category-cms">
 		<article id="main_article">
-			<p> しばらく書いていませんでしたが、<a class="keyword" href="http://d.hatena.ne.jp/keyword/WordPress">WordPress</a>テーマの作成を続けています。</p>
+			<p>しばらく書いていませんでしたが、<a class="keyword" href="http://d.hatena.ne.jp/keyword/WordPress">WordPress</a>テーマの作成を続けています。</p>
 <p>この投稿では、作成したindex.<a class="keyword" href="http://d.hatena.ne.jp/keyword/php">php</a>を振り返りながら、ループや<a class="keyword" href="http://d.hatena.ne.jp/keyword/WordPress">WordPress</a>の関数についてメモをしておきたいと思います。</p>
 <p>まずはコードを貼り付けます。（前回からだいぶ変わりました。）</p>
 <p><script src="https://gist.github.com/1c65521cafb2c2beb248c10baf5129da.js"> </script></p>
@@ -76,7 +77,6 @@ img.emoji {
 <p>これがあることによって、クエリに応じた各種の情報がデータベースからページ内に取り込まれて、記事の表示ができるようになります。</p>
 <p>また、ループでは一つ一つのページに含まれる情報が多次元配列によってページごとの配列で返ってくるので、例えばarchive.<a class="keyword" href="http://d.hatena.ne.jp/keyword/php">php</a>なんかでは、foreachを使ってページごとにカテゴリ情報を吐き出して表示することができたりします。</p>
 <p>この辺り、想像しただけでコアの作成は大変なんだろうなと思いますね。</p>
-<p> </p>
 <p><a class="keyword" href="http://d.hatena.ne.jp/keyword/WordPress">WordPress</a>には便利な関数が色々用意されていますが、ループの中でしか使えない関数というのも多くあるので注意しておきたいところです。</p>
 <h2>ちょっと変なところでループを始めてる理由</h2>
 <p>多くのテーマでは、header.<a class="keyword" href="http://d.hatena.ne.jp/keyword/php">php</a>にheaderが書かれていて、各テンプレートファイルにループが書かれているのですが、今回そうしませんでした。</p>
@@ -88,8 +88,6 @@ img.emoji {
 <h2>ヘッダーの現状</h2>
 <p><img class="hatena-fotolife" title="f:id:pochiweb:20171103104121p:plain" src="https://cdn-ak.f.st-hatena.com/images/fotolife/p/pochiweb/20171103/20171103104121.png" alt="f:id:pochiweb:20171103104121p:plain" /></p>
 <p>サムネイルをフルサイズで出力して、かつpositionでheaderの裏に回して、グラデーションを効かせて、タイトル、抜粋、カテゴリ系のナビ。結構気に入っています。</p>
-<p> </p>
-<p> </p>
 		</article>
 	</main>
 			<aside>
