@@ -5,7 +5,7 @@ Template Name: Category
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-<meta http-equiv="Last-Modified" content="Wed, 08 Nov 2017 23:54:41 GMT">
+<meta http-equiv="Last-Modified" content="Thu, 09 Nov 2017 07:28:56 GMT">
 	<meta charset="UTF-8">
 	<title>videoタグの再生終了後にposterを表示させる方法</title>
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -43,8 +43,22 @@ img.emoji {
 <link rel="wlwmanifest" type="application/wlwmanifest+xml" href="/wp-includes/wlwmanifest.xml" /> 
 <meta name="generator" content="WordPress 4.8.3 with StaticPress ver.0.4.5" />
     <script>
+		var j = jQuery.noConflict();
+		j(window).on('scroll',function(){
 	var j = jQuery.noConflict();
-		
+		var $bodyWidth = j('body').outerWidth();
+		var $footerWidth = j('footer').outerWidth();
+		var $setMargin = ($bodyWidth - $footerWidth)/2;		
+			var $bodyHeight = j('body'). outerHeight(true);
+			var $scrolled = j(window).scrollTop();
+			var $windowHeight = j(window).height();
+			var $xHeight = $scrolled+$windowHeight;
+			if($bodyHeight === $xHeight){
+				j('footer').css('margin-bottom',$setMargin);
+			}else{
+				j('footer').css('margin-bottom','0');
+			}
+		})
 	</script>
 </head><body>
 		<header>
@@ -89,7 +103,7 @@ img.emoji {
 		<time class="date">2017年5月14日</time>
 		<div class="articles_index_thumbnail">
 		<a href="/entry/2017/05/14/171023">
-				</a>
+		<img width="1920" height="1280" src="/wp-content/uploads/2017/11/default-eye-chacth-compressor.jpg" class="attachment-post-thumbnail size-post-thumbnail wp-post-image" alt="" srcset="https://pochi-web.github.io/wp-content/uploads/2017/11/default-eye-chacth-compressor.jpg 1920w, https://pochi-web.github.io/wp-content/uploads/2017/11/default-eye-chacth-compressor-300x200.jpg 300w, https://pochi-web.github.io/wp-content/uploads/2017/11/default-eye-chacth-compressor-768x512.jpg 768w, https://pochi-web.github.io/wp-content/uploads/2017/11/default-eye-chacth-compressor-1024x683.jpg 1024w" sizes="(max-width: 1920px) 100vw, 1920px" />		</a>
 		</div>
 		<nav id="tag_navigation">	
 	<ul class="post-categories">
@@ -101,7 +115,7 @@ img.emoji {
 		<time class="date">2017年2月8日</time>
 		<div class="articles_index_thumbnail">
 		<a href="/entry/2017/02/08/090722">
-				</a>
+		<img width="1920" height="1280" src="/wp-content/uploads/2017/11/default-eye-chacth-compressor.jpg" class="attachment-post-thumbnail size-post-thumbnail wp-post-image" alt="" srcset="https://pochi-web.github.io/wp-content/uploads/2017/11/default-eye-chacth-compressor.jpg 1920w, https://pochi-web.github.io/wp-content/uploads/2017/11/default-eye-chacth-compressor-300x200.jpg 300w, https://pochi-web.github.io/wp-content/uploads/2017/11/default-eye-chacth-compressor-768x512.jpg 768w, https://pochi-web.github.io/wp-content/uploads/2017/11/default-eye-chacth-compressor-1024x683.jpg 1024w" sizes="(max-width: 1920px) 100vw, 1920px" />		</a>
 		</div>
 		<nav id="tag_navigation">	
 	<ul class="post-categories">
@@ -113,7 +127,7 @@ img.emoji {
 		<time class="date">2017年1月21日</time>
 		<div class="articles_index_thumbnail">
 		<a href="/entry/2017/01/21/133917">
-				</a>
+		<img width="1920" height="1280" src="/wp-content/uploads/2017/11/default-eye-chacth-compressor.jpg" class="attachment-post-thumbnail size-post-thumbnail wp-post-image" alt="" srcset="https://pochi-web.github.io/wp-content/uploads/2017/11/default-eye-chacth-compressor.jpg 1920w, https://pochi-web.github.io/wp-content/uploads/2017/11/default-eye-chacth-compressor-300x200.jpg 300w, https://pochi-web.github.io/wp-content/uploads/2017/11/default-eye-chacth-compressor-768x512.jpg 768w, https://pochi-web.github.io/wp-content/uploads/2017/11/default-eye-chacth-compressor-1024x683.jpg 1024w" sizes="(max-width: 1920px) 100vw, 1920px" />		</a>
 		</div>
 		<nav id="tag_navigation">	
 	<ul class="post-categories">
@@ -125,7 +139,7 @@ img.emoji {
 		<time class="date">2017年1月8日</time>
 		<div class="articles_index_thumbnail">
 		<a href="/entry/2017/01/08/234546">
-				</a>
+		<img width="1920" height="1280" src="/wp-content/uploads/2017/11/default-eye-chacth-compressor.jpg" class="attachment-post-thumbnail size-post-thumbnail wp-post-image" alt="" srcset="https://pochi-web.github.io/wp-content/uploads/2017/11/default-eye-chacth-compressor.jpg 1920w, https://pochi-web.github.io/wp-content/uploads/2017/11/default-eye-chacth-compressor-300x200.jpg 300w, https://pochi-web.github.io/wp-content/uploads/2017/11/default-eye-chacth-compressor-768x512.jpg 768w, https://pochi-web.github.io/wp-content/uploads/2017/11/default-eye-chacth-compressor-1024x683.jpg 1024w" sizes="(max-width: 1920px) 100vw, 1920px" />		</a>
 		</div>
 		<nav id="tag_navigation">	
 	<ul class="post-categories">
@@ -135,7 +149,7 @@ img.emoji {
 <a href="/entry/category/web/page/2" >next page</a></div>
 			</main>
 		<footer>
-	<div class="menu-myglobal-container"><ul id="menu-myglobal" class="menu"><li id="menu-item-2107" class="menu-item menu-item-type-taxonomy menu-item-object-category current-menu-item menu-item-2107"><a href="/entry/category/web">Web制作</a></li>
+<div class="menu-myglobal-container"><ul id="menu-myglobal" class="menu"><li id="menu-item-2107" class="menu-item menu-item-type-taxonomy menu-item-object-category current-menu-item menu-item-2107"><a href="/entry/category/web">Web制作</a></li>
 <li id="menu-item-2104" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-2104"><a href="/entry/category/cms">CMS</a></li>
 <li id="menu-item-2105" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-2105"><a href="/entry/category/dev">Dev</a></li>
 <li id="menu-item-2106" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-2106"><a href="/entry/category/dialy">Dialy</a></li>
@@ -148,7 +162,10 @@ img.emoji {
 </ul>
 </nav>
 </div>
+</footer>
+<script>
+
+</script>
 <script type='text/javascript' src="/wp-includes/js/wp-embed.min.js?ver=4.8.3"></script>
-	</footer>
 </body>
 </html>

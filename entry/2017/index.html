@@ -5,7 +5,7 @@ Template Name: Archive
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-<meta http-equiv="Last-Modified" content="Wed, 08 Nov 2017 23:55:06 GMT">
+<meta http-equiv="Last-Modified" content="Thu, 09 Nov 2017 07:29:26 GMT">
 	<meta charset="UTF-8">
 	<title>投稿のアイキャッチにデフォルトの画像を設定する仕組み</title>
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -43,8 +43,22 @@ img.emoji {
 <link rel="wlwmanifest" type="application/wlwmanifest+xml" href="/wp-includes/wlwmanifest.xml" /> 
 <meta name="generator" content="WordPress 4.8.3 with StaticPress ver.0.4.5" />
     <script>
+		var j = jQuery.noConflict();
+		j(window).on('scroll',function(){
 	var j = jQuery.noConflict();
-		
+		var $bodyWidth = j('body').outerWidth();
+		var $footerWidth = j('footer').outerWidth();
+		var $setMargin = ($bodyWidth - $footerWidth)/2;		
+			var $bodyHeight = j('body'). outerHeight(true);
+			var $scrolled = j(window).scrollTop();
+			var $windowHeight = j(window).height();
+			var $xHeight = $scrolled+$windowHeight;
+			if($bodyHeight === $xHeight){
+				j('footer').css('margin-bottom',$setMargin);
+			}else{
+				j('footer').css('margin-bottom','0');
+			}
+		})
 	</script>
 </head><body>
 	
@@ -56,30 +70,30 @@ img.emoji {
 <tr><th align='left' bgcolor='#f57900' colspan="5"><span style='background-color: #cc0000; color: #fce94f; font-size: x-large;'>( ! )</span> Notice: Array to string conversion in /var/www/html/wp-content/themes/wire-frame-theme/archive.php on line <i>16</i></th></tr>
 <tr><th align='left' bgcolor='#e9b96e' colspan='5'>Call Stack</th></tr>
 <tr><th align='center' bgcolor='#eeeeec'>#</th><th align='left' bgcolor='#eeeeec'>Time</th><th align='left' bgcolor='#eeeeec'>Memory</th><th align='left' bgcolor='#eeeeec'>Function</th><th align='left' bgcolor='#eeeeec'>Location</th></tr>
-<tr><td bgcolor='#eeeeec' align='center'>1</td><td bgcolor='#eeeeec' align='center'>0.0008</td><td bgcolor='#eeeeec' align='right'>358520</td><td bgcolor='#eeeeec'>{main}(  )</td><td title='/var/www/html/index.php' bgcolor='#eeeeec'>.../index.php<b>:</b>0</td></tr>
-<tr><td bgcolor='#eeeeec' align='center'>2</td><td bgcolor='#eeeeec' align='center'>0.0008</td><td bgcolor='#eeeeec' align='right'>358808</td><td bgcolor='#eeeeec'>require( <font color='#00bb00'>'/var/www/html/wp-blog-header.php'</font> )</td><td title='/var/www/html/index.php' bgcolor='#eeeeec'>.../index.php<b>:</b>17</td></tr>
-<tr><td bgcolor='#eeeeec' align='center'>3</td><td bgcolor='#eeeeec' align='center'>0.8014</td><td bgcolor='#eeeeec' align='right'>4575680</td><td bgcolor='#eeeeec'>require_once( <font color='#00bb00'>'/var/www/html/wp-includes/template-loader.php'</font> )</td><td title='/var/www/html/wp-blog-header.php' bgcolor='#eeeeec'>.../wp-blog-header.php<b>:</b>19</td></tr>
-<tr><td bgcolor='#eeeeec' align='center'>4</td><td bgcolor='#eeeeec' align='center'>0.8107</td><td bgcolor='#eeeeec' align='right'>4577024</td><td bgcolor='#eeeeec'>include( <font color='#00bb00'>'/var/www/html/wp-content/themes/wire-frame-theme/archive.php'</font> )</td><td title='/var/www/html/wp-includes/template-loader.php' bgcolor='#eeeeec'>.../template-loader.php<b>:</b>74</td></tr>
+<tr><td bgcolor='#eeeeec' align='center'>1</td><td bgcolor='#eeeeec' align='center'>0.0009</td><td bgcolor='#eeeeec' align='right'>358520</td><td bgcolor='#eeeeec'>{main}(  )</td><td title='/var/www/html/index.php' bgcolor='#eeeeec'>.../index.php<b>:</b>0</td></tr>
+<tr><td bgcolor='#eeeeec' align='center'>2</td><td bgcolor='#eeeeec' align='center'>0.0010</td><td bgcolor='#eeeeec' align='right'>358808</td><td bgcolor='#eeeeec'>require( <font color='#00bb00'>'/var/www/html/wp-blog-header.php'</font> )</td><td title='/var/www/html/index.php' bgcolor='#eeeeec'>.../index.php<b>:</b>17</td></tr>
+<tr><td bgcolor='#eeeeec' align='center'>3</td><td bgcolor='#eeeeec' align='center'>0.7123</td><td bgcolor='#eeeeec' align='right'>4578376</td><td bgcolor='#eeeeec'>require_once( <font color='#00bb00'>'/var/www/html/wp-includes/template-loader.php'</font> )</td><td title='/var/www/html/wp-blog-header.php' bgcolor='#eeeeec'>.../wp-blog-header.php<b>:</b>19</td></tr>
+<tr><td bgcolor='#eeeeec' align='center'>4</td><td bgcolor='#eeeeec' align='center'>0.7190</td><td bgcolor='#eeeeec' align='right'>4579720</td><td bgcolor='#eeeeec'>include( <font color='#00bb00'>'/var/www/html/wp-content/themes/wire-frame-theme/archive.php'</font> )</td><td title='/var/www/html/wp-includes/template-loader.php' bgcolor='#eeeeec'>.../template-loader.php<b>:</b>74</td></tr>
 </table></font>
 <br />
 <font size='1'><table class='xdebug-error xe-notice' dir='ltr' border='1' cellspacing='0' cellpadding='1'>
 <tr><th align='left' bgcolor='#f57900' colspan="5"><span style='background-color: #cc0000; color: #fce94f; font-size: x-large;'>( ! )</span> Notice: Undefined variable: Array in /var/www/html/wp-content/themes/wire-frame-theme/archive.php on line <i>16</i></th></tr>
 <tr><th align='left' bgcolor='#e9b96e' colspan='5'>Call Stack</th></tr>
 <tr><th align='center' bgcolor='#eeeeec'>#</th><th align='left' bgcolor='#eeeeec'>Time</th><th align='left' bgcolor='#eeeeec'>Memory</th><th align='left' bgcolor='#eeeeec'>Function</th><th align='left' bgcolor='#eeeeec'>Location</th></tr>
-<tr><td bgcolor='#eeeeec' align='center'>1</td><td bgcolor='#eeeeec' align='center'>0.0008</td><td bgcolor='#eeeeec' align='right'>358520</td><td bgcolor='#eeeeec'>{main}(  )</td><td title='/var/www/html/index.php' bgcolor='#eeeeec'>.../index.php<b>:</b>0</td></tr>
-<tr><td bgcolor='#eeeeec' align='center'>2</td><td bgcolor='#eeeeec' align='center'>0.0008</td><td bgcolor='#eeeeec' align='right'>358808</td><td bgcolor='#eeeeec'>require( <font color='#00bb00'>'/var/www/html/wp-blog-header.php'</font> )</td><td title='/var/www/html/index.php' bgcolor='#eeeeec'>.../index.php<b>:</b>17</td></tr>
-<tr><td bgcolor='#eeeeec' align='center'>3</td><td bgcolor='#eeeeec' align='center'>0.8014</td><td bgcolor='#eeeeec' align='right'>4575680</td><td bgcolor='#eeeeec'>require_once( <font color='#00bb00'>'/var/www/html/wp-includes/template-loader.php'</font> )</td><td title='/var/www/html/wp-blog-header.php' bgcolor='#eeeeec'>.../wp-blog-header.php<b>:</b>19</td></tr>
-<tr><td bgcolor='#eeeeec' align='center'>4</td><td bgcolor='#eeeeec' align='center'>0.8107</td><td bgcolor='#eeeeec' align='right'>4577024</td><td bgcolor='#eeeeec'>include( <font color='#00bb00'>'/var/www/html/wp-content/themes/wire-frame-theme/archive.php'</font> )</td><td title='/var/www/html/wp-includes/template-loader.php' bgcolor='#eeeeec'>.../template-loader.php<b>:</b>74</td></tr>
+<tr><td bgcolor='#eeeeec' align='center'>1</td><td bgcolor='#eeeeec' align='center'>0.0009</td><td bgcolor='#eeeeec' align='right'>358520</td><td bgcolor='#eeeeec'>{main}(  )</td><td title='/var/www/html/index.php' bgcolor='#eeeeec'>.../index.php<b>:</b>0</td></tr>
+<tr><td bgcolor='#eeeeec' align='center'>2</td><td bgcolor='#eeeeec' align='center'>0.0010</td><td bgcolor='#eeeeec' align='right'>358808</td><td bgcolor='#eeeeec'>require( <font color='#00bb00'>'/var/www/html/wp-blog-header.php'</font> )</td><td title='/var/www/html/index.php' bgcolor='#eeeeec'>.../index.php<b>:</b>17</td></tr>
+<tr><td bgcolor='#eeeeec' align='center'>3</td><td bgcolor='#eeeeec' align='center'>0.7123</td><td bgcolor='#eeeeec' align='right'>4578376</td><td bgcolor='#eeeeec'>require_once( <font color='#00bb00'>'/var/www/html/wp-includes/template-loader.php'</font> )</td><td title='/var/www/html/wp-blog-header.php' bgcolor='#eeeeec'>.../wp-blog-header.php<b>:</b>19</td></tr>
+<tr><td bgcolor='#eeeeec' align='center'>4</td><td bgcolor='#eeeeec' align='center'>0.7190</td><td bgcolor='#eeeeec' align='right'>4579720</td><td bgcolor='#eeeeec'>include( <font color='#00bb00'>'/var/www/html/wp-content/themes/wire-frame-theme/archive.php'</font> )</td><td title='/var/www/html/wp-includes/template-loader.php' bgcolor='#eeeeec'>.../template-loader.php<b>:</b>74</td></tr>
 </table></font>
 <br />
 <font size='1'><table class='xdebug-error xe-notice' dir='ltr' border='1' cellspacing='0' cellpadding='1'>
 <tr><th align='left' bgcolor='#f57900' colspan="5"><span style='background-color: #cc0000; color: #fce94f; font-size: x-large;'>( ! )</span> Notice: Trying to get property of non-object in /var/www/html/wp-content/themes/wire-frame-theme/archive.php on line <i>16</i></th></tr>
 <tr><th align='left' bgcolor='#e9b96e' colspan='5'>Call Stack</th></tr>
 <tr><th align='center' bgcolor='#eeeeec'>#</th><th align='left' bgcolor='#eeeeec'>Time</th><th align='left' bgcolor='#eeeeec'>Memory</th><th align='left' bgcolor='#eeeeec'>Function</th><th align='left' bgcolor='#eeeeec'>Location</th></tr>
-<tr><td bgcolor='#eeeeec' align='center'>1</td><td bgcolor='#eeeeec' align='center'>0.0008</td><td bgcolor='#eeeeec' align='right'>358520</td><td bgcolor='#eeeeec'>{main}(  )</td><td title='/var/www/html/index.php' bgcolor='#eeeeec'>.../index.php<b>:</b>0</td></tr>
-<tr><td bgcolor='#eeeeec' align='center'>2</td><td bgcolor='#eeeeec' align='center'>0.0008</td><td bgcolor='#eeeeec' align='right'>358808</td><td bgcolor='#eeeeec'>require( <font color='#00bb00'>'/var/www/html/wp-blog-header.php'</font> )</td><td title='/var/www/html/index.php' bgcolor='#eeeeec'>.../index.php<b>:</b>17</td></tr>
-<tr><td bgcolor='#eeeeec' align='center'>3</td><td bgcolor='#eeeeec' align='center'>0.8014</td><td bgcolor='#eeeeec' align='right'>4575680</td><td bgcolor='#eeeeec'>require_once( <font color='#00bb00'>'/var/www/html/wp-includes/template-loader.php'</font> )</td><td title='/var/www/html/wp-blog-header.php' bgcolor='#eeeeec'>.../wp-blog-header.php<b>:</b>19</td></tr>
-<tr><td bgcolor='#eeeeec' align='center'>4</td><td bgcolor='#eeeeec' align='center'>0.8107</td><td bgcolor='#eeeeec' align='right'>4577024</td><td bgcolor='#eeeeec'>include( <font color='#00bb00'>'/var/www/html/wp-content/themes/wire-frame-theme/archive.php'</font> )</td><td title='/var/www/html/wp-includes/template-loader.php' bgcolor='#eeeeec'>.../template-loader.php<b>:</b>74</td></tr>
+<tr><td bgcolor='#eeeeec' align='center'>1</td><td bgcolor='#eeeeec' align='center'>0.0009</td><td bgcolor='#eeeeec' align='right'>358520</td><td bgcolor='#eeeeec'>{main}(  )</td><td title='/var/www/html/index.php' bgcolor='#eeeeec'>.../index.php<b>:</b>0</td></tr>
+<tr><td bgcolor='#eeeeec' align='center'>2</td><td bgcolor='#eeeeec' align='center'>0.0010</td><td bgcolor='#eeeeec' align='right'>358808</td><td bgcolor='#eeeeec'>require( <font color='#00bb00'>'/var/www/html/wp-blog-header.php'</font> )</td><td title='/var/www/html/index.php' bgcolor='#eeeeec'>.../index.php<b>:</b>17</td></tr>
+<tr><td bgcolor='#eeeeec' align='center'>3</td><td bgcolor='#eeeeec' align='center'>0.7123</td><td bgcolor='#eeeeec' align='right'>4578376</td><td bgcolor='#eeeeec'>require_once( <font color='#00bb00'>'/var/www/html/wp-includes/template-loader.php'</font> )</td><td title='/var/www/html/wp-blog-header.php' bgcolor='#eeeeec'>.../wp-blog-header.php<b>:</b>19</td></tr>
+<tr><td bgcolor='#eeeeec' align='center'>4</td><td bgcolor='#eeeeec' align='center'>0.7190</td><td bgcolor='#eeeeec' align='right'>4579720</td><td bgcolor='#eeeeec'>include( <font color='#00bb00'>'/var/www/html/wp-content/themes/wire-frame-theme/archive.php'</font> )</td><td title='/var/www/html/wp-includes/template-loader.php' bgcolor='#eeeeec'>.../template-loader.php<b>:</b>74</td></tr>
 </table></font>
 の記事一覧
 					</h1>
@@ -156,7 +170,8 @@ img.emoji {
 	</section>
 					</main>
 		<footer>
-	<div class="menu-myglobal-container"><ul id="menu-myglobal" class="menu"><li id="menu-item-2107" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-2107"><a href="/entry/category/web">Web制作</a></li>
+	<footer>
+<div class="menu-myglobal-container"><ul id="menu-myglobal" class="menu"><li id="menu-item-2107" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-2107"><a href="/entry/category/web">Web制作</a></li>
 <li id="menu-item-2104" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-2104"><a href="/entry/category/cms">CMS</a></li>
 <li id="menu-item-2105" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-2105"><a href="/entry/category/dev">Dev</a></li>
 <li id="menu-item-2106" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-2106"><a href="/entry/category/dialy">Dialy</a></li>
@@ -169,6 +184,10 @@ img.emoji {
 </ul>
 </nav>
 </div>
+</footer>
+<script>
+
+</script>
 <script type='text/javascript' src="/wp-includes/js/wp-embed.min.js?ver=4.8.3"></script>
 	</footer>
 </body>

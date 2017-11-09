@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-<meta http-equiv="Last-Modified" content="Wed, 08 Nov 2017 23:54:26 GMT">
+<meta http-equiv="Last-Modified" content="Thu, 09 Nov 2017 07:28:42 GMT">
 	<meta charset="UTF-8">
 	<title>投稿のアイキャッチにデフォルトの画像を設定する仕組み</title>
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -43,8 +43,22 @@ img.emoji {
 <link rel="alternate" type="application/json+oembed" href="/wp-json/oembed/1.0/embed?url=http%3A%2F%2Fmywp%2Fentry%2F2017%2F11%2F08%2F085828" />
 <link rel="alternate" type="text/xml+oembed" href="/wp-json/oembed/1.0/embed?url=http%3A%2F%2Fmywp%2Fentry%2F2017%2F11%2F08%2F085828&#038;format=xml" />
     <script>
+		var j = jQuery.noConflict();
+		j(window).on('scroll',function(){
 	var j = jQuery.noConflict();
-		
+		var $bodyWidth = j('body').outerWidth();
+		var $footerWidth = j('footer').outerWidth();
+		var $setMargin = ($bodyWidth - $footerWidth)/2;		
+			var $bodyHeight = j('body'). outerHeight(true);
+			var $scrolled = j(window).scrollTop();
+			var $windowHeight = j(window).height();
+			var $xHeight = $scrolled+$windowHeight;
+			if($bodyHeight === $xHeight){
+				j('footer').css('margin-bottom',$setMargin);
+			}else{
+				j('footer').css('margin-bottom','0');
+			}
+		})
 	</script>
 </head><body>
 			<header>
@@ -117,7 +131,7 @@ function save_default_thumbnail( $post_id ) {
 			<aside>
 							</aside>
 	<footer>
-	<div class="menu-myglobal-container"><ul id="menu-myglobal" class="menu"><li id="menu-item-2107" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-2107"><a href="/entry/category/web">Web制作</a></li>
+<div class="menu-myglobal-container"><ul id="menu-myglobal" class="menu"><li id="menu-item-2107" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-2107"><a href="/entry/category/web">Web制作</a></li>
 <li id="menu-item-2104" class="menu-item menu-item-type-taxonomy menu-item-object-category current-post-ancestor menu-item-2104"><a href="/entry/category/cms">CMS</a></li>
 <li id="menu-item-2105" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-2105"><a href="/entry/category/dev">Dev</a></li>
 <li id="menu-item-2106" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-2106"><a href="/entry/category/dialy">Dialy</a></li>
@@ -130,7 +144,10 @@ function save_default_thumbnail( $post_id ) {
 </ul>
 </nav>
 </div>
+</footer>
+<script>
+
+</script>
 <script type='text/javascript' src="/wp-includes/js/wp-embed.min.js?ver=4.8.3"></script>
-	</footer>
 </body>
 </html>

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-<meta http-equiv="Last-Modified" content="Wed, 08 Nov 2017 23:53:48 GMT">
+<meta http-equiv="Last-Modified" content="Thu, 09 Nov 2017 07:28:05 GMT">
 	<meta charset="UTF-8">
 	<title>WordPressの仕組みを興味ない人にざっくり伝える。</title>
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -44,8 +44,22 @@ img.emoji {
 <link rel="alternate" type="application/json+oembed" href="/wp-json/oembed/1.0/embed?url=http%3A%2F%2Fmywp%2Fentry%2F2017%2F05%2F07%2F002910" />
 <link rel="alternate" type="text/xml+oembed" href="/wp-json/oembed/1.0/embed?url=http%3A%2F%2Fmywp%2Fentry%2F2017%2F05%2F07%2F002910&#038;format=xml" />
     <script>
+		var j = jQuery.noConflict();
+		j(window).on('scroll',function(){
 	var j = jQuery.noConflict();
-		
+		var $bodyWidth = j('body').outerWidth();
+		var $footerWidth = j('footer').outerWidth();
+		var $setMargin = ($bodyWidth - $footerWidth)/2;		
+			var $bodyHeight = j('body'). outerHeight(true);
+			var $scrolled = j(window).scrollTop();
+			var $windowHeight = j(window).height();
+			var $xHeight = $scrolled+$windowHeight;
+			if($bodyHeight === $xHeight){
+				j('footer').css('margin-bottom',$setMargin);
+			}else{
+				j('footer').css('margin-bottom','0');
+			}
+		})
 	</script>
 </head><body>
 			<header>
@@ -63,8 +77,8 @@ img.emoji {
 				2017年5月7日			</nav>
 					</div>
 		<!--END-header_layer-->
-			</header>
-	<main class="post-2132 post type-post status-publish format-standard hentry category-cms">
+		<img width="1920" height="1280" src="/wp-content/uploads/2017/11/default-eye-chacth-compressor.jpg" class="attachment-post-thumbnail size-post-thumbnail wp-post-image" alt="" srcset="https://pochi-web.github.io/wp-content/uploads/2017/11/default-eye-chacth-compressor.jpg 1920w, https://pochi-web.github.io/wp-content/uploads/2017/11/default-eye-chacth-compressor-300x200.jpg 300w, https://pochi-web.github.io/wp-content/uploads/2017/11/default-eye-chacth-compressor-768x512.jpg 768w, https://pochi-web.github.io/wp-content/uploads/2017/11/default-eye-chacth-compressor-1024x683.jpg 1024w" sizes="(max-width: 1920px) 100vw, 1920px" />	</header>
+	<main class="post-2132 post type-post status-publish format-standard has-post-thumbnail hentry category-cms">
 		<article id="main_article">
 			<p>今、<a class="keyword" href="http://d.hatena.ne.jp/keyword/WordPress">WordPress</a>のテーマ作成を業務で行なっているのだけど、細かく書くべき備忘録がたくさん溜まっている。全てを書くのはいつになるやら、という感じ。</p>
 <p>なので、まずは<a class="keyword" href="http://d.hatena.ne.jp/keyword/WordPress">WordPress</a>全体の仕組みについて、私なりの解釈を書いておきたい。</p>
@@ -128,7 +142,7 @@ img.emoji {
 			</div><!-- #respond -->
 				</aside>
 	<footer>
-	<div class="menu-myglobal-container"><ul id="menu-myglobal" class="menu"><li id="menu-item-2107" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-2107"><a href="/entry/category/web">Web制作</a></li>
+<div class="menu-myglobal-container"><ul id="menu-myglobal" class="menu"><li id="menu-item-2107" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-2107"><a href="/entry/category/web">Web制作</a></li>
 <li id="menu-item-2104" class="menu-item menu-item-type-taxonomy menu-item-object-category current-post-ancestor current-menu-parent current-post-parent menu-item-2104"><a href="/entry/category/cms">CMS</a></li>
 <li id="menu-item-2105" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-2105"><a href="/entry/category/dev">Dev</a></li>
 <li id="menu-item-2106" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-2106"><a href="/entry/category/dialy">Dialy</a></li>
@@ -141,7 +155,10 @@ img.emoji {
 </ul>
 </nav>
 </div>
+</footer>
+<script>
+
+</script>
 <script type='text/javascript' src="/wp-includes/js/wp-embed.min.js?ver=4.8.3"></script>
-	</footer>
 </body>
 </html>
