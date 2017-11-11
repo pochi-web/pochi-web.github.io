@@ -5,9 +5,9 @@ Template Name: Archive
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-<meta http-equiv="Last-Modified" content="Thu, 09 Nov 2017 07:29:26 GMT">
+<meta http-equiv="Last-Modified" content="Sat, 11 Nov 2017 11:49:05 GMT">
 	<meta charset="UTF-8">
-	<title>投稿のアイキャッチにデフォルトの画像を設定する仕組み</title>
+	<title>search.phpの作成</title>
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
        <link rel='dns-prefetch' href="//maxcdn.bootstrapcdn.com" />
@@ -64,44 +64,23 @@ img.emoji {
 	
 		<header>
 	<div id="header_layer">
-		<h1>
-					<br />
-<font size='1'><table class='xdebug-error xe-notice' dir='ltr' border='1' cellspacing='0' cellpadding='1'>
-<tr><th align='left' bgcolor='#f57900' colspan="5"><span style='background-color: #cc0000; color: #fce94f; font-size: x-large;'>( ! )</span> Notice: Array to string conversion in /var/www/html/wp-content/themes/wire-frame-theme/archive.php on line <i>16</i></th></tr>
-<tr><th align='left' bgcolor='#e9b96e' colspan='5'>Call Stack</th></tr>
-<tr><th align='center' bgcolor='#eeeeec'>#</th><th align='left' bgcolor='#eeeeec'>Time</th><th align='left' bgcolor='#eeeeec'>Memory</th><th align='left' bgcolor='#eeeeec'>Function</th><th align='left' bgcolor='#eeeeec'>Location</th></tr>
-<tr><td bgcolor='#eeeeec' align='center'>1</td><td bgcolor='#eeeeec' align='center'>0.0009</td><td bgcolor='#eeeeec' align='right'>358520</td><td bgcolor='#eeeeec'>{main}(  )</td><td title='/var/www/html/index.php' bgcolor='#eeeeec'>.../index.php<b>:</b>0</td></tr>
-<tr><td bgcolor='#eeeeec' align='center'>2</td><td bgcolor='#eeeeec' align='center'>0.0010</td><td bgcolor='#eeeeec' align='right'>358808</td><td bgcolor='#eeeeec'>require( <font color='#00bb00'>'/var/www/html/wp-blog-header.php'</font> )</td><td title='/var/www/html/index.php' bgcolor='#eeeeec'>.../index.php<b>:</b>17</td></tr>
-<tr><td bgcolor='#eeeeec' align='center'>3</td><td bgcolor='#eeeeec' align='center'>0.7123</td><td bgcolor='#eeeeec' align='right'>4578376</td><td bgcolor='#eeeeec'>require_once( <font color='#00bb00'>'/var/www/html/wp-includes/template-loader.php'</font> )</td><td title='/var/www/html/wp-blog-header.php' bgcolor='#eeeeec'>.../wp-blog-header.php<b>:</b>19</td></tr>
-<tr><td bgcolor='#eeeeec' align='center'>4</td><td bgcolor='#eeeeec' align='center'>0.7190</td><td bgcolor='#eeeeec' align='right'>4579720</td><td bgcolor='#eeeeec'>include( <font color='#00bb00'>'/var/www/html/wp-content/themes/wire-frame-theme/archive.php'</font> )</td><td title='/var/www/html/wp-includes/template-loader.php' bgcolor='#eeeeec'>.../template-loader.php<b>:</b>74</td></tr>
-</table></font>
-<br />
-<font size='1'><table class='xdebug-error xe-notice' dir='ltr' border='1' cellspacing='0' cellpadding='1'>
-<tr><th align='left' bgcolor='#f57900' colspan="5"><span style='background-color: #cc0000; color: #fce94f; font-size: x-large;'>( ! )</span> Notice: Undefined variable: Array in /var/www/html/wp-content/themes/wire-frame-theme/archive.php on line <i>16</i></th></tr>
-<tr><th align='left' bgcolor='#e9b96e' colspan='5'>Call Stack</th></tr>
-<tr><th align='center' bgcolor='#eeeeec'>#</th><th align='left' bgcolor='#eeeeec'>Time</th><th align='left' bgcolor='#eeeeec'>Memory</th><th align='left' bgcolor='#eeeeec'>Function</th><th align='left' bgcolor='#eeeeec'>Location</th></tr>
-<tr><td bgcolor='#eeeeec' align='center'>1</td><td bgcolor='#eeeeec' align='center'>0.0009</td><td bgcolor='#eeeeec' align='right'>358520</td><td bgcolor='#eeeeec'>{main}(  )</td><td title='/var/www/html/index.php' bgcolor='#eeeeec'>.../index.php<b>:</b>0</td></tr>
-<tr><td bgcolor='#eeeeec' align='center'>2</td><td bgcolor='#eeeeec' align='center'>0.0010</td><td bgcolor='#eeeeec' align='right'>358808</td><td bgcolor='#eeeeec'>require( <font color='#00bb00'>'/var/www/html/wp-blog-header.php'</font> )</td><td title='/var/www/html/index.php' bgcolor='#eeeeec'>.../index.php<b>:</b>17</td></tr>
-<tr><td bgcolor='#eeeeec' align='center'>3</td><td bgcolor='#eeeeec' align='center'>0.7123</td><td bgcolor='#eeeeec' align='right'>4578376</td><td bgcolor='#eeeeec'>require_once( <font color='#00bb00'>'/var/www/html/wp-includes/template-loader.php'</font> )</td><td title='/var/www/html/wp-blog-header.php' bgcolor='#eeeeec'>.../wp-blog-header.php<b>:</b>19</td></tr>
-<tr><td bgcolor='#eeeeec' align='center'>4</td><td bgcolor='#eeeeec' align='center'>0.7190</td><td bgcolor='#eeeeec' align='right'>4579720</td><td bgcolor='#eeeeec'>include( <font color='#00bb00'>'/var/www/html/wp-content/themes/wire-frame-theme/archive.php'</font> )</td><td title='/var/www/html/wp-includes/template-loader.php' bgcolor='#eeeeec'>.../template-loader.php<b>:</b>74</td></tr>
-</table></font>
-<br />
-<font size='1'><table class='xdebug-error xe-notice' dir='ltr' border='1' cellspacing='0' cellpadding='1'>
-<tr><th align='left' bgcolor='#f57900' colspan="5"><span style='background-color: #cc0000; color: #fce94f; font-size: x-large;'>( ! )</span> Notice: Trying to get property of non-object in /var/www/html/wp-content/themes/wire-frame-theme/archive.php on line <i>16</i></th></tr>
-<tr><th align='left' bgcolor='#e9b96e' colspan='5'>Call Stack</th></tr>
-<tr><th align='center' bgcolor='#eeeeec'>#</th><th align='left' bgcolor='#eeeeec'>Time</th><th align='left' bgcolor='#eeeeec'>Memory</th><th align='left' bgcolor='#eeeeec'>Function</th><th align='left' bgcolor='#eeeeec'>Location</th></tr>
-<tr><td bgcolor='#eeeeec' align='center'>1</td><td bgcolor='#eeeeec' align='center'>0.0009</td><td bgcolor='#eeeeec' align='right'>358520</td><td bgcolor='#eeeeec'>{main}(  )</td><td title='/var/www/html/index.php' bgcolor='#eeeeec'>.../index.php<b>:</b>0</td></tr>
-<tr><td bgcolor='#eeeeec' align='center'>2</td><td bgcolor='#eeeeec' align='center'>0.0010</td><td bgcolor='#eeeeec' align='right'>358808</td><td bgcolor='#eeeeec'>require( <font color='#00bb00'>'/var/www/html/wp-blog-header.php'</font> )</td><td title='/var/www/html/index.php' bgcolor='#eeeeec'>.../index.php<b>:</b>17</td></tr>
-<tr><td bgcolor='#eeeeec' align='center'>3</td><td bgcolor='#eeeeec' align='center'>0.7123</td><td bgcolor='#eeeeec' align='right'>4578376</td><td bgcolor='#eeeeec'>require_once( <font color='#00bb00'>'/var/www/html/wp-includes/template-loader.php'</font> )</td><td title='/var/www/html/wp-blog-header.php' bgcolor='#eeeeec'>.../wp-blog-header.php<b>:</b>19</td></tr>
-<tr><td bgcolor='#eeeeec' align='center'>4</td><td bgcolor='#eeeeec' align='center'>0.7190</td><td bgcolor='#eeeeec' align='right'>4579720</td><td bgcolor='#eeeeec'>include( <font color='#00bb00'>'/var/www/html/wp-content/themes/wire-frame-theme/archive.php'</font> )</td><td title='/var/www/html/wp-includes/template-loader.php' bgcolor='#eeeeec'>.../template-loader.php<b>:</b>74</td></tr>
-</table></font>
-の記事一覧
-					</h1>
+		<h1>年別: 2017年の記事</h1>
 				
 			<nav id="header_nav">
 			</nav>
 		</div><!--END-header_layer-->
 	</header>
+			<main id="category_main" class="post-2289 post type-post status-publish format-standard has-post-thumbnail hentry category-wordpress">	
+		<section class="articles_index">
+			<h2><a href="/entry/2017/11/11/204453">search.phpの作成</a></h2>
+		<time class="date">2017年11月11日</time>
+		<div class="articles_index_thumbnail">
+		<a href="/entry/2017/11/11/204453">
+		<img width="1920" height="1280" src="/wp-content/uploads/2017/11/default-eye-chacth-compressor.jpg" class="attachment-post-thumbnail size-post-thumbnail wp-post-image" alt="" srcset="https://pochi-web.github.io/wp-content/uploads/2017/11/default-eye-chacth-compressor.jpg 1920w, https://pochi-web.github.io/wp-content/uploads/2017/11/default-eye-chacth-compressor-300x200.jpg 300w, https://pochi-web.github.io/wp-content/uploads/2017/11/default-eye-chacth-compressor-768x512.jpg 768w, https://pochi-web.github.io/wp-content/uploads/2017/11/default-eye-chacth-compressor-1024x683.jpg 1024w" sizes="(max-width: 1920px) 100vw, 1920px" />		</a>
+		</div>
+		<nav id="tag_navigation">	
+		</nav>
+	</section>
 			<main id="category_main" class="post-2252 post type-post status-publish format-standard has-post-thumbnail hentry category-wordpress tag-post_meta tag-164">	
 		<section class="articles_index">
 			<h2><a href="/entry/2017/11/08/085828">投稿のアイキャッチにデフォルトの画像を設定する仕組み</a></h2>
@@ -157,17 +136,6 @@ img.emoji {
 		<nav id="tag_navigation">	
 		</nav>
 	</section>
-			<main id="category_main" class="post-2113 post type-post status-publish format-standard has-post-thumbnail hentry category-wordpress">	
-		<section class="articles_index">
-			<h2><a href="/entry/2017/09/24/115654">カテゴリ、タグ、投稿日を表示する｜WordPressテーマの作り方</a></h2>
-		<time class="date">2017年9月24日</time>
-		<div class="articles_index_thumbnail">
-		<a href="/entry/2017/09/24/115654">
-		<img width="1920" height="1280" src="/wp-content/uploads/2017/11/default-eye-chacth-compressor.jpg" class="attachment-post-thumbnail size-post-thumbnail wp-post-image" alt="" srcset="https://pochi-web.github.io/wp-content/uploads/2017/11/default-eye-chacth-compressor.jpg 1920w, https://pochi-web.github.io/wp-content/uploads/2017/11/default-eye-chacth-compressor-300x200.jpg 300w, https://pochi-web.github.io/wp-content/uploads/2017/11/default-eye-chacth-compressor-768x512.jpg 768w, https://pochi-web.github.io/wp-content/uploads/2017/11/default-eye-chacth-compressor-1024x683.jpg 1024w" sizes="(max-width: 1920px) 100vw, 1920px" />		</a>
-		</div>
-		<nav id="tag_navigation">	
-		</nav>
-	</section>
 					</main>
 		<footer>
 	<footer>
@@ -179,8 +147,9 @@ img.emoji {
 <p class="copyright_text">&copy;2017&nbsp;webで何か作るブログ</p>
 <nav id="total_navigation">
 <ul>
+<li class="back_to"><a href="#top">サイト内検索</a></li>
 <li class="back_to"><a href="/">Homeへ</a></li>
-<li class="back_to"><a href="/entry/2017/09/24/115654#top">Topへ</a></li>
+<li class="back_to"><a href="/entry/2017/09/24/230439#top">Topへ</a></li>
 </ul>
 </nav>
 </div>

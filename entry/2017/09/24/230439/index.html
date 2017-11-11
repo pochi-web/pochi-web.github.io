@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-<meta http-equiv="Last-Modified" content="Thu, 09 Nov 2017 07:27:29 GMT">
+<meta http-equiv="Last-Modified" content="Sat, 11 Nov 2017 11:46:56 GMT">
 	<meta charset="UTF-8">
 	<title>archive.phpの作成｜WordPressテーマの作り方</title>
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -66,7 +66,7 @@ img.emoji {
 		<div id="header_layer">
 			<h1>
 				archive.phpの作成｜WordPressテーマの作り方			</h1>
-			<p>r珍しく二本更新します。今回はarchive.phpを作成します。archive.phpはカテゴリーやタグなどのリンクをクリックされた時に呼び出されるテンプレートです。 多くは、タイトル、カテゴリー、タグ、投稿日、、アイ</p>
+			<p>珍しく二本更新します。今回はarchive.phpを作成します。archive.phpはカテゴリーやタグ、投稿月など、をクリックされた時に呼び出されるテンプレートです。 多くは、タイトル、カテゴリー、タグ、投稿日、、アイ</p>
 						<nav id="header_nav">
 				<ul id="category_nav">
 										<li class="category_name">
@@ -80,14 +80,29 @@ img.emoji {
 		<img width="1920" height="1280" src="/wp-content/uploads/2017/11/default-eye-chacth-compressor.jpg" class="attachment-post-thumbnail size-post-thumbnail wp-post-image" alt="" srcset="https://pochi-web.github.io/wp-content/uploads/2017/11/default-eye-chacth-compressor.jpg 1920w, https://pochi-web.github.io/wp-content/uploads/2017/11/default-eye-chacth-compressor-300x200.jpg 300w, https://pochi-web.github.io/wp-content/uploads/2017/11/default-eye-chacth-compressor-768x512.jpg 768w, https://pochi-web.github.io/wp-content/uploads/2017/11/default-eye-chacth-compressor-1024x683.jpg 1024w" sizes="(max-width: 1920px) 100vw, 1920px" />	</header>
 	<main class="post-2112 post type-post status-publish format-standard has-post-thumbnail hentry category-cms">
 		<article id="main_article">
-			<p>r珍しく二本更新します。今回はarchive.<a class="keyword" href="http://d.hatena.ne.jp/keyword/php">php</a>を作成します。archive.<a class="keyword" href="http://d.hatena.ne.jp/keyword/php">php</a>はカテゴリーやタグなどのリンクをクリックされた時に呼び出されるテンプレートです。</p>
-<p>多くは、タイトル、カテゴリー、タグ、投稿日、、<a class="keyword" href="http://d.hatena.ne.jp/keyword/%A5%A2%A5%A4%A5%AD%A5%E3%A5%C3%A5%C1">アイキャッチ</a>画像、記事の抜粋が表示されます。記事の一覧ページといえばわかりやすいでしょうか？</p>
+			<p>珍しく二本更新します。今回はarchive.<a class="keyword" href="http://d.hatena.ne.jp/keyword/php">php</a>を作成します。archive.<a class="keyword" href="http://d.hatena.ne.jp/keyword/php">php</a>はカテゴリーやタグ、投稿月など、をクリックされた時に呼び出されるテンプレートです。</p>
+<p>多くは、タイトル、カテゴリー、タグ、投稿日、、<a class="keyword" href="http://d.hatena.ne.jp/keyword/%A5%A2%A5%A4%A5%AD%A5%E3%A5%C3%A5%C1">アイキャッチ</a>画像、記事の抜粋が表示されます。何かしらセグメントをかけた一覧ページといえばわかりやすいでしょうか？</p>
 <p>とはいえ、先日までに作成したindex.<a class="keyword" href="http://d.hatena.ne.jp/keyword/php">php</a>とほぼ変わりません。</p>
 <h2>コード</h2>
-<p><script src="https://gist.github.com/eb4df63bfedebafed189ee7735706fdb.js"> </script></p>
-<p><a href="https://gist.github.com/eb4df63bfedebafed189ee7735706fdb">archive.phpを作成</a></p>
+<p><script src="https://gist.github.com/pochi-web/a71ddef676ed5360d6ed2f7ee3d66030.js"></script></p>
+<p><a href="https://gist.github.com/a71ddef676ed5360d6ed2f7ee3d66030">archive.phpを作成</a></p>
 <h2><a class="keyword" href="http://d.hatena.ne.jp/keyword/%A5%A2%A5%A4%A5%AD%A5%E3%A5%C3%A5%C1">アイキャッチ</a>の有効化と表示</h2>
-<p>見た通りほとんどはindex.<a class="keyword" href="http://d.hatena.ne.jp/keyword/php">php</a>と同様なのですが、index.<a class="keyword" href="http://d.hatena.ne.jp/keyword/php">php</a>から追加、変更された部分として20~26行目の内容があります。</p>
+<p>見た通りほとんどはindex.<a class="keyword" href="http://d.hatena.ne.jp/keyword/php">php</a>と同様なのですが、index.<a class="keyword" href="http://d.hatena.ne.jp/keyword/php">php</a>から追加、変更された部分として以下の内容があります。</p>
+<h3>the_archive_title()でクエリに応じたタイトルを表示する</h3>
+<p>index.phpではタイトルをthe_titleで表示していましたが、archive.phpのタイトルを出力する関数にはthe_archive_title()を使います。</p>
+<blockquote><p><strong>説明</strong></p>
+<p>クエリの内容に基づいてアーカイブのタイトルを表示します。ターム（カテゴリー、タグ、カスタムタクソノミー）、日付、投稿タイプ、投稿フォーマット、作成者などのアーカイブページが対象です。</p>
+<p>値を取得するには get_the_archive_title() を使ってください。</p>
+<p><strong>使い方</strong></p>
+<p>&lt;?php the_archive_title( $before, $after ); ?&gt;</p>
+<p><strong>パラメータ</strong></p>
+<p>$before</p>
+<p>（文字列） （オプション） タイトルの直前に出力。<br />
+初期値： &#8221;</p>
+<p>$after</p>
+<p>（文字列） （オプション） タイトルの直後に出力。</p>
+<p>初期値： &#8221;</p>
+<p><a href="https://wpdocs.osdn.jp/%E9%96%A2%E6%95%B0%E3%83%AA%E3%83%95%E3%82%A1%E3%83%AC%E3%83%B3%E3%82%B9/the_archive_title">WordPressCodex 関数リファレンス/the archive titleより</a></p></blockquote>
 <h3>post_tumbnails関数で表示をコン<a class="keyword" href="http://d.hatena.ne.jp/keyword/%A5%C8%A5%ED%A1%BC%A5%EB">トロール</a>する</h3>
 <p>まず、post_thumb_nailは<a class="keyword" href="http://d.hatena.ne.jp/keyword/%A5%A2%A5%A4%A5%AD%A5%E3%A5%C3%A5%C1">アイキャッチ</a>画像と呼ばれる画像に関わるものです。記事一覧のページを開くと、そのページを象徴するような画像が表示されていることが多いですが、そういった画像のことを<a class="keyword" href="http://d.hatena.ne.jp/keyword/%A5%A2%A5%A4%A5%AD%A5%E3%A5%C3%A5%C1">アイキャッチ</a>画像と言います。</p>
 <p><a class="keyword" href="http://d.hatena.ne.jp/keyword/%A5%A2%A5%A4%A5%AD%A5%E3%A5%C3%A5%C1">アイキャッチ</a>画像は記事の投稿画面から設定可能になるのですが、初期状態ではその機能がオフになっているため、functions.<a class="keyword" href="http://d.hatena.ne.jp/keyword/php">php</a>に以下のコードを挿入する必要があります。</p>
@@ -96,7 +111,6 @@ img.emoji {
 <h3>add_theme_suportで<a class="keyword" href="http://d.hatena.ne.jp/keyword/%A5%A2%A5%A4%A5%AD%A5%E3%A5%C3%A5%C1">アイキャッチ</a>を有効化</h3>
 <p>theme suportは<a class="keyword" href="http://d.hatena.ne.jp/keyword/WordPress">WordPress</a>であらかじめ用意されている各種の機能を利用するための関数で、今回利用したpost-thumbnails以外にもカスタムヘッダーなどのいくつかの機能があります。詳しくはCodexにて。</p>
 <p><a href="http://wpdocs.osdn.jp/%E9%96%A2%E6%95%B0%E3%83%AA%E3%83%95%E3%82%A1%E3%83%AC%E3%83%B3%E3%82%B9/add_theme_support#.E8.BF.BD.E5.8A.A0.E3.81.A7.E3.81.8D.E3.82.8B.E6.A9.9F.E8.83.BD">関</a><a href="http://wpdocs.osdn.jp/%E9%96%A2%E6%95%B0%E3%83%AA%E3%83%95%E3%82%A1%E3%83%AC%E3%83%B3%E3%82%B9/add_theme_support#.E8.BF.BD.E5.8A.A0.E3.81.A7.E3.81.8D.E3.82.8B.E6.A9.9F.E8.83.BD">数リファレンス/add theme support &#8211; WordPress Codex 日本語版</a></p>
-<p> </p>
 <p><a class="keyword" href="http://d.hatena.ne.jp/keyword/%A5%A2%A5%A4%A5%AD%A5%E3%A5%C3%A5%C1">アイキャッチ</a>を有効化することで、記事作成画面で以下のエリアが表示されるようになりました。わぷーかわいい。</p>
 <p><img class="hatena-fotolife" title="f:id:pochiweb:20170924225540p:plain" src="https://cdn-ak.f.st-hatena.com/images/fotolife/p/pochiweb/20170924/20170924225540.png" alt="f:id:pochiweb:20170924225540p:plain" width="116" /></p>
 <h3>excerptで抜粋文を表示する</h3>
@@ -104,8 +118,6 @@ img.emoji {
 <p><a href="https://wpdocs.osdn.jp/%E3%83%86%E3%83%B3%E3%83%97%E3%83%AC%E3%83%BC%E3%83%88%E3%82%BF%E3%82%B0/the_excerpt">テンプレートタグ/the excerpt &#8211; WordPress Codex 日本語版</a></p>
 <p>文字数や、デフォルトで[&#8230;]となっている部分を変更可能になっています。</p>
 <p>次回はページ送りを搭載していきたいと思います。</p>
-<p> </p>
-<p> </p>
 		</article>
 	</main>
 			<aside>
@@ -119,6 +131,7 @@ img.emoji {
 <p class="copyright_text">&copy;2017&nbsp;webで何か作るブログ</p>
 <nav id="total_navigation">
 <ul>
+<li class="back_to"><a href="#top">サイト内検索</a></li>
 <li class="back_to"><a href="/">Homeへ</a></li>
 <li class="back_to"><a href="/entry/2017/09/24/230439#top">Topへ</a></li>
 </ul>
