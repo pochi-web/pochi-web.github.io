@@ -410,6 +410,19 @@ time{
 	font-size:0.8rem;
 	
 }
+#pager_navigation{
+	width:100%;
+	text-align: center;
+}
+#pager_navigation a{
+	padding:0.5rem 1.2rem;
+}
+.icon-right{
+	margin-left:0.5em;
+}
+.icon-left{
+	margin-right:0.5em;
+}
 /*------------------------------------
 フッター
 -------------------------------------*/

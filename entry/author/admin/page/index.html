@@ -38,8 +38,22 @@ img.emoji {
 <link rel="wlwmanifest" type="application/wlwmanifest+xml" href="/wp-includes/wlwmanifest.xml" /> 
 <meta name="generator" content="WordPress 4.8.3 with StaticPress ver.0.4.5" />
     <script>
+		var j = jQuery.noConflict();
+		j(window).on('scroll',function(){
 	var j = jQuery.noConflict();
-		
+		var $bodyWidth = j('body').outerWidth();
+		var $footerWidth = j('footer').outerWidth();
+		var $setMargin = ($bodyWidth - $footerWidth)/2;		
+			var $bodyHeight = j('body'). outerHeight(true);
+			var $scrolled = j(window).scrollTop();
+			var $windowHeight = j(window).height();
+			var $xHeight = $scrolled+$windowHeight;
+			if($bodyHeight === $xHeight){
+				j('footer').css('margin-bottom',$setMargin);
+			}else{
+				j('footer').css('margin-bottom','0');
+			}
+		})
 	</script>
 </head><body>
 <header>
@@ -51,15 +65,15 @@ img.emoji {
 	<p>申し訳ありません。ご指定のURLにはファイルがありません。<br>
 	どのようなものをお探しでしたか？<br>
 	よろしければお聞かせください。</p>
-	<form role="search" method="get" id="searchform" class="searchform" action="/">
-				<div>
-					<label class="screen-reader-text" for="s">検索:</label>
-					<input type="text" value="" name="s" id="s" />
-					<input type="submit" id="searchsubmit" value="検索" />
-				</div>
-			</form>	</main>
+	<form role="search" method="get" id="searchform" action="/">
+<div>
+<p class="screen-reader-text" for="s">お探しのものを入力してください。</p>
+<span><input type="text" value="" name="s" id="s" /></span>
+<span><input type="submit" id="searchsubmit" value="検索" /></span>
+</div>
+</form>	</main>
 	<footer>
-	<div class="menu-myglobal-container"><ul id="menu-myglobal" class="menu"><li id="menu-item-2107" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-2107"><a href="/entry/category/web">Web制作</a></li>
+<div class="menu-myglobal-container"><ul id="menu-myglobal" class="menu"><li id="menu-item-2107" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-2107"><a href="/entry/category/web">Web制作</a></li>
 <li id="menu-item-2104" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-2104"><a href="/entry/category/cms">CMS</a></li>
 <li id="menu-item-2105" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-2105"><a href="/entry/category/dev">Dev</a></li>
 <li id="menu-item-2106" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-2106"><a href="/entry/category/dialy">Dialy</a></li>
@@ -67,12 +81,16 @@ img.emoji {
 <p class="copyright_text">&copy;2017&nbsp;webで何か作るブログ</p>
 <nav id="total_navigation">
 <ul>
-<li class="back_to"><a href="/">Homeへ</a></li>
-<li class="back_to"><a href="#top">Topへ</a></li>
+<li class="back_to"><a href="/index.php/search">検索</a></li>
+<li class="back_to"><a href="/">Home</a></li>
+<li class="back_to"><a href="#top">Top</a></li>
 </ul>
 </nav>
 </div>
+</footer>
+<script>
+
+</script>
 <script type='text/javascript' src="/wp-includes/js/wp-embed.min.js?ver=4.8.3"></script>
-	</footer>
 </body>
 </html>
