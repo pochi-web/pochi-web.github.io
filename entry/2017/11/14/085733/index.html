@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-<meta http-equiv="Last-Modified" content="Mon, 13 Nov 2017 23:59:36 GMT">
+<meta http-equiv="Last-Modified" content="Tue, 14 Nov 2017 00:00:19 GMT">
 	<meta charset="UTF-8">
-	<title>サイドバーを縦だけ固定するCSS</title>
+	<title>comment.phpの作成</title>
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
        <link rel='dns-prefetch' href="//maxcdn.bootstrapcdn.com" />
@@ -37,12 +37,11 @@ img.emoji {
 <script type='text/javascript' src="/wp-includes/js/jquery/jquery-migrate.min.js?ver=1.4.1"></script>
 <link rel='https://api.w.org/' href="/wp-json/" />
 <link rel="wlwmanifest" type="application/wlwmanifest+xml" href="/wp-includes/wlwmanifest.xml" /> 
-<link rel='prev' title='WordPressの仕組みを興味ない人にざっくり伝える。' href="/entry/2017/05/07/002910" />
-<link rel='next' title='WordPressの仕組みをもう少し掘り下げてみる' href="/entry/2017/07/02/140837" />
+<link rel='prev' title='search.phpの作成' href="/entry/2017/11/11/204453" />
 <meta name="generator" content="WordPress 4.8.3 with StaticPress ver.0.4.5" />
-<link rel="canonical" href="https://pochi-web.github.io/entry/2017/05/14/171023" />
-<link rel="alternate" type="application/json+oembed" href="/wp-json/oembed/1.0/embed?url=http%3A%2F%2Fmywp%2Fentry%2F2017%2F05%2F14%2F171023" />
-<link rel="alternate" type="text/xml+oembed" href="/wp-json/oembed/1.0/embed?url=http%3A%2F%2Fmywp%2Fentry%2F2017%2F05%2F14%2F171023&#038;format=xml" />
+<link rel="canonical" href="https://pochi-web.github.io/entry/2017/11/14/085733" />
+<link rel="alternate" type="application/json+oembed" href="/wp-json/oembed/1.0/embed?url=http%3A%2F%2Fmywp%2Fentry%2F2017%2F11%2F14%2F085733" />
+<link rel="alternate" type="text/xml+oembed" href="/wp-json/oembed/1.0/embed?url=http%3A%2F%2Fmywp%2Fentry%2F2017%2F11%2F14%2F085733&#038;format=xml" />
     <script>
 		var j = jQuery.noConflict();
 		j(window).on('scroll',function(){
@@ -65,52 +64,64 @@ img.emoji {
 			<header>
 		<div id="header_layer">
 			<h1>
-				サイドバーを縦だけ固定するCSS			</h1>
-			<p>レスポンシブのサイドバー固定をCSSのみで実装する 久しぶりのCSSネタ。 サイドバーをfixedで横に固定したいときが多くあります。そのとき問題なのが、position:fixedの起点がブラウザの端になってしまうこと</p>
+				comment.phpの作成			</h1>
+			<p>WordPressのコメント機能を利用するためのテンプレートである、comment.phpを作成する手順のメモです。Codexの内容をベースにしています。</p>
 						<nav id="header_nav">
 				<ul id="category_nav">
 										<li class="category_name">
-						<a href="/entry/category/web">
-							Web制作						</a>
+						<a href="/entry/category/cms/wordpress%e3%83%86%e3%83%bc%e3%83%9e%e3%81%ae%e4%bd%9c%e3%82%8a%e6%96%b9">
+							WordPressテーマ制作						</a>
 					</li>
 																			</ul>
-				2017年5月14日			</nav>
+				2017年11月14日			</nav>
 					</div>
 		<!--END-header_layer-->
 		<img width="1920" height="1280" src="/wp-content/uploads/2017/11/default-eye-chacth-compressor.jpg" class="attachment-post-thumbnail size-post-thumbnail wp-post-image" alt="" srcset="https://pochi-web.github.io/wp-content/uploads/2017/11/default-eye-chacth-compressor.jpg 1920w, https://pochi-web.github.io/wp-content/uploads/2017/11/default-eye-chacth-compressor-300x200.jpg 300w, https://pochi-web.github.io/wp-content/uploads/2017/11/default-eye-chacth-compressor-768x512.jpg 768w, https://pochi-web.github.io/wp-content/uploads/2017/11/default-eye-chacth-compressor-1024x683.jpg 1024w" sizes="(max-width: 1920px) 100vw, 1920px" />	</header>
-	<main class="post-2131 post type-post status-publish format-standard has-post-thumbnail hentry category-web">
+	<main class="post-2294 post type-post status-publish format-standard has-post-thumbnail hentry category-wordpress">
 		<article id="main_article">
-			<h2>レスポンシブのサイドバー固定を<a class="keyword" href="http://d.hatena.ne.jp/keyword/CSS">CSS</a>のみで実装する</h2>
-<p>久しぶりの<a class="keyword" href="http://d.hatena.ne.jp/keyword/CSS">CSS</a>ネタ。</p>
-<p>サイドバーをfixedで横に固定したいときが多くあります。そのとき問題なのが、position:fixedの起点がブラウザの端になってしまうこと。</p>
-<p>通常のサイトだと単純にfixedで問題ないのですが、レスポンシブのサイトだとブラウザ起点のfixedが恨めしい時が多くあります。</p>
-<p>そんな時、親要素を起点にfixedしてくれたらいいのになと思っていたら、こんな方法がありました。</p>
-<p>JSとか<a class="keyword" href="http://d.hatena.ne.jp/keyword/jQuery">jQuery</a>でもいいのでしょうが、<a class="keyword" href="http://d.hatena.ne.jp/keyword/CSS">CSS</a>だけで対応できたら楽チンですし動きも軽いです。</p>
-<p>HTMLはなんの変哲もありません。 </p>
-<p><script src="https://gist.github.com/26d222ba554e5d8bcc3ddb6badb40a6b.js"> </script></p>
-<p><a href="https://gist.github.com/26d222ba554e5d8bcc3ddb6badb40a6b">縦の動きだけに追従するサイドバー</a></p>
-<p>続いて<a class="keyword" href="http://d.hatena.ne.jp/keyword/CSS">CSS</a>。</p>
-<p><script src="https://gist.github.com/942025258ac906fedcb7bc987ef0d312.js"> </script></p>
-<p><a href="https://gist.github.com/942025258ac906fedcb7bc987ef0d312">「position:fixedの起点を親要素にするCSS」のCSS</a></p>
-<h2>仕組み</h2>
-<p>この<a class="keyword" href="http://d.hatena.ne.jp/keyword/CSS">CSS</a>のポイントは、positionで左右位置を指定せずに、marginで位置を調整すること。fixedとabsoluteはtopやleftを指定せずにかけた場合は親要素の左上が起点になるんですね。そこで、marginで位置を指定してあげて完成！</p>
-<p> </p>
+			<p>今回はWordPressのコメント機能を利用する方法を実践した時のことを記します。まあ、このブログはWordPressで記事を管理しているとはいえ、最終的には静的<br />
+化してgithub.ioへアップロードしてるので、使用していないのですが。次に作る時のために。</p>
+<h2>WordPressのコメント機能の概要</h2>
+<p>WordPressのコメントには大きく二つの機能が存在しています。一つが<strong>コメントを投稿する機能、</strong>もう一つが<strong>コメントを表示する機能</strong>です。それぞれを呼び出すための関数をテンプレートファイルに書き込むことで設置することになります。</p>
+<h2>コメント投稿フォームに必要なもの</h2>
+<p>コメントを投稿可能にするにはコメント投稿フォームが必要になります。これが前述した<strong>コメントを投稿する機能</strong>です。ここで必要になるのが</p>
+<ul>
+<li>comments.php</li>
+<li>comments_template関数</li>
+</ul>
+<p>です。</p>
+<h3>comments.phpの準備と中身</h3>
+<p>comments.phpには、まずcomment_form関数が必要になります。この関数を利用することで、WordPressがデフォルトで用意しているコメント投稿フォームを呼び出すことができます。</p>
+<blockquote>
+<h2><span id=".E4.BD.BF.E3.81.84.E6.96.B9" class="mw-headline">使い方</span></h2>
+<pre>&lt;?php comment_form( $args, $post_id ); ?&gt;
+</pre>
+<h3><span id=".E3.83.87.E3.83.95.E3.82.A9.E3.83.AB.E3.83.88.E3.81.AE.E8.A8.AD.E5.AE.9A" class="mw-headline">デフォルトの設定</span></h3>
+<div class="thumb tright"></div>
+<pre>&lt;?php comment_form(); ?&gt;
+</pre>
+<p><a href="http://wpdocs.osdn.jp/%E9%96%A2%E6%95%B0%E3%83%AA%E3%83%95%E3%82%A1%E3%83%AC%E3%83%B3%E3%82%B9/comment_form">関数リファレンス/comment form</a>　より</p></blockquote>
+<p>パラメータは様々用意されているので、表示はかなり柔軟コントロール可能です。このテーマではサイトURLの欄を消したりしています。</p>
+<p>続いて、投稿されたコメントを表示するためのwp_list_commentをこんな感じで書き込んでおきます。</p>
+<pre>&lt;?php if ( have_comments() ) : ?&gt;
+ &lt;ol class="commentlist"&gt;
+ &lt;?php wp_list_comments(); ?&gt;
+ &lt;/ol&gt;
+ &lt;?php endif;?&gt;</pre>
+<h3>コメントフォームを呼び出す</h3>
+<p>作成したコメントフォームを任意のファイルで呼び出します。実際にはsingle.phpとpage.phpでしょうか。</p>
+<p>呼び出しには<strong>comments_template()</strong>を利用します。コメントはメインに関連するコンテンツなので、asideに書き込んでいます。</p>
+<h2>コード</h2>
+<h3>comments.php</h3>
+<p><script src="https://gist.github.com/pochi-web/46e31393c4dcfcd4065bde70211e56fa.js"></script></p>
+<p><a href="https://gist.github.com/46e31393c4dcfcd4065bde70211e56fa">WordPress commnet.phpの作成</a></p>
 		</article>
 	</main>
 			<aside>
-					<div id="respond" class="comment-respond">
-		<h3 id="reply-title" class="comment-reply-title">コメントを残す <small><a rel="nofollow" id="cancel-comment-reply-link" href="/entry/2017/05/14/171023#respond" style="display:none;">コメントをキャンセル</a></small></h3>			<form action="/wp-comments-post.php" method="post" id="commentform" class="comment-form">
-				<p class="comment-notes"><span id="email-notes">メールアドレスが公開されることはありません。</span> <span class="required">*</span> が付いている欄は必須項目です</p><p class="comment-form-comment"><label for="comment">コメント</label> <textarea id="comment" name="comment" cols="45" rows="8" maxlength="65525" aria-required="true" required="required"></textarea></p><p class="comment-form-author"><label for="author">お名前</label> <span class="required">*</span><input id="author" name="author" type="text" value=""  aria-required='true' /></p>
-<p class="comment-form-email"><label for="email">Email</label> <span class="required">*</span><input id="email" name="email" type="text" value="" aria-required='true' /></p>
-
-<p class="form-submit"><input name="submit" type="submit" id="submit" class="submit" value="コメントを送信" /> <input type='hidden' name='comment_post_ID' value='2131' id='comment_post_ID' />
-<input type='hidden' name='comment_parent' id='comment_parent' value='0' />
-</p>			</form>
-			</div><!-- #respond -->
-				</aside>
+							</aside>
 	<footer>
-<div class="menu-myglobal-container"><ul id="menu-myglobal" class="menu"><li id="menu-item-2107" class="menu-item menu-item-type-taxonomy menu-item-object-category current-post-ancestor current-menu-parent current-post-parent menu-item-2107"><a href="/entry/category/web">Web制作</a></li>
-<li id="menu-item-2104" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-2104"><a href="/entry/category/cms">CMS</a></li>
+<div class="menu-myglobal-container"><ul id="menu-myglobal" class="menu"><li id="menu-item-2107" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-2107"><a href="/entry/category/web">Web制作</a></li>
+<li id="menu-item-2104" class="menu-item menu-item-type-taxonomy menu-item-object-category current-post-ancestor menu-item-2104"><a href="/entry/category/cms">CMS</a></li>
 <li id="menu-item-2105" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-2105"><a href="/entry/category/dev">Dev</a></li>
 <li id="menu-item-2106" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-2106"><a href="/entry/category/dialy">Dialy</a></li>
 </ul></div><div id="copyright">
@@ -119,7 +130,7 @@ img.emoji {
 <ul>
 <li class="back_to"><a href="/index.php/search">検索</a></li>
 <li class="back_to"><a href="/">Home</a></li>
-<li class="back_to"><a href="/entry/2017/05/14/171023#top">Top</a></li>
+<li class="back_to"><a href="/entry/2017/11/14/085733#top">Top</a></li>
 </ul>
 </nav>
 </div>
